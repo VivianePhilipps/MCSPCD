@@ -1,0 +1,10 @@
+Package: MCSPCD
+Title: Monte Carlo Simulation for Projections of epidemiological burden of Chronic Disease
+Version: 0.0.0.9000
+Authors@R: person("Florian", "Guillet", email = "florian.guillet@u-bordeaux.fr", role = c("aut", "cre"))
+Description: Monte Carlo Simulation for Projections of epidemiological burden of Chronic Disease and evaluation of impact of changes in risk factor distribution for a given year.
+Depends: R (>= 3.5.0), doParallel (>= 1.0.11)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
