@@ -9,20 +9,20 @@
 #' @param nb_iter number of iterations for the algorithm. Default is \code{0}.
 #' @param data_pop data source for demographics data.
 #' @param gender gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.
-#' @param data_a01 data source for the incidence of disease.
-#' @param data_a02 data source for the mortality of healthy subjects.
-#' @param data_theta01 data source for the relative risks associated with the exposure for disease.
-#' @param data_theta02 data source for the relative risks associated with the exposure for mortality among healthy subjects.
-#' @param data_theta12 data source for the relative risks associated with the exposure for mortality among diseased subjects.
-#' @param data_prev data source for the prevalence of the exposition.
-#' @param data_incid data source for the incidence of the exposition.
-#' @param data_rr_DvsND data source for the relative risks associated with the disease for mortality.
-#' @param data_a01_values variability of data source for the incidence of disease.
-#' @param data_a02_values variability of data source for the mortality of healthy subjects.
-#' @param data_theta01_values variability of data source for the relative risks associated with the exposure for disease.
-#' @param data_prev_values variability of data source for the prevalence of the exposition.
-#' @param data_incid_values variability of data source for the incidence of the exposition.
-#' @param data_rr_DvsND_values variability of data source for the relative risks associated with the disease for mortality.
+#' @param data_a01_values data source for the incidence of disease.
+#' @param data_a02_values data source for the mortality of healthy subjects.
+#' @param data_theta01_values data source for the relative risks associated with the exposure for disease.
+#' @param data_theta02_values data source for the relative risks associated with the exposure for mortality among healthy subjects.
+#' @param data_theta12_values data source for the relative risks associated with the exposure for mortality among diseased subjects.
+#' @param data_prev_values data source for the prevalence of the exposition.
+#' @param data_incid_values data source for the incidence of the exposition.
+#' @param data_rr_DvsND_values data source for the relative risks associated with the disease for mortality.
+#' @param data_a01 variability of data source for the incidence of disease.
+#' @param data_a02 variability of data source for the mortality of healthy subjects.
+#' @param data_theta01 variability of data source for the relative risks associated with the exposure for disease.
+#' @param data_prev variability of data source for the prevalence of the exposition.
+#' @param data_incid variability of data source for the incidence of the exposition.
+#' @param data_rr_DvsND variability of data source for the relative risks associated with the disease for mortality.
 #'
 #' @return a list containing the health indicators
 #'
@@ -36,20 +36,20 @@
 #' nb_iter = 100,
 #' data_pop = pop,
 #' gender = "W",
-#' data_a01 = a01,
-#' data_a02 = a02,
-#' data_theta01 = theta01_cas_1_6,
-#' data_theta02 = theta02_1,
-#' data_theta12 = theta02_1,
-#' data_prev = prevconso,
-#' data_incid = incidconso,
-#' data_rr_DvsND = rr_DvsND,
 #' data_a01_values = a01_values,
 #' data_a02_values = a02_values,
 #' data_theta01_values = theta01_cas_1_6_values,
+#' data_theta02_values = theta02_1_values,
+#' data_theta12_values = theta02_1_values,
 #' data_prev_values <- prevconso_values,
 #' data_incid_values <- incidconso_values,
-#' data_rr_DvsND_values = rr_DvsND_values)
+#' data_rr_DvsND_values = rr_DvsND_values,
+#' data_a01 = a01,
+#' data_a02 = a02,
+#' data_theta01 = theta01_cas_1_6,
+#' data_prev = prevconso,
+#' data_incid = incidconso,
+#' data_rr_DvsND = rr_DvsND)
 estimHI <- function(t,
                     intervention = 0,
                     year_intervention = NULL,
@@ -57,20 +57,20 @@ estimHI <- function(t,
                     nb_iter = 0,
                     data_pop,
                     gender = "W",
-                    data_a01,
-                    data_a02,
-                    data_theta01,
-                    data_theta02,
-                    data_theta12,
-                    data_prev,
-                    data_incid,
-                    data_rr_DvsND,
                     data_a01_values,
                     data_a02_values,
                     data_theta01_values,
+                    data_theta02_values,
+                    data_theta12_values,
                     data_prev_values,
                     data_incid_values,
-                    data_rr_DvsND_values)
+                    data_rr_DvsND_values,
+                    data_a01,
+                    data_a02,
+                    data_theta01,
+                    data_prev,
+                    data_incid,
+                    data_rr_DvsND)
 
 {
 
@@ -123,7 +123,7 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020)){
 
-    a020[,a] <- as.numeric(data_a02[which(data_a02[,1] != 65 & data_a02[,2]%in%(gender)),a+1]) / (data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2]*data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] - data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] + 1);
+    a020[,a] <- as.numeric(data_a02[which(data_a02[,1] != 65 & data_a02[,2]%in%(gender)),a+1]) / (data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2]*data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] - data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] + 1);
 
   }
 
@@ -136,7 +136,7 @@ estimHI <- function(t,
   colnames(a021) <- c("age",1950:2080)
 
   a021[,1] <- c(66:105)
-  a021[,-1] <- a020[,-1]*data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2];
+  a021[,-1] <- a020[,-1]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2];
 
   ### Global mortality of healthy subjects
 
@@ -147,7 +147,7 @@ estimHI <- function(t,
   colnames(a02_global) <- c("age",1950:2080)
 
   a02_global[,1] <- c(66:105)
-  a02_global[,-1] <- data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2]*a020[,-1]*data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2] + (1-data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2])*a020[,-1];
+  a02_global[,-1] <- data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2]*a020[,-1]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2] + (1-data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2])*a020[,-1];
 
   ### Relative risks associated with the disease for mortality
 
@@ -172,7 +172,7 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020)){
 
-    a120[,a] <- as.numeric(RR[,2])*a020[,a] / (data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2]*data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] - data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] + 1);
+    a120[,a] <- as.numeric(RR[,2])*a020[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] - data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] + 1);
 
   }
 
@@ -185,7 +185,7 @@ estimHI <- function(t,
   colnames(a121) <- c("age",1950:2080)
 
   a121[,1] <- c(66:105)
-  a121[,-1] <- a120[,-1]*data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2];
+  a121[,-1] <- a120[,-1]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2];
 
   ### Global mortality of diseased subjects
 
@@ -196,7 +196,7 @@ estimHI <- function(t,
   colnames(a12_global) <- c("age",1950:2080)
 
   a12_global[,1] <- c(66:105)
-  a12_global[,-1] <- data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2]*a120[,-1]*data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2] + (1-data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2])*a120[,-1];
+  a12_global[,-1] <- data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2]*a120[,-1]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2] + (1-data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2])*a120[,-1];
 
   ### Variability of parameters
 
@@ -245,7 +245,7 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020_values)){ # pour chaque année
 
-    a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2]*data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] - data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] + 1);
+    a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2]*data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] - data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] + 1);
 
   }
 
@@ -258,7 +258,7 @@ estimHI <- function(t,
   colnames(a021_values) <- c("age",1950:2080)
 
   a021_values[,1] <- c(66:105)
-  a021_values[,-1] <- a020_values[,-1]*data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2];
+  a021_values[,-1] <- a020_values[,-1]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2];
 
   ### Global mortality of healthy subjects
 
@@ -269,7 +269,7 @@ estimHI <- function(t,
   colnames(a02_global_values) <- c("age",1950:2080)
 
   a02_global_values[,1] <- c(66:105)
-  a02_global_values[,-1] <- data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2] + (1-data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2])*a020_values[,-1];
+  a02_global_values[,-1] <- data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2] + (1-data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2])*a020_values[,-1];
 
   ### Relative risks associated with the disease for mortality
 
@@ -294,7 +294,7 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020_values)){
 
-    a120_values[,a] <- as.numeric(RR_values[,2])*a020_values[,a] / (data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2]*data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] - data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] + 1);
+    a120_values[,a] <- as.numeric(RR_values[,2])*a020_values[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] - data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] + 1);
 
   }
 
@@ -307,7 +307,7 @@ estimHI <- function(t,
   colnames(a121_values) <- c("age",1950:2080)
 
   a121_values[,1] <- c(66:105)
-  a121_values[,-1] <- a120_values[,-1]*data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2];
+  a121_values[,-1] <- a120_values[,-1]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2];
 
   ### Global mortality of diseased subjects
 
@@ -318,7 +318,7 @@ estimHI <- function(t,
   colnames(a12_global_values) <- c("age",1950:2080)
 
   a12_global_values[,1] <- c(66:105)
-  a12_global_values[,-1] <- data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2] + (1-data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2])*a120_values[,-1];
+  a12_global_values[,-1] <- data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2] + (1-data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2])*a120_values[,-1];
 
   ### Matrix for results of health indicators
 
@@ -768,33 +768,33 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020_values)){
 
-    a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+    a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
 
   }
 
   ### Mortality of healthy subjects on exposed peoples
 
-  a021_values[,-1] <- a020_values[,-1]*data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2];
+  a021_values[,-1] <- a020_values[,-1]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2];
 
   ### Global mortality of healthy subjects
 
-  a02_global_values[,-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a020_values[,-1]*data_theta02[which(data_theta02[,1] != 65 & data_theta02[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a020_values[,-1];
+  a02_global_values[,-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a020_values[,-1]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a020_values[,-1];
 
   ### Mortality of diseased subjects on non exposed peoples
 
   for (a in 2:ncol(a020_values)){
 
-    a120_values[,a] <- as.numeric(RR_values[,2])*a020_values[,a] / (data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+    a120_values[,a] <- as.numeric(RR_values[,2])*a020_values[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
 
   }
 
   ### Mortality of diseased subjects on exposed peoples
 
-  a121_values[,-1] <- a120_values[,-1]*data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2];
+  a121_values[,-1] <- a120_values[,-1]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2];
 
   ### Global mortality of diseased subjects
 
-  a12_global_values[,-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a120_values[,-1]*data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a120_values[,-1];
+  a12_global_values[,-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a120_values[,-1]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a120_values[,-1];
 
   ###############################
   ###          STEP 2         ###
@@ -1577,8 +1577,8 @@ estimHI <- function(t,
                          data_a01 = data_a01,
                          data_theta01 = data_theta01,
                          data_a02 = data_a02,
-                         data_theta02 = data_theta02,
-                         data_theta12 = data_theta12,
+                         data_theta02 = data_theta02_values,
+                         data_theta12 = data_theta12_values,
                          RR = RR,
                          prb_dem = prb_dem,
                          age_dem = age_dem)
