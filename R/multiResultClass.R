@@ -2,86 +2,86 @@
 #'
 #' This function organizes the different results of the \code{varHI} function.
 #'
-#' @param ev_gen Default is \code{NULL}.
-#' @param ev_gen_conso Default is \code{NULL}.
-#' @param ev_gen_nonconso Default is \code{NULL}.
-#' @param ev_sans_mal Default is \code{NULL}.
-#' @param ev_sans_mal_conso Default is \code{NULL}.
-#' @param ev_sans_mal_nonconso Default is \code{NULL}.
-#' @param ev_mal Default is \code{NULL}.
-#' @param ev_mal_conso Default is \code{NULL}.
-#' @param ev_mal_nonconso Default is \code{NULL}.
-#' @param ev_non_mal Default is \code{NULL}.
-#' @param ev_non_mal_conso Default is \code{NULL}.
-#' @param ev_non_mal_nonconso Default is \code{NULL}.
+#' @param LE_overall Default is \code{NULL}.
+#' @param LE_overall_exp Default is \code{NULL}.
+#' @param LE_overall_nonexp Default is \code{NULL}.
+#' @param LE_without_dis Default is \code{NULL}.
+#' @param LE_without_dis_exp Default is \code{NULL}.
+#' @param LE_without_dis_nonexp Default is \code{NULL}.
+#' @param LE_dis Default is \code{NULL}.
+#' @param LE_dis_exp Default is \code{NULL}.
+#' @param LE_dis_nonexp Default is \code{NULL}.
+#' @param LE_non_dis Default is \code{NULL}.
+#' @param LE_non_dis_exp Default is \code{NULL}.
+#' @param LE_non_dis_nonexp Default is \code{NULL}.
 #' @param np_age Default is \code{NULL}.
-#' @param tp_dem Default is \code{NULL}.
-#' @param nsurvie Default is \code{NULL}.
-#' @param tsurvie Default is \code{NULL}.
-#' @param nm_dem Default is \code{NULL}.
-#' @param nm_dem_conso Default is \code{NULL}.
-#' @param nm_dem_nonconso Default is \code{NULL}.
-#' @param p_dem Default is \code{NULL}.
-#' @param a_dem Default is \code{NULL}.
-#' @param m_conso Default is \code{NULL}.
-#' @param p_conso Default is \code{NULL}.
-#' @param q_mortalite Default is \code{NULL}.
+#' @param tp_dis Default is \code{NULL}.
+#' @param nsurvival Default is \code{NULL}.
+#' @param rsurvival Default is \code{NULL}.
+#' @param nb_dis Default is \code{NULL}.
+#' @param nb_dis_exp Default is \code{NULL}.
+#' @param nb_dis_nonexp Default is \code{NULL}.
+#' @param p_dis Default is \code{NULL}.
+#' @param a_dis Default is \code{NULL}.
+#' @param m_exp Default is \code{NULL}.
+#' @param p_exp Default is \code{NULL}.
+#' @param mortality_r Default is \code{NULL}.
 #'
-#' @return a list of the different results of the \code{chi_mcmc} function.
+#' @return a list of the different results of the \code{varHI} function.
 #'
 #' @export
 #'
 #' @examples
 #' multiResultClass()
-multiResultClass <- function(ev_gen = NULL,
-                             ev_gen_conso = NULL,
-                             ev_gen_nonconso = NULL,
-                             ev_sans_mal = NULL,
-                             ev_sans_mal_conso = NULL,
-                             ev_sans_mal_nonconso = NULL,
-                             ev_mal = NULL,
-                             ev_mal_conso = NULL,
-                             ev_mal_nonconso = NULL,
-                             ev_non_mal = NULL,
-                             ev_non_mal_conso = NULL,
-                             ev_non_mal_nonconso = NULL,
+multiResultClass <- function(LE_overall = NULL,
+                             LE_overall_exp = NULL,
+                             LE_overall_nonexp = NULL,
+                             LE_without_dis = NULL,
+                             LE_without_dis_exp = NULL,
+                             LE_without_dis_nonexp = NULL,
+                             LE_dis = NULL,
+                             LE_dis_exp = NULL,
+                             LE_dis_nonexp = NULL,
+                             LE_non_dis = NULL,
+                             LE_non_dis_exp = NULL,
+                             LE_non_dis_nonexp = NULL,
                              np_age = NULL,
-                             tp_dem = NULL,
-                             nsurvie = NULL,
-                             tsurvie = NULL,
-                             nm_dem = NULL,
-                             nm_dem_conso = NULL,
-                             nm_dem_nonconso = NULL,
-                             p_dem = NULL,
-                             a_dem = NULL,
-                             m_conso = NULL,
-                             p_conso = NULL,
-                             q_mortalite = NULL)
+                             tp_dis = NULL,
+                             nsurvival = NULL,
+                             rsurvival = NULL,
+                             nb_dis = NULL,
+                             nb_dis_exp = NULL,
+                             nb_dis_nonexp = NULL,
+                             p_dis = NULL,
+                             a_dis = NULL,
+                             m_exp = NULL,
+                             p_exp = NULL,
+                             mortality_r = NULL)
 {
-  me <- list(ev_gen = ev_gen,
-             ev_gen_conso = ev_gen_conso,
-             ev_gen_nonconso = ev_gen_nonconso,
-             ev_sans_mal = ev_sans_mal,
-             ev_sans_mal_conso = ev_sans_mal_conso,
-             ev_sans_mal_nonconso = ev_sans_mal_nonconso,
-             ev_mal = ev_mal,
-             ev_mal_conso = ev_mal_conso,
-             ev_mal_nonconso = ev_mal_nonconso,
-             ev_non_mal = ev_non_mal,
-             ev_non_mal_conso = ev_non_mal_conso,
-             ev_non_mal_nonconso = ev_non_mal_nonconso,
+  me <- list(LE_overall = LE_overall,
+             LE_overall_exp = LE_overall_exp,
+             LE_overall_nonexp = LE_overall_nonexp,
+             LE_without_dis = LE_without_dis,
+             LE_without_dis_exp = LE_without_dis_exp,
+             LE_without_dis_nonexp = LE_without_dis_nonexp,
+             LE_dis = LE_dis,
+             LE_dis_exp = LE_dis_exp,
+             LE_dis_nonexp = LE_dis_nonexp,
+             LE_non_dis = LE_non_dis,
+             LE_non_dis_exp = LE_non_dis_exp,
+             LE_non_dis_nonexp = LE_non_dis_nonexp,
              np_age = np_age,
-             tp_dem = tp_dem,
-             nsurvie = nsurvie,
-             tsurvie = tsurvie,
-             nm_dem = nm_dem,
-             nm_dem_conso = nm_dem_conso,
-             nm_dem_nonconso = nm_dem_nonconso,
-             p_dem = p_dem,
-             a_dem = a_dem,
-             m_conso = m_conso,
-             p_conso = p_conso,
-             q_mortalite = q_mortalite
+             tp_dis = tp_dis,
+             nsurvival = nsurvival,
+             rsurvival = rsurvival,
+             nb_dis = nb_dis,
+             nb_dis_exp = nb_dis_exp,
+             nb_dis_nonexp = nb_dis_nonexp,
+             p_dis = p_dis,
+             a_dis = a_dis,
+             m_exp = m_exp,
+             p_exp = p_exp,
+             mortality_r = mortality_r
   )
 
   return(me)

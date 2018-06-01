@@ -1,34 +1,33 @@
 #' Computation of the variability of the Health Indicators
 #'
-#' This function computes many iterations of the \code{estimHI} function for compute the variability health indicators.
+#' This function computes many iterations of the \code{estimHI} function for compute the variability of the health indicators.
 #'
-#' @param t year for the projections.
-#' @param scenario 0 = pas de changement; 1 = reduction par 2 de la conso de benzo; 2 = reduction totale. Default is \code{0}.
-#' @param an_scenario année de mise en place de la reduction de la consommation de benzo.
-#' @param nbind nombre d'individus dont on va simuler la trajectoire pour chaque generation.
-#' @param nb_iter nombre d'iterations de l'algo.
-#' @param data_pop population en entree.
-#' @param sexe sexe de la population en entree.
-#' @param an_proj ???
-#' @param data_conso prevalence de la consommation de benzo selon ag.
-#' @param data_incid incidence de la consommation de benzo selon age.
-#' @param a010 risques de devenir dement selon l'age.
-#' @param a011 risques de devenir dement selon l'age.
-#' @param a01_global risques de devenir dement selon l'age.
-#' @param a020 risque de deces chez les non-dements par age et par annee.
-#' @param a021 risque de deces chez les non-dements par age et par annee.
-#' @param a02_global risque de deces chez les non-dements par age et par annee.
-#' @param a120 risque de deces chez les dements par age et par annee.
-#' @param a121 risque de deces chez les dements par age et par annee.
-#' @param a12_global risque de deces chez les dements par age et par annee.
-#' @param data_a01 risques de devenir dement selon l'age.
-#' @param data_theta01 risque relatif de la demence selon la consommation de benzo.
-#' @param data_a02 risque de deces chez les non-dements par age et par annee.
-#' @param data_theta02 risque relatif de deces chez les non-dements selon la consommation de benzo.
-#' @param data_theta12 risque relatif de deces chez les dements selon la consommation de benzo.
-#' @param RR RR de deces pour les dements VS non-dements.
-#' @param prb_dem ??
-#' @param age_dem ??
+#' @param t year of the projections for health indicators.
+#' @param intervention 0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.
+#' @param year_intervention year of the intervention in risk factor distribution takes place.
+#' @param nb_people number of people whose trajectory will be simulated for each generation.
+#' @param nb_iter number of iterations for the algorithm.
+#' @param data_pop data source for demographics data.
+#' @param gender gender for computation. "W" for women and "M" for men.
+#' @param data_prev data source for the prevalence of the exposition.
+#' @param data_incid data source for the incidence of the exposition.
+#' @param a010 incidence of disease on non exposed peoples.
+#' @param a011 incidence of disease on exposed peoples.
+#' @param a01_global global incidence of disease.
+#' @param a020 mortality of healthy subjects on non exposed peoples.
+#' @param a021 mortality of healthy subjects on exposed peoples.
+#' @param a02_global global mortality of healthy subjects.
+#' @param a120 mortality of diseased subjects on non exposed peoples.
+#' @param a121 mortality of diseased subjects on exposed peoples.
+#' @param a12_global global mortality of diseased subjects.
+#' @param data_a01 data source for the incidence of disease.
+#' @param data_theta01 data source for the relative risks associated with the exposure for disease.
+#' @param data_a02 data source for the mortality of healthy subjects.
+#' @param data_theta02 data source for the relative risks associated with the exposure for mortality among healthy subjects.
+#' @param data_theta12 data source for the relative risks associated with the exposure for mortality among diseased subjects.
+#' @param RR relative risks associated with the disease for mortality
+#' @param prb_dem life-long probability of disease
+#' @param age_dem average age at disease onset
 #'
 #' @return a list containing the variability of health indicators
 #'
@@ -36,14 +35,13 @@
 #'
 #' @examples
 #' varHI(t = t,
-#' scenario = scenario,
-#' an_scenario = an_scenario,
-#' nbind = nbind,
+#' intervention = intervention,
+#' year_intervention = year_intervention,
+#' nb_people = nb_people,
 #' nb_iter = nb_iter,
 #' data_pop = data_pop,
-#' sexe = sexe,
-#' an_proj = an_proj,
-#' data_conso = data_conso,
+#' gender = gender,
+#' data_prev = data_prev,
 #' data_incid = data_incid,
 #' a010 = a010,
 #' a011 = a011,
@@ -62,8 +60,8 @@
 #' RR = RR,
 #' prb_dem = prb_dem,
 #' age_dem = age_dem)
-varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
-                  an_proj, data_conso, data_incid,
+varHI <- function(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
+                  data_prev, data_incid,
                   a010, a011, a01_global, a020, a021, a02_global, a120, a121, a12_global,
                   data_a01, data_theta01, data_a02, data_theta02, data_theta12,
                   RR, prb_dem, age_dem)
@@ -76,58 +74,58 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
   cl <- makeCluster(cores) #not to overload your computer
   registerDoParallel(cl)
 
-  indicateurs <- foreach(it=1:nb_iter, .combine='cbind', .verbose=T, .export="multiResultClass") %dopar% { # nombre d'itérations de chaque génération
+  indicateurs <- foreach(it=1:nb_iter, .combine='cbind', .verbose=T, .export="multiResultClass") %dopar% { # number of iterations for each generation
 
     result <- multiResultClass()
 
     ###############################
-    ###          ETAPE 1        ###
+    ###          STEP 1         ###
     ###############################
 
-    ### Recalcul de la prévalence de la conso estimée
+    ### Computation of number of exposed peoples at least one time
 
-    pr_conso_benzo <- matrix(c(0), # matrice de calcul du nombre moyen d'années de conso
+    pr_conso_benzo <- matrix(c(0),
                              nrow=105-65+1,
                              ncol=2,
                              byrow=T);
     pr_conso_benzo[,1] <- c(65:105);
 
-    conso_benzo <- data_conso[which(data_conso[,3]%in%(sexe)),];
+    conso_benzo <- data_prev[which(data_prev[,3]%in%(gender)),];
 
     conso_benzo <- conso_benzo[(1+41*(it-1)):(41*it),];
 
-    incid_benzo <- data_incid[which(data_incid[,3]%in%(sexe)),];
+    incid_benzo <- data_incid[which(data_incid[,3]%in%(gender)),];
 
     incid_benzo <- incid_benzo[(1+40*(it-1)):(40*it),];
 
-    for (age in 65:105) { # suivi de chacune des générations
+    for (age in 65:105) {
 
-      an_naiss <- an_proj-age; # année de naissance
+      an_naiss <- t-age;
 
-      an0 <- an_naiss + 65; # première année à risque (année des 65 ans)
+      an0 <- an_naiss + 65;
 
-      annee <- an0; # annee d'estimation
+      annee <- an0;
 
-      etat <- matrix(c(0), # état initial (non dément)
-                     nrow=nbind, # nombre d'individus suivis
-                     ncol=105-65+1, # nombre d'années à risque
+      etat <- matrix(c(0),
+                     nrow=nb_people,
+                     ncol=105-65+1,
                      byrow=T);
 
-      colnames(etat) <- c(65:105); # âges
+      colnames(etat) <- c(65:105);
 
       for (i in 1:nrow(etat)) {
 
-        alea0 <- runif(1, 0, 1); # tirage d'un nombre aléatoire
+        alea0 <- runif(1, 0, 1);
 
-        if (scenario == 0) {
+        if (intervention == 0) {
 
           donnees_conso <- conso_benzo
 
         } else {
 
-          if (scenario == 1) {
+          if (intervention == 1) {
 
-            if (annee < an_scenario) {
+            if (annee < year_intervention) {
 
               donnees_conso <- conso_benzo
 
@@ -140,9 +138,9 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           } else {
 
-            if (scenario == 2) {
+            if (intervention == 2) {
 
-              if (annee < an_scenario) {
+              if (annee < year_intervention) {
 
                 donnees_conso <- conso_benzo
 
@@ -159,7 +157,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
         }
 
-        if (alea0 <= donnees_conso[which(donnees_conso[,1]%in%(65) & donnees_conso[,3]%in%(sexe)),2]) {
+        if (alea0 <= donnees_conso[which(donnees_conso[,1]%in%(65) & donnees_conso[,3]%in%(gender)),2]) {
 
           etat[i,1] <- "01"
 
@@ -171,25 +169,25 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      for (i in 1:nrow(etat)) { # pour chaque individu
+      for (i in 1:nrow(etat)) {
 
-        for (j in 2:ncol(etat)) { # pour chaque âge
+        for (j in 2:ncol(etat)) {
 
-          annee <- an0 + (j-1) # annee d'estimation
+          annee <- an0 + (j-1)
 
-          alea <- runif(1, 0, 1); # tirage d'un nombre aléatoire pour savoir si il devient sain/dément/décès
+          alea <- runif(1, 0, 1);
 
-          alea0 <- runif(1, 0, 1); # tirage d'un nombre aléatoire pour savoir si il est nouveau consommateur
+          alea0 <- runif(1, 0, 1);
 
-          if (scenario == 0) {
+          if (intervention == 0) {
 
             donnees_incid <- incid_benzo
 
           } else {
 
-            if (scenario == 1) {
+            if (intervention == 1) {
 
-              if (annee < an_scenario) {
+              if (annee < year_intervention) {
 
                 donnees_incid <- incid_benzo
 
@@ -202,9 +200,9 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
             } else {
 
-              if (scenario == 2) {
+              if (intervention == 2) {
 
-                if (annee < an_scenario) {
+                if (annee < year_intervention) {
 
                   donnees_incid <- incid_benzo
 
@@ -221,26 +219,26 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           }
 
-          if (etat[i,j-1] == "00") { # état année précédente est non-dément et non-consommateur
+          if (etat[i,j-1] == "00") {
 
-            if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(sexe)),2]) {
+            if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(gender)),2]) {
 
               a01 <- a011[(1+40*(it-1)):(40*it),];
               a02 <- a021[(1+40*(it-1)):(40*it),];
 
               if (alea <= a02[j-1,j+(an0-1950)+1]) {
 
-                etat[i,j] <- "21"; # individu est devenu consommateur au cours de l'année et décède
+                etat[i,j] <- "21";
 
               } else {
 
                 if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
 
-                  etat[i,j] <- "11"; # individu est devenu consommateur au cours de l'année et devient dément
+                  etat[i,j] <- "11";
 
                 } else {
 
-                  etat[i,j] <- "01"; # individu est devenu consommateur au cours de l'année et reste non-malade
+                  etat[i,j] <- "01";
 
                 }
 
@@ -253,17 +251,17 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
               if (alea <= a02[j-1,j+(an0-1950)+1]) {
 
-                etat[i,j] <- "20"; # individu est resté non-consommateur au cours de l'année et décède
+                etat[i,j] <- "20";
 
               } else {
 
                 if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
 
-                  etat[i,j] <- "10"; # individu est resté non-consommateur au cours de l'année et devient dément
+                  etat[i,j] <- "10";
 
                 } else {
 
-                  etat[i,j] <- "00"; # individu est resté non-consommateur au cours de l'année et reste non-malade
+                  etat[i,j] <- "00";
 
                 }
 
@@ -273,24 +271,24 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           } else {
 
-            if (etat[i,j-1] == "01") { # état année précédente est non-dément et consommateur
+            if (etat[i,j-1] == "01") {
 
               a01 <- a011[(1+40*(it-1)):(40*it),];
               a02 <- a021[(1+40*(it-1)):(40*it),];
 
               if (alea <= a02[j-1,j+(an0-1950)+1]) {
 
-                etat[i,j] <- "21"; # individu est toujours consommateur au cours de l'année et décède
+                etat[i,j] <- "21";
 
               } else {
 
                 if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
 
-                  etat[i,j] <- "11"; # individu est toujours consommateur au cours de l'année et devient dément
+                  etat[i,j] <- "11";
 
                 } else {
 
-                  etat[i,j] <- "01"; # individu est toujours consommateur au cours de l'année et reste non-malade
+                  etat[i,j] <- "01";
 
                 }
 
@@ -298,19 +296,19 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
             } else {
 
-              if (etat[i,j-1] == "10") { # état année précédente est dément et non-consommateur
+              if (etat[i,j-1] == "10") {
 
-                if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(sexe)),2]) {
+                if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(gender)),2]) {
 
                   a12 <- a121[(1+40*(it-1)):(40*it),];
 
                   if (alea <= a12[j-1,j+(an0-1950)+1]) {
 
-                    etat[i,j] <- "21"; # individu est devenu consommateur au cours de l'année et décède
+                    etat[i,j] <- "21";
 
                   } else {
 
-                    etat[i,j] <- "11"; # individu est devenu consommateur au cours de l'année et reste malade
+                    etat[i,j] <- "11";
 
                   }
 
@@ -320,11 +318,11 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
                   if (alea <= a12[j-1,j+(an0-1950)+1]) {
 
-                    etat[i,j] <- "20"; # individu est resté non-consommateur au cours de l'année et décède
+                    etat[i,j] <- "20";
 
                   } else {
 
-                    etat[i,j] <- "10"; # individu est resté non-consommateur au cours de l'année et reste malade
+                    etat[i,j] <- "10";
 
                   }
 
@@ -332,29 +330,29 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
               } else {
 
-                if (etat[i,j-1] == "11") { # état année précédente est dément et consommateur
+                if (etat[i,j-1] == "11") {
 
                   a12 <- a121[(1+40*(it-1)):(40*it),];
 
                   if (alea <= a12[j-1,j+(an0-1950)+1]) {
 
-                    etat[i,j] <- "21"; # individu est toujours consommateur au cours de l'année et décède
+                    etat[i,j] <- "21";
 
                   } else {
 
-                    etat[i,j] <- "11"; # individu est toujours consommateur au cours de l'année et reste malade
+                    etat[i,j] <- "11";
 
                   }
 
                 } else {
 
-                  if (etat[i,j-1] == "20") { # individu est décédé et était non-consommateur
+                  if (etat[i,j-1] == "20") {
 
-                    etat[i,j] <- "20"; # individu est décédé et était non-consommateur
+                    etat[i,j] <- "20";
 
                   } else {
 
-                    etat[i,j] <- "21"; # individu est décédé et était consommateur
+                    etat[i,j] <- "21";
 
                   }
 
@@ -376,7 +374,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
       #####################################################################################
       #####################################################################################
 
-      ### Calcul d'indicateurs :
+      ### Computation of number of exposed peoples at least one time
 
       if (age <= 105) {
 
@@ -398,100 +396,100 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
     }
 
-    # Recalcul des intensités de transition
+    ### Computation of transition intensities
 
-    ### Définition des risques de démence chez les non-consommateurs
+    ### Incidence of disease on non exposed peoples
 
-    data_a01 <- data_a01[which(data_a01[,3]%in%(sexe)),]
+    data_a01 <- data_a01[which(data_a01[,3]%in%(gender)),]
 
     new_data_a01 <- data_a01[(1+40*(it-1)):(40*it),];
 
-    new_data_theta01 <- data_theta01[which(data_theta01[,3]%in%(sexe)),]
+    new_data_theta01 <- data_theta01[which(data_theta01[,3]%in%(gender)),]
 
     new_data_theta01 <- new_data_theta01[(1+41*(it-1)):(41*it),];
 
-    a010[(1+40*(it-1)):(40*it),2] <- as.numeric(new_data_a01[which(new_data_a01[,1] != 65 & new_data_a01[,3]%in%(sexe)),2]) / (new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(sexe)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+    a010[(1+40*(it-1)):(40*it),2] <- as.numeric(new_data_a01[which(new_data_a01[,1] != 65 & new_data_a01[,3]%in%(gender)),2]) / (new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
 
-    ### Définition des risques de démence chez les consommateurs
+    ### Incidence of disease on exposed peoples
 
-    a011[(1+40*(it-1)):(40*it),2] <- a010[(1+40*(it-1)):(40*it),2]*new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(sexe)),2];
+    a011[(1+40*(it-1)):(40*it),2] <- a010[(1+40*(it-1)):(40*it),2]*new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(gender)),2];
 
-    ### Définition des risques de démence global
+    ### Global incidence of disease
 
-    a01_global[(1+40*(it-1)):(40*it),2] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a010[(1+40*(it-1)):(40*it),2]*new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(sexe)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a010[(1+40*(it-1)):(40*it),2];
+    a01_global[(1+40*(it-1)):(40*it),2] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a010[(1+40*(it-1)):(40*it),2]*new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a010[(1+40*(it-1)):(40*it),2];
 
-    ### Définition des risques de décès chez les non-consommateurs
+    ### Mortality of healthy subjects on non exposed peoples
 
-    data_a02 <- data_a02[which(data_a02[,2]%in%(sexe)),]
+    data_a02 <- data_a02[which(data_a02[,2]%in%(gender)),]
 
     new_data_a02 <- data_a02[(1+40*(it-1)):(40*it),];
 
-    new_data_theta02 <- data_theta02[which(data_theta02[,3]%in%(sexe)),]
+    new_data_theta02 <- data_theta02[which(data_theta02[,3]%in%(gender)),]
 
     for (a in 2:ncol(a020)){ # pour chaque année
 
-      a020[(1+40*(it-1)):(40*it),a] <- as.numeric(new_data_a02[which(new_data_a02[,1] != 65 & new_data_a02[,2]%in%(sexe)),a+1]) / (new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(sexe)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+      a020[(1+40*(it-1)):(40*it),a] <- as.numeric(new_data_a02[which(new_data_a02[,1] != 65 & new_data_a02[,2]%in%(gender)),a+1]) / (new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
 
     }
 
-    ### Définition des risques de décès chez les consommateurs
+    ### Mortality of healthy subjects on exposed peoples
 
-    a021[(1+40*(it-1)):(40*it),-1] <- a020[(1+40*(it-1)):(40*it),-1]*new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(sexe)),2];
+    a021[(1+40*(it-1)):(40*it),-1] <- a020[(1+40*(it-1)):(40*it),-1]*new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(gender)),2];
 
-    ### Définition des risques de décès global
+    ### Global mortality of healthy subjects
 
-    a02_global[(1+40*(it-1)):(40*it),-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a020[(1+40*(it-1)):(40*it),-1]*new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(sexe)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a020[(1+40*(it-1)):(40*it),-1];
+    a02_global[(1+40*(it-1)):(40*it),-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a020[(1+40*(it-1)):(40*it),-1]*new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a020[(1+40*(it-1)):(40*it),-1];
 
-    ### Définition des risques de décès pour un dément chez les non-consommateurs
+    ### Mortality of diseased subjects on non exposed peoples
 
-    new_data_theta12 <- data_theta12[which(data_theta12[,3]%in%(sexe)),]
+    new_data_theta12 <- data_theta12[which(data_theta12[,3]%in%(gender)),]
 
     for (a in 2:ncol(a020)){ # pour chaque année
 
-      a120[(1+40*(it-1)):(40*it),a] <- as.numeric(RR[(1+40*(it-1)):(40*it),2])*a020[(1+40*(it-1)):(40*it),a] / (new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(sexe)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+      a120[(1+40*(it-1)):(40*it),a] <- as.numeric(RR[(1+40*(it-1)):(40*it),2])*a020[(1+40*(it-1)):(40*it),a] / (new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
 
     }
 
-    ### Définition des risques de décès pour un dément chez les consommateurs
+    ### Mortality of diseased subjects on exposed peoples
 
-    a121[(1+40*(it-1)):(40*it),-1] <- a120[(1+40*(it-1)):(40*it),-1]*new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(sexe)),2];
+    a121[(1+40*(it-1)):(40*it),-1] <- a120[(1+40*(it-1)):(40*it),-1]*new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(gender)),2];
 
-    ### Définition des risques de décès pour un dément global
+    ### Global mortality of diseased subjects
 
-    a12_global[(1+40*(it-1)):(40*it),-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a120[(1+40*(it-1)):(40*it),-1]*new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(sexe)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a120[(1+40*(it-1)):(40*it),-1];
+    a12_global[(1+40*(it-1)):(40*it),-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a120[(1+40*(it-1)):(40*it),-1]*new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a120[(1+40*(it-1)):(40*it),-1];
 
     ###############################
-    ###          ETAPE 2        ###
+    ###          STEP 2         ###
     ###############################
 
-    for (age in 65:105) { # suivi de chacune des générations
+    for (age in 65:105) {
 
-      an_naiss <- an_proj-age; # année de naissance
+      an_naiss <- t-age;
 
-      an0 <- an_naiss + 65; # première année à risque (année des 65 ans)
+      an0 <- an_naiss + 65;
 
-      annee <- an0; # annee d'estimation
+      annee <- an0;
 
-      etat <- matrix(c(0), # état initial (non dément)
-                     nrow=nbind, # nombre d'individus suivis
-                     ncol=105-65+1, # nombre d'années à risque
+      etat <- matrix(c(0),
+                     nrow=nb_people,
+                     ncol=105-65+1,
                      byrow=T);
 
-      colnames(etat) <- c(65:105); # âges
+      colnames(etat) <- c(65:105);
 
       for (i in 1:nrow(etat)) {
 
-        alea0 <- runif(1, 0, 1); # tirage d'un nombre aléatoire
+        alea0 <- runif(1, 0, 1);
 
-        if (scenario == 0) {
+        if (intervention == 0) {
 
           donnees_conso <- pr_conso_benzo
 
         } else {
 
-          if (scenario == 1) {
+          if (intervention == 1) {
 
-            if (annee < an_scenario) {
+            if (annee < year_intervention) {
 
               donnees_conso <- pr_conso_benzo
 
@@ -504,9 +502,9 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           } else {
 
-            if (scenario == 2) {
+            if (intervention == 2) {
 
-              if (annee < an_scenario) {
+              if (annee < year_intervention) {
 
                 donnees_conso <- pr_conso_benzo
 
@@ -535,25 +533,25 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      for (i in 1:nrow(etat)) { # pour chaque individu
+      for (i in 1:nrow(etat)) {
 
-        for (j in 2:ncol(etat)) { # pour chaque âge
+        for (j in 2:ncol(etat)) {
 
-          annee <- an0 + (j-1) # annee d'estimation
+          annee <- an0 + (j-1)
 
-          alea <- runif(1, 0, 1); # tirage d'un nombre aléatoire pour savoir si il devient sain/dément/décès
+          alea <- runif(1, 0, 1);
 
-          alea0 <- runif(1, 0, 1); # tirage d'un nombre aléatoire pour savoir si il est nouveau consommateur
+          alea0 <- runif(1, 0, 1);
 
-          if (scenario == 0) {
+          if (intervention == 0) {
 
             donnees_incid <- incid_benzo
 
           } else {
 
-            if (scenario == 1) {
+            if (intervention == 1) {
 
-              if (annee < an_scenario) {
+              if (annee < year_intervention) {
 
                 donnees_incid <- incid_benzo
 
@@ -566,9 +564,9 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
             } else {
 
-              if (scenario == 2) {
+              if (intervention == 2) {
 
-                if (annee < an_scenario) {
+                if (annee < year_intervention) {
 
                   donnees_incid <- incid_benzo
 
@@ -585,26 +583,26 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           }
 
-          if (etat[i,j-1] == "00") { # état année précédente est non-dément et non-consommateur
+          if (etat[i,j-1] == "00") {
 
-            if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(sexe)),2]) {
+            if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(gender)),2]) {
 
               a01 <- a011[(1+40*(it-1)):(40*it),];
               a02 <- a021[(1+40*(it-1)):(40*it),];
 
               if (alea <= a02[j-1,j+(an0-1950)+1]) {
 
-                etat[i,j] <- "21"; # individu est devenu consommateur au cours de l'année et décède
+                etat[i,j] <- "21";
 
               } else {
 
                 if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
 
-                  etat[i,j] <- "11"; # individu est devenu consommateur au cours de l'année et devient dément
+                  etat[i,j] <- "11";
 
                 } else {
 
-                  etat[i,j] <- "01"; # individu est devenu consommateur au cours de l'année et reste non-malade
+                  etat[i,j] <- "01";
 
                 }
 
@@ -617,17 +615,17 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
               if (alea <= a02[j-1,j+(an0-1950)+1]) {
 
-                etat[i,j] <- "20"; # individu est resté non-consommateur au cours de l'année et décède
+                etat[i,j] <- "20";
 
               } else {
 
                 if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
 
-                  etat[i,j] <- "10"; # individu est resté non-consommateur au cours de l'année et devient dément
+                  etat[i,j] <- "10";
 
                 } else {
 
-                  etat[i,j] <- "00"; # individu est resté non-consommateur au cours de l'année et reste non-malade
+                  etat[i,j] <- "00";
 
                 }
 
@@ -637,24 +635,24 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           } else {
 
-            if (etat[i,j-1] == "01") { # état année précédente est non-dément et consommateur
+            if (etat[i,j-1] == "01") {
 
               a01 <- a011[(1+40*(it-1)):(40*it),];
               a02 <- a021[(1+40*(it-1)):(40*it),];
 
               if (alea <= a02[j-1,j+(an0-1950)+1]) {
 
-                etat[i,j] <- "21"; # individu est toujours consommateur au cours de l'année et décède
+                etat[i,j] <- "21";
 
               } else {
 
                 if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
 
-                  etat[i,j] <- "11"; # individu est toujours consommateur au cours de l'année et devient dément
+                  etat[i,j] <- "11";
 
                 } else {
 
-                  etat[i,j] <- "01"; # individu est toujours consommateur au cours de l'année et reste non-malade
+                  etat[i,j] <- "01";
 
                 }
 
@@ -662,19 +660,19 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
             } else {
 
-              if (etat[i,j-1] == "10") { # état année précédente est dément et non-consommateur
+              if (etat[i,j-1] == "10") {
 
-                if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(sexe)),2]) {
+                if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(gender)),2]) {
 
                   a12 <- a121[(1+40*(it-1)):(40*it),];
 
                   if (alea <= a12[j-1,j+(an0-1950)+1]) {
 
-                    etat[i,j] <- "21"; # individu est devenu consommateur au cours de l'année et décède
+                    etat[i,j] <- "21";
 
                   } else {
 
-                    etat[i,j] <- "11"; # individu est devenu consommateur au cours de l'année et reste malade
+                    etat[i,j] <- "11";
 
                   }
 
@@ -684,11 +682,11 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
                   if (alea <= a12[j-1,j+(an0-1950)+1]) {
 
-                    etat[i,j] <- "20"; # individu est resté non-consommateur au cours de l'année et décède
+                    etat[i,j] <- "20";
 
                   } else {
 
-                    etat[i,j] <- "10"; # individu est resté non-consommateur au cours de l'année et reste malade
+                    etat[i,j] <- "10";
 
                   }
 
@@ -696,29 +694,29 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
               } else {
 
-                if (etat[i,j-1] == "11") { # état année précédente est dément et consommateur
+                if (etat[i,j-1] == "11") {
 
                   a12 <- a121[(1+40*(it-1)):(40*it),];
 
                   if (alea <= a12[j-1,j+(an0-1950)+1]) {
 
-                    etat[i,j] <- "21"; # individu est toujours consommateur au cours de l'année et décède
+                    etat[i,j] <- "21";
 
                   } else {
 
-                    etat[i,j] <- "11"; # individu est toujours consommateur au cours de l'année et reste malade
+                    etat[i,j] <- "11";
 
                   }
 
                 } else {
 
-                  if (etat[i,j-1] == "20") { # individu est décédé et était non-consommateur
+                  if (etat[i,j-1] == "20") {
 
-                    etat[i,j] <- "20"; # individu est décédé et était non-consommateur
+                    etat[i,j] <- "20";
 
                   } else {
 
-                    etat[i,j] <- "21"; # individu est décédé et était consommateur
+                    etat[i,j] <- "21";
 
                   }
 
@@ -740,9 +738,9 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
       #####################################################################################
       #####################################################################################
 
-      ### Calcul d'indicateurs :
+      ### Computation of health indicators :
 
-      ### Espérance de vie générale
+      ### Overall life-expectancy
 
       if (age < 101) {
 
@@ -770,7 +768,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie générale chez les consommateurs de benzo
+      ###	Overall life-expectancy on exposed peoples
 
       if (age < 101) {
 
@@ -798,7 +796,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie générale chez les non-consommateurs de benzo
+      ###	Overall life-expectancy on non exposed peoples
 
       if (age < 101) {
 
@@ -826,7 +824,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie sans la maladie
+      ###	Life-expectancy without disease
 
       if (age < 101) {
 
@@ -854,7 +852,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie sans la maladie chez les consommateurs de benzo
+      ###	Life-expectancy without disease on exposed peoples
 
       if (age < 101) {
 
@@ -882,7 +880,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie sans la maladie chez les non-consommateurs de benzo
+      ###	Life-expectancy without disease on non exposed peoples
 
       if (age < 101) {
 
@@ -910,7 +908,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie d'un malade
+      ### Life-expectancy for diseased subject
 
       if (age < 101) {
 
@@ -938,7 +936,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie d'un malade chez les consommateurs de benzo
+      ### Life-expectancy for diseased subject on exposed peoples
 
       if (age < 101) {
 
@@ -966,7 +964,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie d'un malade chez les non-consommateurs de benzo
+      ### Life-expectancy for diseased subject on non exposed peoples
 
       if (age < 101) {
 
@@ -994,7 +992,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie d'un non-malade
+      ### Life-expectancy for non diseased subject
 
       if (age < 101) {
 
@@ -1022,7 +1020,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie d'un non-malade chez les consommateurs de benzo
+      ### Life-expectancy for non diseased subject on exposed peoples
 
       if (age < 101) {
 
@@ -1050,7 +1048,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Espérance de vie d'un non-malade chez les non-consommateurs de benzo
+      ### Life-expectancy for non diseased subject on non exposed peoples
 
       if (age < 101) {
 
@@ -1078,7 +1076,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Prévalence de la démence
+      ### Prevalence of disease
 
       if (age > 65 & age < 100) {
 
@@ -1094,7 +1092,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           result$tp_dem[age-64] <- s1/d0;
 
-          nb <- p01*data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(sexe)),2];
+          nb <- p01*data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2];
 
           result$np_age[age-64] <- nb;
 
@@ -1102,11 +1100,11 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Survie
+      ### Survival
 
       if (age == 65) {
 
-        result$nsurvie[age-64] <- data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(sexe)),2]
+        result$nsurvie[age-64] <- data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2]
 
       };
 
@@ -1124,7 +1122,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
           result$tsurvie[age-64] <- s1/d0;
 
-          nb <- p01*data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(sexe)),2];
+          nb <- p01*data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2];
 
           result$nsurvie[age-64] <- nb;
 
@@ -1132,7 +1130,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Nombre moyen d'années passées avec la maladie
+      ### Mean number of years spent with disease
 
       if (age < 101) {
 
@@ -1144,7 +1142,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Nombre moyen d'années passées avec la maladie chez les consommateurs de benzo
+      ### Mean number of years spent with disease on exposed peoples
 
       if (age < 101) {
 
@@ -1156,7 +1154,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Nombre moyen d'années passées avec la maladie chez les non-consommateurs de benzo
+      ###  Mean number of years spent with disease on non exposed peoples
 
       if (age < 101) {
 
@@ -1168,7 +1166,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Proba d'apparition de la démence
+      ### Life-long probability of disease
 
       if (age == 65) {
 
@@ -1180,7 +1178,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Age moyen d'apparition de la démence
+      ### Average age at disease onset
 
       if (age == 65) {
 
@@ -1192,7 +1190,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Nombre moyen d'années de consommation de benzo
+      ### Mean number of years of exposition
 
       if (age == 65) {
 
@@ -1204,7 +1202,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Prévalence de la conso estimée
+      ### Number of exposed peoples at least one time
 
       if (age <= 105) {
 
@@ -1224,7 +1222,7 @@ varHI <- function(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe,
 
       };
 
-      ### Quotient de mortalité estimée
+      ### Mortality rate
 
       if (age > 65 & age < 100) {
 
