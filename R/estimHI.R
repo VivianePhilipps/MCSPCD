@@ -30,12 +30,12 @@
 #'
 #' @examples
 #' estimHI(t = 2040,
-#' intervention = 0,
+#' intervention = 1,
 #' year_intervention = 2020,
 #' nb_people = 10000,
 #' nb_iter = 100,
 #' data_pop = pop,
-#' gender = "F",
+#' gender = "W",
 #' data_a01 = a01,
 #' data_a02 = a02,
 #' data_theta01 = theta01_cas_1_6,

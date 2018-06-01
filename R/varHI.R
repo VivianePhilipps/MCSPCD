@@ -3,7 +3,7 @@
 #' This function computes many iterations of the \code{estimHI} function for compute the variability of the health indicators.
 #'
 #' @param t year of the projections for health indicators.
-#' @param intervention 0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.
+#' @param intervention 0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null.
 #' @param year_intervention year of the intervention in risk factor distribution takes place.
 #' @param nb_people number of people whose trajectory will be simulated for each generation.
 #' @param nb_iter number of iterations for the algorithm.
@@ -60,11 +60,31 @@
 #' RR = RR,
 #' prb_dem = prb_dem,
 #' age_dem = age_dem)
-varHI <- function(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
-                  data_prev, data_incid,
-                  a010, a011, a01_global, a020, a021, a02_global, a120, a121, a12_global,
-                  data_a01, data_theta01, data_a02, data_theta02, data_theta12,
-                  RR, prb_dem, age_dem)
+varHI <- function(t,
+                  intervention,
+                  year_intervention,
+                  nb_people,
+                  nb_iter,
+                  data_pop,
+                  gender,
+                  data_prev,
+                  data_incid,
+                  a010, a011,
+                  a01_global,
+                  a020,
+                  a021,
+                  a02_global,
+                  a120,
+                  a121,
+                  a12_global,
+                  data_a01,
+                  data_theta01,
+                  data_a02,
+                  data_theta02,
+                  data_theta12,
+                  RR,
+                  prb_dem,
+                  age_dem)
 
 {
 
