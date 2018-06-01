@@ -4,11 +4,11 @@
 #'
 #' @param t year of the projections for health indicators.
 #' @param intervention 0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.
-#' @param year_intervention year of the intervention in risk factor distribution takes place.
-#' @param nb_people number of people whose trajectory will be simulated for each generation.
-#' @param nb_iter number of iterations for the algorithm.
+#' @param year_intervention year of the intervention in risk factor distribution takes place. Default is \code{NULL}.
+#' @param nb_people number of people whose trajectory will be simulated for each generation. Default is \code{100}.
+#' @param nb_iter number of iterations for the algorithm. Default is \code{0}.
 #' @param data_pop data source for demographics data.
-#' @param gender gender for computation. "W" for women and "M" for men.
+#' @param gender gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.
 #' @param data_a01 data source for the incidence of disease.
 #' @param data_a02 data source for the mortality of healthy subjects.
 #' @param data_theta01 data source for the relative risks associated with the exposure for disease.
@@ -50,10 +50,27 @@
 #' data_prev_values <- prevconso_values,
 #' data_incid_values <- incidconso_values,
 #' data_rr_DvsND_values = rr_DvsND_values)
-estimHI <- function(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
-                    data_a01, data_a02, data_theta01, data_theta02, data_theta12,
-                    data_prev, data_incid, data_rr_DvsND, data_a01_values, data_a02_values,
-                    data_theta01_values, data_prev_values, data_incid_values, data_rr_DvsND_values)
+estimHI <- function(t,
+                    intervention = 0,
+                    year_intervention = NULL,
+                    nb_people = 100,
+                    nb_iter = 0,
+                    data_pop,
+                    gender = "W",
+                    data_a01,
+                    data_a02,
+                    data_theta01,
+                    data_theta02,
+                    data_theta12,
+                    data_prev,
+                    data_incid,
+                    data_rr_DvsND,
+                    data_a01_values,
+                    data_a02_values,
+                    data_theta01_values,
+                    data_prev_values,
+                    data_incid_values,
+                    data_rr_DvsND_values)
 
 {
 
