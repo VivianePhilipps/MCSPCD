@@ -2047,39 +2047,39 @@ estimHI <- function(t,
 
   taux_prevalence <- taux_prevalence[-1,]
 
-  prev_rate_disease <- matrix(c(0),
-                              nrow=99-66+1,
-                              ncol=5,
-                              byrow = T);
-  prev_rate_disease[,1] <- taux_prevalence[,1]
-  prev_rate_disease[,2] <- taux_prevalence[,2]
-  prev_rate_disease[,3] <- apply(taux_prevalence[,-c(1:2)], 1, sd, na.rm=T);
-  prev_rate_disease[,4] <- prev_rate_disease[,2] - 1.96*prev_rate_disease[,3];
-  prev_rate_disease[,5] <- prev_rate_disease[,2] + 1.96*prev_rate_disease[,3];
+  prev_rate_disease_age <- matrix(c(0),
+                                  nrow=99-66+1,
+                                  ncol=5,
+                                  byrow = T);
+  prev_rate_disease_age[,1] <- taux_prevalence[,1]
+  prev_rate_disease_age[,2] <- taux_prevalence[,2]
+  prev_rate_disease_age[,3] <- apply(taux_prevalence[,-c(1:2)], 1, sd, na.rm=T);
+  prev_rate_disease_age[,4] <- prev_rate_disease_age[,2] - 1.96*prev_rate_disease_age[,3];
+  prev_rate_disease_age[,5] <- prev_rate_disease_age[,2] + 1.96*prev_rate_disease_age[,3];
 
-  for (i in 1:nrow(prev_rate_disease)) {
-    if (prev_rate_disease[i,4]<0 & is.na(prev_rate_disease[i,4])==F) {
-      prev_rate_disease[i,4] <- 0
+  for (i in 1:nrow(prev_rate_disease_age)) {
+    if (prev_rate_disease_age[i,4]<0 & is.na(prev_rate_disease_age[i,4])==F) {
+      prev_rate_disease_age[i,4] <- 0
     }
   }
 
-  for (i in 1:nrow(prev_rate_disease)) {
-    if (prev_rate_disease[i,5]>1 & is.na(prev_rate_disease[i,5])==F) {
-      prev_rate_disease[i,5] <- 1
+  for (i in 1:nrow(prev_rate_disease_age)) {
+    if (prev_rate_disease_age[i,5]>1 & is.na(prev_rate_disease_age[i,5])==F) {
+      prev_rate_disease_age[i,5] <- 1
     }
   }
 
-  for (i in 1:nrow(prev_rate_disease)) {
-    if (prev_rate_disease[i,2]==0 & prev_rate_disease[i,4]==0 & prev_rate_disease[i,5]==0 &
-        is.na(prev_rate_disease[i,2])==F & is.na(prev_rate_disease[i,4])==F & is.na(prev_rate_disease[i,5])==F) {
-      prev_rate_disease[i,2] <- NA;
-      prev_rate_disease[i,3] <- NA;
-      prev_rate_disease[i,4] <- NA;
-      prev_rate_disease[i,5] <- NA
+  for (i in 1:nrow(prev_rate_disease_age)) {
+    if (prev_rate_disease_age[i,2]==0 & prev_rate_disease_age[i,4]==0 & prev_rate_disease_age[i,5]==0 &
+        is.na(prev_rate_disease_age[i,2])==F & is.na(prev_rate_disease_age[i,4])==F & is.na(prev_rate_disease_age[i,5])==F) {
+      prev_rate_disease_age[i,2] <- NA;
+      prev_rate_disease_age[i,3] <- NA;
+      prev_rate_disease_age[i,4] <- NA;
+      prev_rate_disease_age[i,5] <- NA
     }
   }
 
-  colnames(prev_rate_disease) <- c("age","prevalence_rate","std","CI95_low","CI95_upp");
+  colnames(prev_rate_disease_age) <- c("age","prevalence_rate","std","CI95_low","CI95_upp");
 
   ### Survival
 
@@ -2548,8 +2548,8 @@ estimHI <- function(t,
 
   ### Prevalence of disease
 
-  list_prevalence_disease <- list(number_prev_age, number_prevalence, prev_rate_disease, prev_rate_disease)
-  names(list_prevalence_disease) <- c("number_prev_age", "number_prevalence", "prev_rate_disease", "prev_rate_disease")
+  list_prevalence_disease <- list(number_prev_age, number_prevalence, prev_rate_disease_age, prev_rate_disease)
+  names(list_prevalence_disease) <- c("number_prev_age", "number_prevalence", "prev_rate_disease_age", "prev_rate_disease")
 
   ### Survival
 
