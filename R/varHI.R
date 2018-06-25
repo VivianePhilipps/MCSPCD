@@ -137,45 +137,7 @@ varHI <- function(t,
 
         alea0 <- runif(1, 0, 1);
 
-        if (intervention == 0) {
-
-          donnees_conso <- conso_benzo
-
-        } else {
-
-          if (intervention == 1) {
-
-            if (annee < year_intervention) {
-
-              donnees_conso <- conso_benzo
-
-            } else {
-
-              donnees_conso <- conso_benzo
-              donnees_conso[,2] <- conso_benzo[,2] / 2
-
-            }
-
-          } else {
-
-            if (intervention == 2) {
-
-              if (annee < year_intervention) {
-
-                donnees_conso <- conso_benzo
-
-              } else {
-
-                donnees_conso <- conso_benzo
-                donnees_conso[,2] <- 0
-
-              }
-
-            }
-
-          }
-
-        }
+        donnees_conso <- conso_benzo;
 
         if (alea0 <= donnees_conso[which(donnees_conso[,1]%in%(65) & donnees_conso[,3]%in%(gender)),2]) {
 
@@ -199,45 +161,7 @@ varHI <- function(t,
 
           alea0 <- runif(1, 0, 1);
 
-          if (intervention == 0) {
-
-            donnees_incid <- incid_benzo
-
-          } else {
-
-            if (intervention == 1) {
-
-              if (annee < year_intervention) {
-
-                donnees_incid <- incid_benzo
-
-              } else {
-
-                donnees_incid <- incid_benzo
-                donnees_incid[,2] <- incid_benzo[,2] / 2
-
-              }
-
-            } else {
-
-              if (intervention == 2) {
-
-                if (annee < year_intervention) {
-
-                  donnees_incid <- incid_benzo
-
-                } else {
-
-                  donnees_incid <- incid_benzo
-                  donnees_incid[,2] <- 0
-
-                }
-
-              }
-
-            }
-
-          }
+          donnees_incid <- incid_benzo;
 
           if (etat[i,j-1] == "00") {
 
