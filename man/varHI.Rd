@@ -4,82 +4,79 @@
 \alias{varHI}
 \title{Computation of the variability of the Health Indicators}
 \usage{
-varHI(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe, an_proj,
-  data_conso, data_incid, a010, a011, a01_global, a020, a021, a02_global, a120,
+varHI(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
+  data_prev, data_incid, a010, a011, a01_global, a020, a021, a02_global, a120,
   a121, a12_global, data_a01, data_theta01, data_a02, data_theta02,
   data_theta12, RR, prb_dem, age_dem)
 }
 \arguments{
-\item{t}{year for the projections.}
+\item{t}{year of the projections for health indicators.}
 
-\item{scenario}{0 = pas de changement; 1 = reduction par 2 de la conso de benzo; 2 = reduction totale. Default is \code{0}.}
+\item{intervention}{0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null.}
 
-\item{an_scenario}{année de mise en place de la reduction de la consommation de benzo.}
+\item{year_intervention}{year of the intervention in risk factor distribution takes place.}
 
-\item{nbind}{nombre d'individus dont on va simuler la trajectoire pour chaque generation.}
+\item{nb_people}{number of people whose trajectory will be simulated for each generation.}
 
-\item{nb_iter}{nombre d'iterations de l'algo.}
+\item{nb_iter}{number of iterations for the algorithm.}
 
-\item{data_pop}{population en entree.}
+\item{data_pop}{data source for demographics data.}
 
-\item{sexe}{sexe de la population en entree.}
+\item{gender}{gender for computation. "W" for women and "M" for men.}
 
-\item{an_proj}{???}
+\item{data_prev}{data source for the prevalence of the exposition.}
 
-\item{data_conso}{prevalence de la consommation de benzo selon ag.}
+\item{data_incid}{data source for the incidence of the exposition.}
 
-\item{data_incid}{incidence de la consommation de benzo selon age.}
+\item{a010}{incidence of disease on non exposed peoples.}
 
-\item{a010}{risques de devenir dement selon l'age.}
+\item{a011}{incidence of disease on exposed peoples.}
 
-\item{a011}{risques de devenir dement selon l'age.}
+\item{a01_global}{global incidence of disease.}
 
-\item{a01_global}{risques de devenir dement selon l'age.}
+\item{a020}{mortality of healthy subjects on non exposed peoples.}
 
-\item{a020}{risque de deces chez les non-dements par age et par annee.}
+\item{a021}{mortality of healthy subjects on exposed peoples.}
 
-\item{a021}{risque de deces chez les non-dements par age et par annee.}
+\item{a02_global}{global mortality of healthy subjects.}
 
-\item{a02_global}{risque de deces chez les non-dements par age et par annee.}
+\item{a120}{mortality of diseased subjects on non exposed peoples.}
 
-\item{a120}{risque de deces chez les dements par age et par annee.}
+\item{a121}{mortality of diseased subjects on exposed peoples.}
 
-\item{a121}{risque de deces chez les dements par age et par annee.}
+\item{a12_global}{global mortality of diseased subjects.}
 
-\item{a12_global}{risque de deces chez les dements par age et par annee.}
+\item{data_a01}{data source for the incidence of disease.}
 
-\item{data_a01}{risques de devenir dement selon l'age.}
+\item{data_theta01}{data source for the relative risks associated with the exposure for disease.}
 
-\item{data_theta01}{risque relatif de la demence selon la consommation de benzo.}
+\item{data_a02}{data source for the mortality of healthy subjects.}
 
-\item{data_a02}{risque de deces chez les non-dements par age et par annee.}
+\item{data_theta02}{data source for the relative risks associated with the exposure for mortality among healthy subjects.}
 
-\item{data_theta02}{risque relatif de deces chez les non-dements selon la consommation de benzo.}
+\item{data_theta12}{data source for the relative risks associated with the exposure for mortality among diseased subjects.}
 
-\item{data_theta12}{risque relatif de deces chez les dements selon la consommation de benzo.}
+\item{RR}{relative risks associated with the disease for mortality}
 
-\item{RR}{RR de deces pour les dements VS non-dements.}
+\item{prb_dem}{life-long probability of disease}
 
-\item{prb_dem}{??}
-
-\item{age_dem}{??}
+\item{age_dem}{average age at disease onset}
 }
 \value{
 a list containing the variability of health indicators
 }
 \description{
-This function computes many iterations of the \code{estimHI} function for compute the variability health indicators.
+This function computes many iterations of the \code{estimHI} function for compute the variability of the health indicators.
 }
 \examples{
 varHI(t = t,
-scenario = scenario,
-an_scenario = an_scenario,
-nbind = nbind,
+intervention = intervention,
+year_intervention = year_intervention,
+nb_people = nb_people,
 nb_iter = nb_iter,
 data_pop = data_pop,
-sexe = sexe,
-an_proj = an_proj,
-data_conso = data_conso,
+gender = gender,
+data_prev = data_prev,
 data_incid = data_incid,
 a010 = a010,
 a011 = a011,

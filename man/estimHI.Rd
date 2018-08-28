@@ -4,80 +4,81 @@
 \alias{estimHI}
 \title{Computation of Health Indicators}
 \usage{
-estimHI(t, scenario, an_scenario, nbind, nb_iter, data_pop, sexe, data_a01,
-  data_a02, data_theta01, data_theta02, data_theta12, data_conso, data_incid,
-  data_rr_DvsND, data_a01_valeurs, data_a02_valeurs, data_theta01_valeurs,
-  data_conso_valeurs, data_incid_valeurs, data_rr_DvsND_valeurs)
+estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
+  nb_iter = 0, data_pop, gender = "W", data_a01_values, data_a02_values,
+  data_theta01_values, data_theta02_values, data_theta12_values,
+  data_prev_values, data_incid_values, data_rr_DvsND_values, data_a01, data_a02,
+  data_theta01, data_prev, data_incid, data_rr_DvsND)
 }
 \arguments{
-\item{t}{year for the projections.}
+\item{t}{year of the projections for health indicators.}
 
-\item{scenario}{0 = pas de changement; 1 = reduction par 2 de la conso de benzo; 2 = reduction totale. Default is \code{0}.}
+\item{intervention}{0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.}
 
-\item{an_scenario}{année de mise en place de la reduction de la consommation de benzo.}
+\item{year_intervention}{year of the intervention in risk factor distribution takes place. Default is \code{NULL}.}
 
-\item{nbind}{nombre d'individus dont on va simuler la trajectoire pour chaque generation.}
+\item{nb_people}{number of people whose trajectory will be simulated for each generation. Default is \code{100}.}
 
-\item{nb_iter}{nombre d'iterations de l'algo.}
+\item{nb_iter}{number of iterations for the algorithm. Default is \code{0}.}
 
-\item{data_pop}{population en entree.}
+\item{data_pop}{data source for demographics data.}
 
-\item{sexe}{sexe de la population en entree.}
+\item{gender}{gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.}
 
-\item{data_a01}{risques de devenir dement selon l'age.}
+\item{data_a01_values}{data source for the incidence of disease.}
 
-\item{data_a02}{risque de deces chez les non-dements par age et par annee.}
+\item{data_a02_values}{data source for the mortality of healthy subjects.}
 
-\item{data_theta01}{risque relatif de la demence selon la consommation de benzo.}
+\item{data_theta01_values}{data source for the relative risks associated with the exposure for disease.}
 
-\item{data_theta02}{risque relatif de deces chez les non-dements selon la consommation de benzo.}
+\item{data_theta02_values}{data source for the relative risks associated with the exposure for mortality among healthy subjects.}
 
-\item{data_theta12}{risque relatif de deces chez les dements selon la consommation de benzo.}
+\item{data_theta12_values}{data source for the relative risks associated with the exposure for mortality among diseased subjects.}
 
-\item{data_conso}{prevalence de la consommation de benzo selon ag.}
+\item{data_prev_values}{data source for the prevalence of the exposition.}
 
-\item{data_incid}{incidence de la consommation de benzo selon age.}
+\item{data_incid_values}{data source for the incidence of the exposition.}
 
-\item{data_rr_DvsND}{RR de deces pour les dements VS non-dements.}
+\item{data_rr_DvsND_values}{data source for the relative risks associated with the disease for mortality.}
 
-\item{data_a01_valeurs}{variability of risques de devenir dement selon l'age.}
+\item{data_a01}{variability of data source for the incidence of disease.}
 
-\item{data_a02_valeurs}{variability of risque de deces chez les non-dements par age et par annee.}
+\item{data_a02}{variability of data source for the mortality of healthy subjects.}
 
-\item{data_theta01_valeurs}{variability of risque relatif de la demence selon la consommation de benzo.}
+\item{data_theta01}{variability of data source for the relative risks associated with the exposure for disease.}
 
-\item{data_conso_valeurs}{variability of prevalence de la consommation de benzo selon ag.}
+\item{data_prev}{variability of data source for the prevalence of the exposition.}
 
-\item{data_incid_valeurs}{variability of incidence de la consommation de benzo selon age.}
+\item{data_incid}{variability of data source for the incidence of the exposition.}
 
-\item{data_rr_DvsND_valeurs}{variability of RR de deces pour les dements VS non-dements.}
+\item{data_rr_DvsND}{variability of data source for the relative risks associated with the disease for mortality.}
 }
 \value{
 a list containing the health indicators
 }
 \description{
-This function computes many health indicators under several scenarios of intervention in benzodiazepines chronic consumption.
+This function computes many health indicators under several interventions of intervention in risk factor distribution for a given year.
 }
 \examples{
 estimHI(t = 2040,
-scenario = 0,
-an_scenario = 2020,
-nbind = 10000,
+intervention = 1,
+year_intervention = 2020,
+nb_people = 10000,
 nb_iter = 100,
 data_pop = pop,
-sexe = "F",
+gender = "W",
+data_a01_values = a01_values,
+data_a02_values = a02_values,
+data_theta01_values = theta01_cas_1_6_values,
+data_theta02_values = theta02_1_values,
+data_theta12_values = theta02_1_values,
+data_prev_values <- prevconso_values,
+data_incid_values <- incidconso_values,
+data_rr_DvsND_values = rr_DvsND_values,
 data_a01 = a01,
 data_a02 = a02,
 data_theta01 = theta01_cas_1_6,
-data_theta02 = theta02_1,
-data_theta12 = theta02_1,
-data_conso = prevconso,
+data_prev = prevconso,
 data_incid = incidconso,
-data_rr_DvsND = rr_DvsND,
-data_a01_valeurs = a01_valeurs,
-data_a02_valeurs = a02_valeurs,
-data_theta01_valeurs = theta01_cas_1_6_valeurs,
-data_conso_valeurs <- prevconso_valeurs,
-data_incid_valeurs <- incidconso_valeurs,
-data_rr_DvsND_valeurs = rr_DvsND_valeurs)
+data_rr_DvsND = rr_DvsND)
 }

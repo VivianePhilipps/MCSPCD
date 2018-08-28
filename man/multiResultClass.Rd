@@ -4,66 +4,66 @@
 \alias{multiResultClass}
 \title{Combination of multiple results}
 \usage{
-multiResultClass(ev_gen = NULL, ev_gen_conso = NULL,
-  ev_gen_nonconso = NULL, ev_sans_mal = NULL, ev_sans_mal_conso = NULL,
-  ev_sans_mal_nonconso = NULL, ev_mal = NULL, ev_mal_conso = NULL,
-  ev_mal_nonconso = NULL, ev_non_mal = NULL, ev_non_mal_conso = NULL,
-  ev_non_mal_nonconso = NULL, np_age = NULL, tp_dem = NULL,
-  nsurvie = NULL, tsurvie = NULL, nm_dem = NULL, nm_dem_conso = NULL,
-  nm_dem_nonconso = NULL, p_dem = NULL, a_dem = NULL, m_conso = NULL,
-  p_conso = NULL, q_mortalite = NULL)
+multiResultClass(LE_overall = NULL, LE_overall_exp = NULL,
+  LE_overall_nonexp = NULL, LE_without_dis = NULL,
+  LE_without_dis_exp = NULL, LE_without_dis_nonexp = NULL, LE_dis = NULL,
+  LE_dis_exp = NULL, LE_dis_nonexp = NULL, LE_non_dis = NULL,
+  LE_non_dis_exp = NULL, LE_non_dis_nonexp = NULL, np_age = NULL,
+  tp_dis = NULL, nsurvival = NULL, rsurvival = NULL, nb_dis = NULL,
+  nb_dis_exp = NULL, nb_dis_nonexp = NULL, p_dis = NULL, a_dis = NULL,
+  m_exp = NULL, p_exp = NULL, mortality_r = NULL)
 }
 \arguments{
-\item{ev_gen}{Default is \code{NULL}.}
+\item{LE_overall}{Default is \code{NULL}.}
 
-\item{ev_gen_conso}{Default is \code{NULL}.}
+\item{LE_overall_exp}{Default is \code{NULL}.}
 
-\item{ev_gen_nonconso}{Default is \code{NULL}.}
+\item{LE_overall_nonexp}{Default is \code{NULL}.}
 
-\item{ev_sans_mal}{Default is \code{NULL}.}
+\item{LE_without_dis}{Default is \code{NULL}.}
 
-\item{ev_sans_mal_conso}{Default is \code{NULL}.}
+\item{LE_without_dis_exp}{Default is \code{NULL}.}
 
-\item{ev_sans_mal_nonconso}{Default is \code{NULL}.}
+\item{LE_without_dis_nonexp}{Default is \code{NULL}.}
 
-\item{ev_mal}{Default is \code{NULL}.}
+\item{LE_dis}{Default is \code{NULL}.}
 
-\item{ev_mal_conso}{Default is \code{NULL}.}
+\item{LE_dis_exp}{Default is \code{NULL}.}
 
-\item{ev_mal_nonconso}{Default is \code{NULL}.}
+\item{LE_dis_nonexp}{Default is \code{NULL}.}
 
-\item{ev_non_mal}{Default is \code{NULL}.}
+\item{LE_non_dis}{Default is \code{NULL}.}
 
-\item{ev_non_mal_conso}{Default is \code{NULL}.}
+\item{LE_non_dis_exp}{Default is \code{NULL}.}
 
-\item{ev_non_mal_nonconso}{Default is \code{NULL}.}
+\item{LE_non_dis_nonexp}{Default is \code{NULL}.}
 
 \item{np_age}{Default is \code{NULL}.}
 
-\item{tp_dem}{Default is \code{NULL}.}
+\item{tp_dis}{Default is \code{NULL}.}
 
-\item{nsurvie}{Default is \code{NULL}.}
+\item{nsurvival}{Default is \code{NULL}.}
 
-\item{tsurvie}{Default is \code{NULL}.}
+\item{rsurvival}{Default is \code{NULL}.}
 
-\item{nm_dem}{Default is \code{NULL}.}
+\item{nb_dis}{Default is \code{NULL}.}
 
-\item{nm_dem_conso}{Default is \code{NULL}.}
+\item{nb_dis_exp}{Default is \code{NULL}.}
 
-\item{nm_dem_nonconso}{Default is \code{NULL}.}
+\item{nb_dis_nonexp}{Default is \code{NULL}.}
 
-\item{p_dem}{Default is \code{NULL}.}
+\item{p_dis}{Default is \code{NULL}.}
 
-\item{a_dem}{Default is \code{NULL}.}
+\item{a_dis}{Default is \code{NULL}.}
 
-\item{m_conso}{Default is \code{NULL}.}
+\item{m_exp}{Default is \code{NULL}.}
 
-\item{p_conso}{Default is \code{NULL}.}
+\item{p_exp}{Default is \code{NULL}.}
 
-\item{q_mortalite}{Default is \code{NULL}.}
+\item{mortality_r}{Default is \code{NULL}.}
 }
 \value{
-a list of the different results of the \code{chi_mcmc} function.
+a list of the different results of the \code{varHI} function.
 }
 \description{
 This function organizes the different results of the \code{varHI} function.
