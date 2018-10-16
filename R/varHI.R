@@ -99,6 +99,8 @@ varHI <- function(t,
     ###          STEP 1         ###
     ###############################
 
+    year_proj <- t
+
     ### Computation of number of exposed peoples at least one time
 
     pr_conso_benzo <- matrix(c(0),
