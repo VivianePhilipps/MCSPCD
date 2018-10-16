@@ -402,7 +402,7 @@ varHI <- function(t,
                           ncol=82,
                           byrow=T);
 
-    data_a01_values <- a010[(1+40*(it-1)):(40*it),c(1,2,which(colnames(data_a01_values)<=year_proj+40 & colnames(data_a01_values)>=year_proj-40))]
+    data_a01_values <- a010[(1+40*(it-1)):(40*it),c(1,2,which(colnames(a010)<=year_proj+40 & colnames(a010)>=year_proj-40))]
 
     new_data_theta01 <- data_theta01[which(data_theta01[,3]%in%(gender)),]
 
@@ -447,7 +447,7 @@ varHI <- function(t,
                           ncol=82,
                           byrow=T);
 
-    data_a02_values <- a020[(1+40*(it-1)):(40*it),c(1,2,which(colnames(data_a02_values)<=year_proj+40 & colnames(data_a02_values)>=year_proj-40))]
+    data_a02_values <- a020[(1+40*(it-1)):(40*it),c(1,2,which(colnames(a020)<=year_proj+40 & colnames(a020)>=year_proj-40))]
 
     new_data_theta02 <- data_theta02[which(data_theta02[,3]%in%(gender)),]
 
