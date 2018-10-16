@@ -500,7 +500,7 @@ varHI <- function(t,
 
     for (a in 2:ncol(a120_values)){
 
-      a120_values[,a] <- as.numeric(RR[,2])*a02_global_values[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a] - pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a] + 1);
+      a120_values[,a] <- as.numeric(RR[(1+40*(it-1)):(40*it),2])*a02_global_values[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a] - pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a] + 1);
 
     }
 
@@ -880,13 +880,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_gen[age-64] <- 1 + sum(n0) / s0;
+          result$LE_overall[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_gen[age-64] <- NA;
+          result$LE_overall[age-64] <- NA;
 
         }
 
@@ -908,13 +908,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_gen_conso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_overall_exp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_gen_conso[age-64] <- NA;
+          result$LE_overall_exp[age-64] <- NA;
 
         }
 
@@ -936,13 +936,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_gen_nonconso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_overall_nonexp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_gen_nonconso[age-64] <- NA;
+          result$LE_overall_nonexp[age-64] <- NA;
 
         }
 
@@ -964,13 +964,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_sans_mal[age-64] <- 1 + sum(n0) / s0;
+          result$LE_without_dis[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_sans_mal[age-64] <- NA;
+          result$LE_without_dis[age-64] <- NA;
 
         }
 
@@ -992,13 +992,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_sans_mal_conso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_without_dis_exp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_sans_mal_conso[age-64] <- NA;
+          result$LE_without_dis_exp[age-64] <- NA;
 
         }
 
@@ -1020,13 +1020,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_sans_mal_nonconso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_without_dis_nonexp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_sans_mal_nonconso[age-64] <- NA;
+          result$LE_without_dis_nonexp[age-64] <- NA;
 
         }
 
@@ -1048,13 +1048,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_mal[age-64] <- 1 + sum(n0) / s0;
+          result$LE_dis[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_mal[age-64] <- NA;
+          result$LE_dis[age-64] <- NA;
 
         }
 
@@ -1076,13 +1076,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_mal_conso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_dis_exp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_mal_conso[age-64] <- NA;
+          result$LE_dis_exp[age-64] <- NA;
 
         }
 
@@ -1104,13 +1104,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_mal_nonconso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_dis_nonexp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_mal_nonconso[age-64] <- NA;
+          result$LE_dis_nonexp[age-64] <- NA;
 
         }
 
@@ -1132,13 +1132,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_non_mal[age-64] <- 1 + sum(n0) / s0;
+          result$LE_non_dis[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_non_mal[age-64] <- NA;
+          result$LE_non_dis[age-64] <- NA;
 
         }
 
@@ -1160,13 +1160,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_non_mal_conso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_non_dis_exp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_non_mal_conso[age-64] <- NA;
+          result$LE_non_dis_exp[age-64] <- NA;
 
         }
 
@@ -1188,13 +1188,13 @@ varHI <- function(t,
 
           };
 
-          result$ev_non_mal_nonconso[age-64] <- 1 + sum(n0) / s0;
+          result$LE_non_dis_nonexp[age-64] <- 1 + sum(n0) / s0;
 
         } else {
 
           n0 <- NA;
 
-          result$ev_non_mal_nonconso[age-64] <- NA;
+          result$LE_non_dis_nonexp[age-64] <- NA;
 
         }
 
@@ -1214,7 +1214,7 @@ varHI <- function(t,
 
           p01 <- s1/s0;
 
-          result$tp_dem[age-64] <- s1/d0;
+          result$tp_dis[age-64] <- s1/d0;
 
           nb <- p01*data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2];
 
@@ -1228,7 +1228,7 @@ varHI <- function(t,
 
       if (age == 65) {
 
-        result$nsurvie[age-64] <- data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2]
+        result$nsurvival[age-64] <- data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2]
 
       };
 
@@ -1244,11 +1244,11 @@ varHI <- function(t,
 
           p01 <- s1/s0;
 
-          result$tsurvie[age-64] <- s1/d0;
+          result$rsurvival[age-64] <- s1/d0;
 
           nb <- p01*data_pop[which(data_pop[,1]%in%(an0) & data_pop[,3]%in%(gender)),2];
 
-          result$nsurvie[age-64] <- nb;
+          result$nsurvival[age-64] <- nb;
 
         };
 
@@ -1258,7 +1258,7 @@ varHI <- function(t,
 
       if (age < 101) {
 
-        result$nm_dem[age-64] <- result$esp_vie_non_mal[age-64] - result$esp_vie_sans_mal[age-64]
+        result$nb_dis[age-64] <- result$LE_non_dis[age-64] - result$LE_without_dis[age-64]
 
       } else {
 
@@ -1270,7 +1270,7 @@ varHI <- function(t,
 
       if (age < 101) {
 
-        result$nm_dem_conso[age-64] <- result$esp_vie_non_mal_conso[age-64] - result$esp_vie_sans_mal_conso[age-64];
+        result$nb_dis_exp[age-64] <- result$LE_non_dis_exp[age-64] - result$LE_without_dis_exp[age-64];
 
       } else {
 
@@ -1282,7 +1282,7 @@ varHI <- function(t,
 
       if (age < 101) {
 
-        result$nm_dem_nonconso[age-64] <- result$esp_vie_non_mal_nonconso[age-64] - result$esp_vie_sans_mal_nonconso[age-64];
+        result$nb_dis_nonexp[age-64] <- result$LE_non_dis_nonexp[age-64] - result$LE_without_dis_nonexp[age-64];
 
       } else {
 
@@ -1296,7 +1296,7 @@ varHI <- function(t,
 
         for (i in (age-63):nrow(prb_dem)) {
 
-          result$p_dem[i] <- sum(etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("10") | etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("11"))
+          result$p_dis[i] <- sum(etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("10") | etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("11"))
 
         }
 
@@ -1308,7 +1308,7 @@ varHI <- function(t,
 
         for (i in (age-63):nrow(age_dem)) {
 
-          result$a_dem[i] <- sum(etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("10") | etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("11"))
+          result$a_dis[i] <- sum(etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("10") | etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("11"))
 
         }
 
@@ -1320,7 +1320,7 @@ varHI <- function(t,
 
         for (i in (age-63):nrow(age_dem)) {
 
-          result$m_conso[i] <- sum(etat[which(etat[,1]%in%("00") | etat[,1]%in%("10")),i]%in%("01") | etat[which(etat[,1]%in%("00") | etat[,1]%in%("10")),i]%in%("11"))
+          result$m_exp[i] <- sum(etat[which(etat[,1]%in%("00") | etat[,1]%in%("10")),i]%in%("01") | etat[which(etat[,1]%in%("00") | etat[,1]%in%("10")),i]%in%("11"))
 
         }
 
@@ -1336,11 +1336,11 @@ varHI <- function(t,
 
         if (s0 != 0) {
 
-          result$p_conso[age-64] <- s1/s0;
+          result$p_exp[age-64] <- s1/s0;
 
         } else {
 
-          result$p_conso[age-64] <- NA;
+          result$p_exp[age-64] <- NA;
 
         };
 
@@ -1356,11 +1356,11 @@ varHI <- function(t,
 
         if (s0 != 0) {
 
-          result$q_mortalite[age-64] <- s1/s0;
+          result$mortality_r[age-64] <- s1/s0;
 
         } else {
 
-          result$q_mortalite[age-64] <- NA;
+          result$mortality_r[age-64] <- NA;
 
         };
 

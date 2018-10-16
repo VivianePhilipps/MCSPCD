@@ -1783,30 +1783,30 @@ estimHI <- function(t,
                          age_dem = age_dem)
 
     for (i in 1:nb_iter) {
-      esp_vie_gen[,i+2] <- indicateurs[,i]$ev_gen
-      esp_vie_gen_conso[,i+2] <- indicateurs[,i]$ev_gen_conso
-      esp_vie_gen_nonconso[,i+2] <- indicateurs[,i]$ev_gen_nonconso
-      esp_vie_sans_mal[,i+2] <- indicateurs[,i]$ev_sans_mal
-      esp_vie_sans_mal_conso[,i+2] <- indicateurs[,i]$ev_sans_mal_conso
-      esp_vie_sans_mal_nonconso[,i+2] <- indicateurs[,i]$ev_sans_mal_nonconso
-      esp_vie_mal[,i+2] <- indicateurs[,i]$ev_mal
-      esp_vie_mal_conso[,i+2] <- indicateurs[,i]$ev_mal_conso
-      esp_vie_mal_nonconso[,i+2] <- indicateurs[,i]$ev_mal_nonconso
-      esp_vie_non_mal[,i+2] <- indicateurs[,i]$ev_non_mal
-      esp_vie_non_mal_conso[,i+2] <- indicateurs[,i]$ev_non_mal_conso
-      esp_vie_non_mal_nonconso[,i+2] <- indicateurs[,i]$ev_non_mal_nonconso
+      esp_vie_gen[,i+2] <- indicateurs[,i]$LE_overall
+      esp_vie_gen_conso[,i+2] <- indicateurs[,i]$LE_overall_exp
+      esp_vie_gen_nonconso[,i+2] <- indicateurs[,i]$LE_overall_nonexp
+      esp_vie_sans_mal[,i+2] <- indicateurs[,i]$LE_without_dis
+      esp_vie_sans_mal_conso[,i+2] <- indicateurs[,i]$LE_without_dis_exp
+      esp_vie_sans_mal_nonconso[,i+2] <- indicateurs[,i]$LE_without_dis_nonexp
+      esp_vie_mal[,i+2] <- indicateurs[,i]$LE_dis
+      esp_vie_mal_conso[,i+2] <- indicateurs[,i]$LE_dis_exp
+      esp_vie_mal_nonconso[,i+2] <- indicateurs[,i]$LE_dis_nonexp
+      esp_vie_non_mal[,i+2] <- indicateurs[,i]$LE_non_dis
+      esp_vie_non_mal_conso[,i+2] <- indicateurs[,i]$LE_non_dis_exp
+      esp_vie_non_mal_nonconso[,i+2] <- indicateurs[,i]$LE_non_dis_nonexp
       prevalence[,i+2] <- indicateurs[,i]$np_age
-      taux_prevalence[,i+2] <- indicateurs[,i]$tp_dem
-      survie[,i+2] <- indicateurs[,i]$nsurvie
-      taux_survivants[,i+2] <- indicateurs[,i]$tsurvie
-      nb_moy_dem[,i+2] <- esp_vie_non_mal[,i+2] - esp_vie_sans_mal[,i+2]
-      nb_moy_dem_conso [,i+2] <- esp_vie_non_mal_conso[,i+2] - esp_vie_sans_mal_conso[,i+2]
-      nb_moy_dem_nonconso [,i+2] <- esp_vie_non_mal_nonconso[,i+2] - esp_vie_sans_mal_nonconso[,i+2]
-      prb_dem[,i+2] <- indicateurs[,i]$p_dem
-      age_dem[,i+2] <- indicateurs[,i]$a_dem
-      moy_conso[,i+2] <- indicateurs[,i]$m_conso
-      prevalence_conso[,i+2] <- indicateurs[,i]$p_conso
-      quotient_mortalite[,i+2] <- indicateurs[,i]$q_mortalite
+      taux_prevalence[,i+2] <- indicateurs[,i]$tp_dis
+      survie[,i+2] <- indicateurs[,i]$nsurvival
+      taux_survivants[,i+2] <- indicateurs[,i]$rsurvival
+      nb_moy_dem[,i+2] <- indicateurs[,i]$nb_dis
+      nb_moy_dem_conso [,i+2] <- indicateurs[,i]$nb_dis_exp
+      nb_moy_dem_nonconso [,i+2] <- indicateurs[,i]$nb_dis_nonexp
+      prb_dem[,i+2] <- indicateurs[,i]$p_dis
+      age_dem[,i+2] <- indicateurs[,i]$a_dis
+      moy_conso[,i+2] <- indicateurs[,i]$m_exp
+      prevalence_conso[,i+2] <- indicateurs[,i]$p_exp
+      quotient_mortalite[,i+2] <- indicateurs[,i]$mortality_r
     }
 
   }
