@@ -20,9 +20,7 @@
 #' @param a120 mortality of diseased subjects on non exposed peoples.
 #' @param a121 mortality of diseased subjects on exposed peoples.
 #' @param a12_global global mortality of diseased subjects.
-#' @param data_a01 data source for the incidence of disease.
 #' @param data_theta01 data source for the relative risks associated with the exposure for disease.
-#' @param data_a02 data source for the mortality of healthy subjects.
 #' @param data_theta02 data source for the relative risks associated with the exposure for mortality among healthy subjects.
 #' @param data_theta12 data source for the relative risks associated with the exposure for mortality among diseased subjects.
 #' @param RR relative risks associated with the disease for mortality
@@ -52,9 +50,7 @@
 #' a120 = a120,
 #' a121 = a121,
 #' a12_global = a12_global,
-#' data_a01 = data_a01,
 #' data_theta01 = data_theta01,
-#' data_a02 = data_a02,
 #' data_theta02 = data_theta02,
 #' data_theta12 = data_theta12,
 #' RR = RR,
@@ -69,7 +65,8 @@ varHI <- function(t,
                   gender,
                   data_prev,
                   data_incid,
-                  a010, a011,
+                  a010,
+                  a011,
                   a01_global,
                   a020,
                   a021,
@@ -106,9 +103,21 @@ varHI <- function(t,
 
     pr_conso_benzo <- matrix(c(0),
                              nrow=105-65+1,
-                             ncol=2,
+                             ncol=82,
                              byrow=T);
     pr_conso_benzo[,1] <- c(65:105);
+
+    pr_conso_benzo_D <- matrix(c(0),
+                               nrow=105-65+1,
+                               ncol=82,
+                               byrow=T);
+    pr_conso_benzo_D[,1] <- c(65:105);
+
+    pr_conso_benzo_ND <- matrix(c(0),
+                                nrow=105-65+1,
+                                ncol=82,
+                                byrow=T);
+    pr_conso_benzo_ND[,1] <- c(65:105);
 
     conso_benzo <- data_prev[which(data_prev[,3]%in%(gender)),];
 
@@ -176,7 +185,7 @@ varHI <- function(t,
 
               } else {
 
-                if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
+                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
 
                   etat[i,j] <- "11";
 
@@ -199,7 +208,7 @@ varHI <- function(t,
 
               } else {
 
-                if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
+                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
 
                   etat[i,j] <- "10";
 
@@ -226,7 +235,7 @@ varHI <- function(t,
 
               } else {
 
-                if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
+                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
 
                   etat[i,j] <- "11";
 
@@ -322,17 +331,61 @@ varHI <- function(t,
 
       if (age <= 105) {
 
-        s0 <- sum(etat[,age-64]%in%("00") | etat[,age-64]%in%("10") | etat[,age-64]%in%("01") | etat[,age-64]%in%("11"));
+        for (i in 1:41) {
 
-        s1 <- sum(etat[,age-64]%in%("01") | etat[,age-64]%in%("11"));
+          s0 <- sum(etat[,i]%in%("00") | etat[,i]%in%("10") | etat[,i]%in%("01") | etat[,i]%in%("11"));
 
-        if (s0 != 0) {
+          s1 <- sum(etat[,i]%in%("01") | etat[,i]%in%("11"));
 
-          pr_conso_benzo[age-64,2] <- s1/s0;
+          if (s0 != 0) {
 
-        } else {
+            pr_conso_benzo[i,(105-age)+1+i] <- s1/s0;
 
-          pr_conso_benzo[age-64,2] <- pr_conso_benzo[age-64-1,2];
+          } else {
+
+            pr_conso_benzo[i,(105-age)+1+i] <- 0;
+
+          };
+
+        };
+
+        # for diseased people
+
+        for (i in 1:41) {
+
+          s0 <- sum(etat[,i]%in%("10") | etat[,i]%in%("11"));
+
+          s1 <- sum(etat[,i]%in%("11"));
+
+          if (s0 != 0) {
+
+            pr_conso_benzo_D[i,(105-age)+1+i] <- s1/s0;
+
+          } else {
+
+            pr_conso_benzo_D[i,(105-age)+1+i] <- 0;
+
+          };
+
+        };
+
+        # for non-diseased people
+
+        for (i in 1:41) {
+
+          s0 <- sum(etat[,i]%in%("00") | etat[,i]%in%("01"));
+
+          s1 <- sum(etat[,i]%in%("01"));
+
+          if (s0 != 0) {
+
+            pr_conso_benzo_ND[i,(105-age)+1+i] <- s1/s0;
+
+          } else {
+
+            pr_conso_benzo_ND[i,(105-age)+1+i] <- 0;
+
+          };
 
         };
 
@@ -344,63 +397,136 @@ varHI <- function(t,
 
     ### Incidence of disease on non exposed peoples
 
-    data_a01 <- data_a01[which(data_a01[,3]%in%(gender)),]
+    a010_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=82,
+                          byrow=T);
 
-    new_data_a01 <- data_a01[(1+40*(it-1)):(40*it),];
+    data_a01_values <- a010[(1+40*(it-1)):(40*it),c(1,2,which(colnames(data_a01_values)<=year_proj+40 & colnames(data_a01_values)>=year_proj-40))]
 
     new_data_theta01 <- data_theta01[which(data_theta01[,3]%in%(gender)),]
 
-    new_data_theta01 <- new_data_theta01[(1+41*(it-1)):(41*it),];
+    data_theta01_values <- new_data_theta01[(1+41*(it-1)):(41*it),];
 
-    a010[(1+40*(it-1)):(40*it),2] <- as.numeric(new_data_a01[which(new_data_a01[,1] != 65 & new_data_a01[,3]%in%(gender)),2]) / (new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+    for (a in 2:ncol(a010_values)){
+
+      a010_values[,a] <- as.numeric(data_a01_values[which(data_a01_values[,1] != 65 & data_a01_values[,2]%in%(gender)),a+1]) / (data_theta01_values[which(data_theta01_values[,1] != 65 & data_theta01_values[,3]%in%(gender)),2]*pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] - pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] + 1);
+
+    }
 
     ### Incidence of disease on exposed peoples
 
-    a011[(1+40*(it-1)):(40*it),2] <- a010[(1+40*(it-1)):(40*it),2]*new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(gender)),2];
+    a011_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=82,
+                          byrow=T);
+
+    for (a in 2:ncol(a011_values)){
+
+      a011_values[,a] <- a010_values[,a]*data_theta01_values[which(data_theta01_values[,1] != 65 & data_theta01_values[,3]%in%(gender)),2];
+
+    }
 
     ### Global incidence of disease
 
-    a01_global[(1+40*(it-1)):(40*it),2] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a010[(1+40*(it-1)):(40*it),2]*new_data_theta01[which(new_data_theta01[,1] != 65 & new_data_theta01[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a010[(1+40*(it-1)):(40*it),2];
+    a01_global_values <- matrix(c(0),
+                                nrow=40,
+                                ncol=82,
+                                byrow=T);
+
+    for (a in 2:ncol(a01_global_values)){
+
+      a01_global_values[,a] <- pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a]*a010_values[,a]*data_theta01_values[which(data_theta01_values[,1] != 65 & data_theta01_values[,3]%in%(gender)),2] + (1-pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a])*a010_values[,a];
+
+    }
 
     ### Mortality of healthy subjects on non exposed peoples
 
-    data_a02 <- data_a02[which(data_a02[,2]%in%(gender)),]
+    a020_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=82,
+                          byrow=T);
 
-    new_data_a02 <- data_a02[(1+40*(it-1)):(40*it),];
+    data_a02_values <- a020[(1+40*(it-1)):(40*it),c(1,2,which(colnames(data_a02_values)<=year_proj+40 & colnames(data_a02_values)>=year_proj-40))]
 
     new_data_theta02 <- data_theta02[which(data_theta02[,3]%in%(gender)),]
 
-    for (a in 2:ncol(a020)){ # pour chaque année
+    data_theta02_values <- new_data_theta02[(1+41*(it-1)):(41*it),];
 
-      a020[(1+40*(it-1)):(40*it),a] <- as.numeric(new_data_a02[which(new_data_a02[,1] != 65 & new_data_a02[,2]%in%(gender)),a+1]) / (new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+    for (a in 2:ncol(a020_values)){
+
+      a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2]*pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] - pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] + 1);
 
     }
 
     ### Mortality of healthy subjects on exposed peoples
 
-    a021[(1+40*(it-1)):(40*it),-1] <- a020[(1+40*(it-1)):(40*it),-1]*new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(gender)),2];
+    a021_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=82,
+                          byrow=T);
+
+    for (a in 2:ncol(a021_values)){
+
+      a021_values[,a] <- a020_values[,a]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2];
+
+    }
 
     ### Global mortality of healthy subjects
 
-    a02_global[(1+40*(it-1)):(40*it),-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a020[(1+40*(it-1)):(40*it),-1]*new_data_theta02[which(new_data_theta02[,1] != 65 & new_data_theta02[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a020[(1+40*(it-1)):(40*it),-1];
+    a02_global_values <- matrix(c(0),
+                                nrow=40,
+                                ncol=82,
+                                byrow=T);
+
+    for (a in 2:ncol(a02_global_values)){
+
+      a02_global_values[,a] <- pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a]*a020_values[,a]*data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2] + (1-pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a])*a020_values[,a];
+
+    }
 
     ### Mortality of diseased subjects on non exposed peoples
 
+    a120_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=82,
+                          byrow=T);
+
     new_data_theta12 <- data_theta12[which(data_theta12[,3]%in%(gender)),]
 
-    for (a in 2:ncol(a020)){ # pour chaque année
+    data_theta12_values <- new_data_theta12[(1+41*(it-1)):(41*it),];
 
-      a120[(1+40*(it-1)):(40*it),a] <- as.numeric(RR[(1+40*(it-1)):(40*it),2])*a020[(1+40*(it-1)):(40*it),a] / (new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(gender)),2]*pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] - pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2] + 1);
+    for (a in 2:ncol(a120_values)){
+
+      a120_values[,a] <- as.numeric(RR_values[,2])*a02_global_values[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a] - pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a] + 1);
 
     }
 
     ### Mortality of diseased subjects on exposed peoples
 
-    a121[(1+40*(it-1)):(40*it),-1] <- a120[(1+40*(it-1)):(40*it),-1]*new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(gender)),2];
+    a121_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=82,
+                          byrow=T);
+
+    for (a in 2:ncol(a121_values)){
+
+      a121_values[,a] <- a120_values[,a]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2];
+
+    }
 
     ### Global mortality of diseased subjects
 
-    a12_global[(1+40*(it-1)):(40*it),-1] <- pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2]*a120[(1+40*(it-1)):(40*it),-1]*new_data_theta12[which(new_data_theta12[,1] != 65 & new_data_theta12[,3]%in%(gender)),2] + (1-pr_conso_benzo[which(pr_conso_benzo[,1] != 65),2])*a120[(1+40*(it-1)):(40*it),-1];
+    a12_global_values <- matrix(c(0),
+                                nrow=40,
+                                ncol=82,
+                                byrow=T);
+
+    for (a in 2:ncol(a12_global_values)){
+
+      a12_global_values[,a] <- pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a]*a120_values[,a]*data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2] + (1-pr_conso_benzo_D[which(pr_conso_benzo_D[,1] != 65),a])*a120_values[,a];
+
+    }
 
     ###############################
     ###          STEP 2         ###
@@ -428,6 +554,8 @@ varHI <- function(t,
         if (intervention == 0) {
 
           donnees_conso <- pr_conso_benzo
+          donnees_conso_D <- pr_conso_benzo_D
+          donnees_conso_ND <- pr_conso_benzo_ND
 
         } else {
 
@@ -436,11 +564,36 @@ varHI <- function(t,
             if (annee < year_intervention) {
 
               donnees_conso <- pr_conso_benzo
+              donnees_conso_D <- pr_conso_benzo_D
+              donnees_conso_ND <- pr_conso_benzo_ND
 
             } else {
 
               donnees_conso <- pr_conso_benzo
-              donnees_conso[,2] <- pr_conso_benzo[,2] / 2
+
+              if (gender=="W") {
+                incidence <- 0.002648506
+              } else {
+                incidence <- 0.001531581
+              }
+
+              diff <- an0-year_intervention
+
+              if (diff==0) {
+                proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)]
+              } else {
+                for (a in 1:diff) {
+                  iteration <- a
+                  proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)]
+                  donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)] <- (proportion-incidence) / (1-incidence)
+                }
+              }
+
+              donnees_conso[-1,-1] <- pr_conso_benzo[-1,-1] / 2
+              donnees_conso_D <- pr_conso_benzo_D
+              donnees_conso_D[-1,-1] <- pr_conso_benzo_D[-1,-1] / 2
+              donnees_conso_ND <- pr_conso_benzo_ND
+              donnees_conso_ND[-1,-1] <- pr_conso_benzo_ND[-1,-1] / 2
 
             }
 
@@ -451,11 +604,36 @@ varHI <- function(t,
               if (annee < year_intervention) {
 
                 donnees_conso <- pr_conso_benzo
+                donnees_conso_D <- pr_conso_benzo_D
+                donnees_conso_ND <- pr_conso_benzo_ND
 
               } else {
 
                 donnees_conso <- pr_conso_benzo
-                donnees_conso[,2] <- 0
+
+                if (gender=="W") {
+                  incidence <- 0.005297012
+                } else {
+                  incidence <- 0.003063163
+                }
+
+                diff <- an0-year_intervention
+
+                if (diff==0) {
+                  proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)]
+                } else {
+                  for (a in 1:diff) {
+                    iteration <- a
+                    proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)]
+                    donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)] <- (proportion-incidence) / (1-incidence)
+                  }
+                }
+
+                donnees_conso[-1,-1] <- 0
+                donnees_conso_D <- pr_conso_benzo_D
+                donnees_conso_D[-1,-1] <- 0
+                donnees_conso_ND <- pr_conso_benzo_ND
+                donnees_conso_ND[-1,-1] <- 0
 
               }
 
@@ -465,7 +643,7 @@ varHI <- function(t,
 
         }
 
-        if (alea0 <= donnees_conso[which(donnees_conso[,1]%in%(65)),2]) {
+        if (alea0 <= donnees_conso[which(donnees_conso[,1]%in%(65)),42+(an0-year_proj)]) {
 
           etat[i,1] <- "01"
 
@@ -531,16 +709,16 @@ varHI <- function(t,
 
             if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(gender)),2]) {
 
-              a01 <- a011[(1+40*(it-1)):(40*it),];
-              a02 <- a021[(1+40*(it-1)):(40*it),];
+              a01 <- a011_values;
+              a02 <- a021_values;
 
-              if (alea <= a02[j-1,j+(an0-1950)+1]) {
+              if (alea <= a02[j-1,j+(65-age)+41]) {
 
                 etat[i,j] <- "21";
 
               } else {
 
-                if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
+                if (alea <= a01[j-1,j+(65-age)+41] + a02[j-1,j+(65-age)+41]) {
 
                   etat[i,j] <- "11";
 
@@ -554,16 +732,16 @@ varHI <- function(t,
 
             } else {
 
-              a01 <- a010[(1+40*(it-1)):(40*it),];
-              a02 <- a020[(1+40*(it-1)):(40*it),];
+              a01 <- a010_values;
+              a02 <- a020_values;
 
-              if (alea <= a02[j-1,j+(an0-1950)+1]) {
+              if (alea <= a02[j-1,j+(65-age)+41]) {
 
                 etat[i,j] <- "20";
 
               } else {
 
-                if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
+                if (alea <= a01[j-1,j+(65-age)+41] + a02[j-1,j+(65-age)+41]) {
 
                   etat[i,j] <- "10";
 
@@ -581,16 +759,16 @@ varHI <- function(t,
 
             if (etat[i,j-1] == "01") {
 
-              a01 <- a011[(1+40*(it-1)):(40*it),];
-              a02 <- a021[(1+40*(it-1)):(40*it),];
+              a01 <- a011_values;
+              a02 <- a021_values;
 
-              if (alea <= a02[j-1,j+(an0-1950)+1]) {
+              if (alea <= a02[j-1,j+(65-age)+41]) {
 
                 etat[i,j] <- "21";
 
               } else {
 
-                if (alea <= a01[j-1,2] + a02[j-1,j+(an0-1950)+1]) {
+                if (alea <= a01[j-1,j+(65-age)+41] + a02[j-1,j+(65-age)+41]) {
 
                   etat[i,j] <- "11";
 
@@ -608,9 +786,9 @@ varHI <- function(t,
 
                 if (alea0 <= donnees_incid[which(donnees_incid[,1]%in%(j-1+65) & donnees_incid[,3]%in%(gender)),2]) {
 
-                  a12 <- a121[(1+40*(it-1)):(40*it),];
+                  a12 <- a121_values;
 
-                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
+                  if (alea <= a12[j-1,j+(65-age)+41]) {
 
                     etat[i,j] <- "21";
 
@@ -622,9 +800,9 @@ varHI <- function(t,
 
                 } else {
 
-                  a12 <- a120[(1+40*(it-1)):(40*it),];
+                  a12 <- a120_values;
 
-                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
+                  if (alea <= a12[j-1,j+(65-age)+41]) {
 
                     etat[i,j] <- "20";
 
@@ -640,9 +818,9 @@ varHI <- function(t,
 
                 if (etat[i,j-1] == "11") {
 
-                  a12 <- a121[(1+40*(it-1)):(40*it),];
+                  a12 <- a121_values;
 
-                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
+                  if (alea <= a12[j-1,j+(65-age)+41]) {
 
                     etat[i,j] <- "21";
 
