@@ -404,7 +404,7 @@ varHI <- function(t,
                           ncol=82,
                           byrow=T);
 
-    data_a01_values <- a010[(1+40*(it-1)):(40*it),c(1,2,which(colnames(a010)<=year_proj+40 & colnames(a010)>=year_proj-40))]
+    data_a01_values <- a010[(1+40*(it-1)):(40*it),c(1,which(colnames(a010)<=year_proj+40 & colnames(a010)>=year_proj-40))]
 
     new_data_theta01 <- data_theta01[which(data_theta01[,3]%in%(gender)),]
 
@@ -412,7 +412,7 @@ varHI <- function(t,
 
     for (a in 2:ncol(a010_values)){
 
-      a010_values[,a] <- as.numeric(data_a01_values[which(data_a01_values[,1] != 65 & data_a01_values[,2]%in%(gender)),a+1]) / (data_theta01_values[which(data_theta01_values[,1] != 65 & data_theta01_values[,3]%in%(gender)),2]*pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] - pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] + 1);
+      a010_values[,a] <- as.numeric(data_a01_values[which(data_a01_values[,1] != 65),a]) / (data_theta01_values[which(data_theta01_values[,1] != 65 & data_theta01_values[,3]%in%(gender)),2]*pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] - pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] + 1);
 
     }
 
@@ -449,7 +449,7 @@ varHI <- function(t,
                           ncol=82,
                           byrow=T);
 
-    data_a02_values <- a020[(1+40*(it-1)):(40*it),c(1,2,which(colnames(a020)<=year_proj+40 & colnames(a020)>=year_proj-40))]
+    data_a02_values <- a020[(1+40*(it-1)):(40*it),c(1,which(colnames(a020)<=year_proj+40 & colnames(a020)>=year_proj-40))]
 
     new_data_theta02 <- data_theta02[which(data_theta02[,3]%in%(gender)),]
 
@@ -457,7 +457,7 @@ varHI <- function(t,
 
     for (a in 2:ncol(a020_values)){
 
-      a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2]*pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] - pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] + 1);
+      a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65),a]) / (data_theta02_values[which(data_theta02_values[,1] != 65 & data_theta02_values[,3]%in%(gender)),2]*pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] - pr_conso_benzo_ND[which(pr_conso_benzo_ND[,1] != 65),a] + 1);
 
     }
 
