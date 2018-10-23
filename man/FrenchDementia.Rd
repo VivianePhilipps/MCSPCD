@@ -5,7 +5,8 @@
 \title{Computation of Health Indicators for dementia in France}
 \usage{
 FrenchDementia(t, intervention = 0, year_intervention = NULL,
-  nb_people = 100, nb_iter = 0, gender = "W")
+  nb_people = 100, nb_iter = 0, gender = "W", a01_cst = TRUE,
+  theta02_cst = FALSE)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
@@ -19,6 +20,10 @@ FrenchDementia(t, intervention = 0, year_intervention = NULL,
 \item{nb_iter}{number of iterations for the algorithm. Default is \code{0}.}
 
 \item{gender}{gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.}
+
+\item{a01_cst}{\code{TRUE} without reduction for a01 during time. \code{TRUE} with a reduction for a01 during time. Default is \code{TRUE}.}
+
+\item{theta02_cst}{\code{TRUE} without increase for theta02. \code{TRUE} with an increase for theta02. Default is \code{FALSE}.}
 }
 \value{
 a list containing the health indicators
@@ -32,5 +37,7 @@ intervention = 1,
 year_intervention = 2020,
 nb_people = 10000,
 nb_iter = 100,
-gender = "W")
+gender = "W",
+a01_cst = TRUE,
+theta02_cst = FALSE)
 }

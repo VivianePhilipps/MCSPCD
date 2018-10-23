@@ -8,7 +8,8 @@ estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
   nb_iter = 0, data_pop, gender = "W", data_a01_values, data_a02_values,
   data_theta01_values, data_theta02_values, data_theta12_values,
   data_prev_values, data_incid_values, data_rr_DvsND_values, data_a01, data_a02,
-  data_theta01, data_prev, data_incid, data_rr_DvsND)
+  data_theta01, data_theta02, data_theta12, data_prev, data_incid,
+  data_rr_DvsND)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
@@ -47,6 +48,10 @@ estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
 
 \item{data_theta01}{variability of data source for the relative risks associated with the exposure for disease.}
 
+\item{data_theta02}{variability of data source for the relative risks associated with the exposure for mortality among healthy subjects.}
+
+\item{data_theta12}{variability of data source for the relative risks associated with the exposure for mortality among diseased subjects.}
+
 \item{data_prev}{variability of data source for the prevalence of the exposition.}
 
 \item{data_incid}{variability of data source for the incidence of the exposition.}
@@ -67,17 +72,19 @@ nb_people = 10000,
 nb_iter = 100,
 data_pop = pop,
 gender = "W",
-data_a01_values = a01_values,
-data_a02_values = a02_values,
+data_a01_values = a01_constant_values,
+data_a02_values = a02_constant_values,
 data_theta01_values = theta01_cas_1_6_values,
-data_theta02_values = theta02_1_values,
-data_theta12_values = theta02_1_values,
+data_theta02_values = theta02_increase_values,
+data_theta12_values = theta02_increase_values,
 data_prev_values <- prevconso_values,
 data_incid_values <- incidconso_values,
 data_rr_DvsND_values = rr_DvsND_values,
-data_a01 = a01,
-data_a02 = a02,
+data_a01 = a01_constant,
+data_a02 = a02_constant,
 data_theta01 = theta01_cas_1_6,
+data_theta02 = theta02_increase,
+data_theta12 = theta02_increase,
 data_prev = prevconso,
 data_incid = incidconso,
 data_rr_DvsND = rr_DvsND)

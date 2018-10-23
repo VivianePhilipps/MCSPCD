@@ -46,11 +46,7 @@ varHI(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
 
 \item{a12_global}{global mortality of diseased subjects.}
 
-\item{data_a01}{data source for the incidence of disease.}
-
 \item{data_theta01}{data source for the relative risks associated with the exposure for disease.}
-
-\item{data_a02}{data source for the mortality of healthy subjects.}
 
 \item{data_theta02}{data source for the relative risks associated with the exposure for mortality among healthy subjects.}
 
@@ -87,9 +83,7 @@ a02_global = a02_global,
 a120 = a120,
 a121 = a121,
 a12_global = a12_global,
-data_a01 = data_a01,
 data_theta01 = data_theta01,
-data_a02 = data_a02,
 data_theta02 = data_theta02,
 data_theta12 = data_theta12,
 RR = RR,
