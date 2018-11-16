@@ -579,6 +579,8 @@ estimHI <- function(t,
 
     for (i in 1:nrow(etat)) {
 
+      set.seed(i + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65));
+
       alea0 <- runif(1, 0, 1);
 
       if (alea0 <= data_prev_values[which(data_prev_values[,1]%in%(65) & data_prev_values[,3]%in%(gender)),2]) {
@@ -597,7 +599,11 @@ estimHI <- function(t,
 
       for (j in 2:ncol(etat)) { # for each age
 
+        set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65))
+
         alea <- runif(1, 0, 1);
+
+        set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65))
 
         alea0 <- runif(1, 0, 1);
 
@@ -966,6 +972,8 @@ estimHI <- function(t,
 
     for (i in 1:nrow(etat)) {
 
+      set.seed(i + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*40)
+
       alea0 <- runif(1, 0, 1);
 
       if (intervention == 0) {
@@ -1078,7 +1086,11 @@ estimHI <- function(t,
 
         annee <- an0 + (j-1)
 
+        set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*40)
+
         alea <- runif(1, 0, 1);
+
+        set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65)+ 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*40)
 
         alea0 <- runif(1, 0, 1);
 
@@ -2760,6 +2772,11 @@ estimHI <- function(t,
   list_number_years_disease <- list(number_years_disease, number_years_disease_exp, number_years_disease_n_exp)
   names(list_number_years_disease) <- c("number_years_disease", "number_years_disease_exp", "number_years_disease_n_exp")
 
+  ### Summary of all iterations
+
+  list_summary_iterations <- list(esp_vie_sans_mal, prevalence, taux_prevalence, prb_dem, age_dem, nb_moy_dem)
+  names(list_summary_iterations) <- c("esp_vie_sans_mal", "prevalence", "taux_prevalence", "prb_dem", "age_dem", "nb_moy_dem")
+
   ### Output list
 
   # With exposition
@@ -2769,8 +2786,8 @@ estimHI <- function(t,
 
   # Without exposition
 
-  HI_output <- list(list_overall_LE, list_LE_without_disease, list_LE_diseased, list_LE_non_diseased, list_prevalence_disease, list_survival, list_number_years_disease, ll_prob_disease, average_age_disease, number_years_exp, mortality_rate);
-  names(HI_output) <- c("list_overall_LE", "list_LE_without_disease", "list_LE_diseased", "list_LE_non_diseased", "list_prevalence_disease", "list_survival", "list_number_years_disease", "ll_prob_disease", "average_age_disease", "number_years_exp", "mortality_rate");
+  HI_output <- list(list_overall_LE, list_LE_without_disease, list_LE_diseased, list_LE_non_diseased, list_prevalence_disease, list_survival, list_number_years_disease, list_summary_iterations, ll_prob_disease, average_age_disease, number_years_exp, mortality_rate);
+  names(HI_output) <- c("list_overall_LE", "list_LE_without_disease", "list_LE_diseased", "list_LE_non_diseased", "list_prevalence_disease", "list_survival", "list_number_years_disease", "list_summary_iterations", "ll_prob_disease", "average_age_disease", "number_years_exp", "mortality_rate");
 
   return(HI_output)
 
