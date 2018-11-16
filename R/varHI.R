@@ -581,18 +581,18 @@ varHI <- function(t,
 
               donnees_conso <- pr_conso_benzo
 
-              incidence <- (1-((1-pr_conso_benzo[1,22])/(1-(pr_conso_benzo[1,22]/2)))^(1/20))/2
+              incidence <- (1-((1-pr_conso_benzo[1,42-(year_proj-year_intervention)])/(1-(pr_conso_benzo[1,42-(year_proj-year_intervention)]/2)))^(1/20))/2
 
               diff <- an0-year_intervention
 
               if (diff==0) {
-                proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),22]
+                proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42-(year_proj-year_intervention)]
               } else {
-                proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),22];
+                proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42-(year_proj-year_intervention)];
                 for (a in 1:diff) {
                   proportion <- (proportion-incidence) / (1-incidence)
                 }
-                donnees_conso[which(donnees_conso[,1]%in%(65)),22+diff] <- proportion
+                donnees_conso[which(donnees_conso[,1]%in%(65)),42-(year_proj-year_intervention)+diff] <- proportion
               }
 
             }
@@ -611,18 +611,18 @@ varHI <- function(t,
 
                 donnees_conso <- pr_conso_benzo
 
-                incidence <- 1-((1-pr_conso_benzo[1,22])/(1-(pr_conso_benzo[1,22]/2)))^(1/20)
+                incidence <- 1-((1-pr_conso_benzo[1,42-(year_proj-year_intervention)])/(1-(pr_conso_benzo[1,42-(year_proj-year_intervention)]/2)))^(1/20)
 
                 diff <- an0-year_intervention
 
                 if (diff==0) {
-                  proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),22]
+                  proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42-(year_proj-year_intervention)]
                 } else {
-                  proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),22];
+                  proportion <- donnees_conso[which(donnees_conso[,1]%in%(65)),42-(year_proj-year_intervention)];
                   for (a in 1:diff) {
                     proportion <- (proportion-incidence) / (1-incidence)
                   }
-                  donnees_conso[which(donnees_conso[,1]%in%(65)),22+diff] <- proportion
+                  donnees_conso[which(donnees_conso[,1]%in%(65)),42-(year_proj-year_intervention)+diff] <- proportion
                 }
 
               }
