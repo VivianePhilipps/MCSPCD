@@ -25,6 +25,7 @@
 #' @param data_prev variability of data source for the prevalence of the exposition.
 #' @param data_incid variability of data source for the incidence of the exposition.
 #' @param data_rr_DvsND variability of data source for the relative risks associated with the disease for mortality.
+#' @param Ncpus The number of processors available. Default is \code{"1"}.
 #'
 #' @return a list containing the health indicators
 #'
@@ -53,7 +54,8 @@
 #' data_theta12 = theta02_increase,
 #' data_prev = prevconso,
 #' data_incid = incidconso,
-#' data_rr_DvsND = rr_DvsND)
+#' data_rr_DvsND = rr_DvsND,
+#' Ncpus = 1)
 estimHI <- function(t,
                     intervention = 0,
                     year_intervention = NULL,
@@ -76,7 +78,8 @@ estimHI <- function(t,
                     data_theta12,
                     data_prev,
                     data_incid,
-                    data_rr_DvsND)
+                    data_rr_DvsND,
+                    Ncpus = 1)
 
 {
 
@@ -1772,7 +1775,8 @@ estimHI <- function(t,
                          data_theta12 = data_theta12,
                          RR = RR,
                          prb_dem = prb_dem,
-                         age_dem = age_dem)
+                         age_dem = age_dem,
+                         Ncpus = Ncpus)
 
     for (i in 1:nb_iter) {
       esp_vie_gen[,i+2] <- indicateurs[,i]$LE_overall

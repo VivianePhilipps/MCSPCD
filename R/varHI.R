@@ -26,6 +26,7 @@
 #' @param RR relative risks associated with the disease for mortality
 #' @param prb_dem life-long probability of disease
 #' @param age_dem average age at disease onset
+#' @param Ncpus The number of processors available.
 #'
 #' @return a list containing the variability of health indicators
 #'
@@ -55,7 +56,8 @@
 #' data_theta12 = data_theta12,
 #' RR = RR,
 #' prb_dem = prb_dem,
-#' age_dem = age_dem)
+#' age_dem = age_dem,
+#' Ncpus = Ncpus)
 varHI <- function(t,
                   intervention,
                   year_intervention,
@@ -81,14 +83,17 @@ varHI <- function(t,
                   data_theta12,
                   RR,
                   prb_dem,
-                  age_dem)
+                  age_dem,
+                  Ncpus)
 
 {
 
   #setup parallel backend to use many processors
   library(doParallel)
-  cores <- detectCores()-1
-  cl <- makeCluster(cores) #not to overload your computer
+  if (Ncpus == 1) {
+    Ncpus <- detectCores()-1
+  }
+  cl <- makeCluster(Ncpus) #not to overload your computer
   registerDoParallel(cl)
 
   indicateurs <- foreach(it=1:nb_iter, .combine='cbind', .verbose=T, .export="multiResultClass") %dopar% { # number of iterations for each generation

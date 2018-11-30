@@ -10,6 +10,7 @@
 #' @param gender gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.
 #' @param a01_cst \code{TRUE} without reduction for a01 during time. \code{TRUE} with a reduction for a01 during time. Default is \code{TRUE}.
 #' @param theta02_cst \code{TRUE} without increase for theta02. \code{TRUE} with an increase for theta02. Default is \code{FALSE}.
+#' @param Ncpus The number of processors available. Default is \code{"1"}.
 #'
 #' @return a list containing the health indicators
 #'
@@ -23,7 +24,8 @@
 #' nb_iter = 100,
 #' gender = "W",
 #' a01_cst = TRUE,
-#' theta02_cst = FALSE)
+#' theta02_cst = FALSE,
+#' Ncpus = 1)
 FrenchDementia <- function (t,
                             intervention = 0,
                             year_intervention = NULL,
@@ -31,7 +33,8 @@ FrenchDementia <- function (t,
                             nb_iter = 0,
                             gender = "W",
                             a01_cst = TRUE,
-                            theta02_cst = FALSE)
+                            theta02_cst = FALSE,
+                            Ncpus = 1)
 
 {
   t_FR <- t;
@@ -40,6 +43,7 @@ FrenchDementia <- function (t,
   nb_people_FR <- nb_people;
   nb_iter_FR <- nb_iter;
   gender_FR <- gender;
+  Ncpus_FR <- Ncpus;
 
   if (a01_cst == TRUE) {
     data_for_a01_values <- a01_constant_values
@@ -83,7 +87,8 @@ FrenchDementia <- function (t,
                            data_theta12 = data_for_theta02,
                            data_prev = prevconso,
                            data_incid = incidconso,
-                           data_rr_DvsND = rr_DvsND);
+                           data_rr_DvsND = rr_DvsND,
+                           Ncpus = Ncpus_FR);
 
   return(FR_indicators)
 }

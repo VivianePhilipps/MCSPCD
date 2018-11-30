@@ -6,6 +6,7 @@
 #' @param nb_people number of people whose trajectory will be simulated for each generation. Default is \code{100}.
 #' @param nb_iter number of iterations for the algorithm. Default is \code{0}.
 #' @param gender gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.
+#' @param Ncpus The number of processors available. Default is \code{"1"}.
 #'
 #' @return a list containing the health indicators
 #'
@@ -15,17 +16,20 @@
 #' estimDementia(t = 2040,
 #' nb_people = 10000,
 #' nb_iter = 100,
-#' gender = "W")
+#' gender = "W",
+#' Ncpus = 1)
 estimDementia <- function (t,
-                            nb_people = 100,
-                            nb_iter = 0,
-                            gender = "W")
+                           nb_people = 100,
+                           nb_iter = 0,
+                           gender = "W",
+                           Ncpus = 1)
 
 {
   t_FR <- t;
   nb_people_FR <- nb_people;
   nb_iter_FR <- nb_iter;
   gender_FR <- gender;
+  Ncpus_FR <- Ncpus;
 
   theta01_values_1 <- theta01_cas_1_6_values
   theta02_values_1 <- theta02_increase_values
@@ -65,7 +69,8 @@ estimDementia <- function (t,
                            data_theta12 = theta02_1,
                            data_prev = prevconso,
                            data_incid = incidconso,
-                           data_rr_DvsND = rr_DvsND);
+                           data_rr_DvsND = rr_DvsND,
+                           Ncpus = Ncpus_FR);
 
   return(FR_indicators)
 }
