@@ -2758,8 +2758,8 @@ estimHI <- function(t,
 
   ### Summary of all iterations
 
-  list_summary_iterations <- list(esp_vie_sans_mal, prevalence, taux_prevalence, prb_dem, age_dem, nb_moy_dem)
-  names(list_summary_iterations) <- c("esp_vie_sans_mal", "prevalence", "taux_prevalence", "prb_dem", "age_dem", "nb_moy_dem")
+  list_summary_iterations <- list(esp_vie_sans_mal, prevalence, taux_prevalence, prb_dem, age_dem, nb_moy_dem, prev, surv)
+  names(list_summary_iterations) <- c("esp_vie_sans_mal", "prevalence", "taux_prevalence", "prb_dem", "age_dem", "nb_moy_dem", "prev", "surv")
 
   ### Output list
 
