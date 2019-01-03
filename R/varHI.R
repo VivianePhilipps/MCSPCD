@@ -104,6 +104,8 @@ varHI <- function(t,
     ###          STEP 1         ###
     ###############################
 
+    set.seed(1000*nb_iter)
+
     year_proj <- t
 
     ### Computation of number of exposed peoples at least one time
@@ -151,8 +153,6 @@ varHI <- function(t,
 
       for (i in 1:nrow(etat)) {
 
-        set.seed(i + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65));
-
         alea0 <- runif(1, 0, 1);
 
         donnees_conso <- conso_benzo;
@@ -175,11 +175,7 @@ varHI <- function(t,
 
           annee <- an0 + (j-1)
 
-          set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65))
-
           alea <- runif(1, 0, 1);
-
-          set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65))
 
           alea0 <- runif(1, 0, 1);
 
@@ -562,8 +558,6 @@ varHI <- function(t,
 
       for (i in 1:nrow(etat)) {
 
-        set.seed(i + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*40)
-
         alea0 <- runif(1, 0, 1);
 
         if (intervention == 0) {
@@ -656,11 +650,7 @@ varHI <- function(t,
 
           annee <- an0 + (j-1)
 
-          set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*40)
-
           alea <- runif(1, 0, 1);
-
-          set.seed(1+(i-1)*(ncol(etat)-1)+(j-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*(age-65)+ 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat) + (1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + 1+(nrow(etat)-1)*(ncol(etat)-1)+(ncol(etat)-2) + nrow(etat))*40)
 
           alea0 <- runif(1, 0, 1);
 
