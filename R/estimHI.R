@@ -85,24 +85,6 @@ estimHI <- function(t,
 
   ### Year of projection
 
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  # Test
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-  #
-
   set.seed(0)
 
   year_proj <- t
