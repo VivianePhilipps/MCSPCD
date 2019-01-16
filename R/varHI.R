@@ -90,10 +90,11 @@ varHI <- function(t,
 
   #setup parallel backend to use many processors
   library(doParallel)
+  library(snow)
   if (Ncpus == 1) {
     Ncpus <- detectCores()-1
   }
-  cl <- makeCluster(Ncpus) #not to overload your computer
+  cl <- makeCluster(Ncpus, type = "MPI") #not to overload your computer
   registerDoParallel(cl)
 
   indicateurs <- foreach(it=1:nb_iter, .combine='cbind', .verbose=T, .export="multiResultClass") %dopar% { # number of iterations for each generation
