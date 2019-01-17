@@ -83,11 +83,6 @@ estimHI <- function(t,
 
 {
 
-  ### Packages
-
-  library(doParallel)
-  library(snow)
-
   ### Year of projection
 
   set.seed(0)
