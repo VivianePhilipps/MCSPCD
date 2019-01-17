@@ -7,7 +7,7 @@
 varHI(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
   data_prev, data_incid, a010, a011, a01_global, a020, a021, a02_global, a120,
   a121, a12_global, data_a01, data_theta01, data_a02, data_theta02,
-  data_theta12, RR, prb_dem, age_dem)
+  data_theta12, RR, prb_dem, age_dem, Ncpus)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
@@ -57,6 +57,8 @@ varHI(t, intervention, year_intervention, nb_people, nb_iter, data_pop, gender,
 \item{prb_dem}{life-long probability of disease}
 
 \item{age_dem}{average age at disease onset}
+
+\item{Ncpus}{The number of processors available.}
 }
 \value{
 a list containing the variability of health indicators
@@ -88,5 +90,6 @@ data_theta02 = data_theta02,
 data_theta12 = data_theta12,
 RR = RR,
 prb_dem = prb_dem,
-age_dem = age_dem)
+age_dem = age_dem,
+Ncpus = Ncpus)
 }

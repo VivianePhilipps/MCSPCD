@@ -9,7 +9,7 @@ estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
   data_theta01_values, data_theta02_values, data_theta12_values,
   data_prev_values, data_incid_values, data_rr_DvsND_values, data_a01, data_a02,
   data_theta01, data_theta02, data_theta12, data_prev, data_incid,
-  data_rr_DvsND)
+  data_rr_DvsND, Ncpus = 1)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
@@ -57,6 +57,8 @@ estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
 \item{data_incid}{variability of data source for the incidence of the exposition.}
 
 \item{data_rr_DvsND}{variability of data source for the relative risks associated with the disease for mortality.}
+
+\item{Ncpus}{The number of processors available. Default is \code{"1"}.}
 }
 \value{
 a list containing the health indicators
@@ -87,5 +89,6 @@ data_theta02 = theta02_increase,
 data_theta12 = theta02_increase,
 data_prev = prevconso,
 data_incid = incidconso,
-data_rr_DvsND = rr_DvsND)
+data_rr_DvsND = rr_DvsND,
+Ncpus = 1)
 }

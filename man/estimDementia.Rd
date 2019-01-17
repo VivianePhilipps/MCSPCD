@@ -4,7 +4,7 @@
 \alias{estimDementia}
 \title{Computation of Health Indicators for dementia in France}
 \usage{
-estimDementia(t, nb_people = 100, nb_iter = 0, gender = "W")
+estimDementia(t, nb_people = 100, nb_iter = 0, gender = "W", Ncpus = 1)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
@@ -14,6 +14,8 @@ estimDementia(t, nb_people = 100, nb_iter = 0, gender = "W")
 \item{nb_iter}{number of iterations for the algorithm. Default is \code{0}.}
 
 \item{gender}{gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.}
+
+\item{Ncpus}{The number of processors available. Default is \code{"1"}.}
 }
 \value{
 a list containing the health indicators
@@ -25,5 +27,6 @@ This function computes many health indicators without risk factor on transitions
 estimDementia(t = 2040,
 nb_people = 10000,
 nb_iter = 100,
-gender = "W")
+gender = "W",
+Ncpus = 1)
 }

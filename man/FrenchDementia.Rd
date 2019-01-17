@@ -6,7 +6,7 @@
 \usage{
 FrenchDementia(t, intervention = 0, year_intervention = NULL,
   nb_people = 100, nb_iter = 0, gender = "W", a01_cst = TRUE,
-  theta02_cst = FALSE)
+  theta02_cst = FALSE, Ncpus = 1)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
@@ -24,6 +24,8 @@ FrenchDementia(t, intervention = 0, year_intervention = NULL,
 \item{a01_cst}{\code{TRUE} without reduction for a01 during time. \code{TRUE} with a reduction for a01 during time. Default is \code{TRUE}.}
 
 \item{theta02_cst}{\code{TRUE} without increase for theta02. \code{TRUE} with an increase for theta02. Default is \code{FALSE}.}
+
+\item{Ncpus}{The number of processors available. Default is \code{"1"}.}
 }
 \value{
 a list containing the health indicators
@@ -39,5 +41,6 @@ nb_people = 10000,
 nb_iter = 100,
 gender = "W",
 a01_cst = TRUE,
-theta02_cst = FALSE)
+theta02_cst = FALSE,
+Ncpus = 1)
 }
