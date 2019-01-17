@@ -91,8 +91,7 @@ varHI <- function(t,
   ### Packages
 
   library(doParallel)
-  library(snow)
-  library(Rmpi)
+  library(doSNOW)
 
   #setup parallel backend to use many processors
   if (Ncpus == 1) {
