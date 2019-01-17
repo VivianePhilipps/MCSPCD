@@ -88,11 +88,6 @@ varHI <- function(t,
 
 {
 
-  ### Packages
-
-  library(doParallel)
-  library(doSNOW)
-
   #setup parallel backend to use many processors
   if (Ncpus == 1) {
     Ncpus <- detectCores()-1
