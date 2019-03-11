@@ -1,6 +1,6 @@
 #' Computation of Health Indicators for dementia in France
 #'
-#' This function computes many health indicators under several interventions of intervention in risk factor distribution for a given year with all french data.
+#' This function computes many health indicators under several scenarios of intervention in risk factor distribution for a given year with all french data.
 #'
 #' @param t year of the projections for health indicators.
 #' @param intervention 0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.
