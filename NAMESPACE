@@ -3,5 +3,6 @@
 export(FrenchDementia)
 export(estimDementia)
 export(estimHI)
+export(estimHI_3FDR)
 export(multiResultClass)
 export(varHI)
