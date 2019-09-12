@@ -31,7 +31,7 @@ FrenchDementia(t, intervention = 0, year_intervention = NULL,
 a list containing the health indicators
 }
 \description{
-This function computes many health indicators under several interventions of intervention in risk factor distribution for a given year with all french data.
+This function computes many health indicators under several scenarios of intervention in risk factor distribution for a given year with all french data.
 }
 \examples{
 FrenchDementia(t = 2040,

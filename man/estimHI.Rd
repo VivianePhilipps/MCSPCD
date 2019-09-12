@@ -64,7 +64,7 @@ estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
 a list containing the health indicators
 }
 \description{
-This function computes many health indicators under several interventions of intervention in risk factor distribution for a given year.
+This function computes many health indicators under several scenarios of intervention in risk factor distribution for a given year.
 }
 \examples{
 estimHI(t = 2040,
