@@ -275,7 +275,7 @@ estimHI_3FDR <- function(t,
   colnames(a01_global) <- c("age",1950:2080)
 
   a01_global[,1] <- c(66:105)
-  a01_global[,-1] <- data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2]*a010[,-1] + data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2]*a011[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2] + data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2]*a012[,-1]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2] + data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2]*a013[,-1]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2] + data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2]*a014[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2] + data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2]*a015[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2] + data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2]*a016[,-1]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2] + data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]*a017[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2];
+  a01_global[,-1] <- data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2]*a010[,-1] + data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2]*a010[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2] + data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2]*a010[,-1]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2] + data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2]*a010[,-1]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2] + data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2]*a010[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2] + data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2]*a010[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2] + data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2]*a010[,-1]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2] + data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]*a010[,-1]*data_theta01_1[which(data_theta01_1[,1] != 65 & data_theta01_1[,3]%in%(gender)),2]*data_theta01_2[which(data_theta01_2[,1] != 65 & data_theta01_2[,3]%in%(gender)),2]*data_theta01_3[which(data_theta01_3[,1] != 65 & data_theta01_3[,3]%in%(gender)),2];
 
   ### Mortality of healthy subjects on non exposed peoples
 
@@ -367,7 +367,7 @@ estimHI_3FDR <- function(t,
   colnames(a02_global) <- c("age",1950:2080)
 
   a02_global[,1] <- c(66:105)
-  a02_global[,-1] <- data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2]*a020[,-1] + data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2]*a021[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2] + data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2]*a022[,-1]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2] + data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2]*a023[,-1]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2] + data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2]*a024[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2] + data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2]*a025[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2] + data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2]*a026[,-1]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2] + data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]*a027[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2];
+  a02_global[,-1] <- data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2]*a020[,-1] + data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2]*a020[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2] + data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2]*a020[,-1]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2] + data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2]*a020[,-1]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2] + data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2]*a020[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2] + data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2]*a020[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2] + data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2]*a020[,-1]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2] + data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]*a020[,-1]*data_theta02_1[which(data_theta02_1[,1] != 65 & data_theta02_1[,3]%in%(gender)),2]*data_theta02_2[which(data_theta02_2[,1] != 65 & data_theta02_2[,3]%in%(gender)),2]*data_theta02_3[which(data_theta02_3[,1] != 65 & data_theta02_3[,3]%in%(gender)),2];
 
   ### Relative risks associated with the disease for mortality
 
@@ -390,9 +390,9 @@ estimHI_3FDR <- function(t,
 
   a120[,1] <- c(66:105)
 
-  for (a in 2:ncol(a020)){
+  for (a in 2:ncol(a120)){
 
-    a120[,a] <- as.numeric(RR[,2])*a020[,a] / (data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2] + data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2] + data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2] + data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]);
+    a120[,a] <- as.numeric(RR[,2])*as.numeric(data_a02[which(data_a02[,1] != 65 & data_a02[,2]%in%(gender)),a+1]) / (data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2] + data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2] + data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2] + data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2] + data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2]*data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]);
 
   }
 
@@ -470,7 +470,7 @@ estimHI_3FDR <- function(t,
   colnames(a12_global) <- c("age",1950:2080)
 
   a12_global[,1] <- c(66:105)
-  a12_global[,-1] <- data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2]*a120[,-1] + data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2]*a121[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2] + data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2]*a122[,-1]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2] + data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2]*a123[,-1]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2] + data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2]*a124[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2] + data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2]*a125[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2] + data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2]*a126[,-1]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2] + data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]*a127[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2];
+  a12_global[,-1] <- data_prev_0[which(data_prev_0[,1] != 65 & data_prev_0[,3]%in%(gender)),2]*a120[,-1] + data_prev_1[which(data_prev_1[,1] != 65 & data_prev_1[,3]%in%(gender)),2]*a120[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2] + data_prev_2[which(data_prev_2[,1] != 65 & data_prev_2[,3]%in%(gender)),2]*a120[,-1]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2] + data_prev_3[which(data_prev_3[,1] != 65 & data_prev_3[,3]%in%(gender)),2]*a120[,-1]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2] + data_prev_4[which(data_prev_4[,1] != 65 & data_prev_4[,3]%in%(gender)),2]*a120[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2] + data_prev_5[which(data_prev_5[,1] != 65 & data_prev_5[,3]%in%(gender)),2]*a120[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2] + data_prev_6[which(data_prev_6[,1] != 65 & data_prev_6[,3]%in%(gender)),2]*a120[,-1]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2] + data_prev_7[which(data_prev_7[,1] != 65 & data_prev_7[,3]%in%(gender)),2]*a120[,-1]*data_theta12_1[which(data_theta12_1[,1] != 65 & data_theta12_1[,3]%in%(gender)),2]*data_theta12_2[which(data_theta12_2[,1] != 65 & data_theta12_2[,3]%in%(gender)),2]*data_theta12_3[which(data_theta12_3[,1] != 65 & data_theta12_3[,3]%in%(gender)),2];
 
   ### Variability of parameters
 
@@ -564,7 +564,7 @@ estimHI_3FDR <- function(t,
   colnames(a01_global_values) <- c("age",1950:2080)
 
   a01_global_values[,1] <- c(66:105)
-  a01_global_values[,-1] <- data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2]*a010_values[,-1] + data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2]*a011_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2] + data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2]*a012_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2] + data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2]*a013_values[,-1]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2]*a014_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2] + data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2]*a015_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2]*a016_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]*a017_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
+  a01_global_values[,-1] <- data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2]*a010_values[,-1] + data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2] + data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2] + data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2] + data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
 
   ### Mortality of healthy subjects on non exposed peoples
 
@@ -656,7 +656,7 @@ estimHI_3FDR <- function(t,
   colnames(a02_global_values) <- c("age",1950:2080)
 
   a02_global_values[,1] <- c(66:105)
-  a02_global_values[,-1] <- data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2]*a020_values[,-1] + data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2]*a021_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2] + data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2]*a022_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2] + data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2]*a023_values[,-1]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2]*a024_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2] + data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2]*a025_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2]*a026_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]*a027_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
+  a02_global_values[,-1] <- data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2]*a020_values[,-1] + data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2] + data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2] + data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2] + data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
 
   ### Relative risks associated with the disease for mortality
 
@@ -679,9 +679,9 @@ estimHI_3FDR <- function(t,
 
   a120_values[,1] <- c(66:105)
 
-  for (a in 2:ncol(a020_values)){
+  for (a in 2:ncol(a120_values)){
 
-    a120_values[,a] <- as.numeric(RR_values[,2])*a020_values[,a] / (data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2] + data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2] + data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2] + data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]);
+    a120_values[,a] <- as.numeric(RR_values[,2])*as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2] + data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2] + data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2] + data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]);
 
   }
 
@@ -759,7 +759,7 @@ estimHI_3FDR <- function(t,
   colnames(a12_global_values) <- c("age",1950:2080)
 
   a12_global_values[,1] <- c(66:105)
-  a12_global_values[,-1] <- data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2]*a120_values[,-1] + data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2]*a121_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2] + data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2]*a122_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2]*a123_values[,-1]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2]*a124_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2]*a125_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2]*a126_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]*a127_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+  a12_global_values[,-1] <- data_prev_0_values[which(data_prev_0_values[,1] != 65 & data_prev_0_values[,3]%in%(gender)),2]*a120_values[,-1] + data_prev_1_values[which(data_prev_1_values[,1] != 65 & data_prev_1_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2] + data_prev_2_values[which(data_prev_2_values[,1] != 65 & data_prev_2_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_3_values[which(data_prev_3_values[,1] != 65 & data_prev_3_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_4_values[which(data_prev_4_values[,1] != 65 & data_prev_4_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_5_values[which(data_prev_5_values[,1] != 65 & data_prev_5_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_6_values[which(data_prev_6_values[,1] != 65 & data_prev_6_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_7_values[which(data_prev_7_values[,1] != 65 & data_prev_7_values[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
 
   ### Matrix for results of health indicators
 
@@ -955,6 +955,42 @@ estimHI_3FDR <- function(t,
                                byrow=T);
   quotient_mortalite[,1] <- c(65:99);
 
+
+  ##############################
+  ########## ESSAIS ############
+  ##############################
+
+
+  ### Dementia incidence
+
+  incid_demence <- matrix(c(0),
+                          nrow=105-66+1,
+                          ncol=105-65+2,
+                          byrow=T);
+  incid_demence[,1] <- c(66:105);
+
+  ### Mortality incidence
+
+  incid_mort_Dem <- matrix(c(0),
+                           nrow=105-66+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  incid_mort_Dem[,1] <- c(66:105);
+
+  incid_mort_NoD <- matrix(c(0),
+                           nrow=105-66+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  incid_mort_NoD[,1] <- c(66:105);
+
+  ### Diabete prevalence
+
+  prevalence_dia <- matrix(c(0),
+                           nrow=105-65+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  prevalence_dia[,1] <- c(65:105);
+
   #####################################################################################
   #####################################################################################
   #####################################################################################
@@ -970,6 +1006,247 @@ estimHI_3FDR <- function(t,
     an0 <- an_naiss + 65; # first year at risk
 
     annee <- an0; # year of estimation
+
+    data_prev_0_values_ND <- data_prev_0_values
+    data_prev_0_values_D <- data_prev_0_values
+    data_prev_1_values_ND <- data_prev_1_values
+    data_prev_1_values_D <- data_prev_1_values
+    data_prev_2_values_ND <- data_prev_2_values
+    data_prev_2_values_D <- data_prev_2_values
+    data_prev_3_values_ND <- data_prev_3_values
+    data_prev_3_values_D <- data_prev_3_values
+    data_prev_4_values_ND <- data_prev_4_values
+    data_prev_4_values_D <- data_prev_4_values
+    data_prev_5_values_ND <- data_prev_5_values
+    data_prev_5_values_D <- data_prev_5_values
+    data_prev_6_values_ND <- data_prev_6_values
+    data_prev_6_values_D <- data_prev_6_values
+    data_prev_7_values_ND <- data_prev_7_values
+    data_prev_7_values_D <- data_prev_7_values
+
+    a010_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a010_values) <- c("age",1950:2080)
+
+    a010_values[,1] <- c(66:105)
+
+    a011_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a011_values) <- c("age",1950:2080)
+
+    a011_values[,1] <- c(66:105)
+
+    a012_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a012_values) <- c("age",1950:2080)
+
+    a012_values[,1] <- c(66:105)
+
+    a013_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a013_values) <- c("age",1950:2080)
+
+    a013_values[,1] <- c(66:105)
+
+    a014_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a014_values) <- c("age",1950:2080)
+
+    a014_values[,1] <- c(66:105)
+
+    a015_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a015_values) <- c("age",1950:2080)
+
+    a015_values[,1] <- c(66:105)
+
+    a016_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a016_values) <- c("age",1950:2080)
+
+    a016_values[,1] <- c(66:105)
+
+    a017_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a017_values) <- c("age",1950:2080)
+
+    a017_values[,1] <- c(66:105)
+
+    a01_global_values <- matrix(c(0),
+                                nrow=40,
+                                ncol=132,
+                                byrow=T);
+    colnames(a01_global_values) <- c("age",1950:2080)
+
+    a01_global_values[,1] <- c(66:105)
+
+    a020_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a020_values) <- c("age",1950:2080)
+
+    a020_values[,1] <- c(66:105)
+
+    a021_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a021_values) <- c("age",1950:2080)
+
+    a021_values[,1] <- c(66:105)
+
+    a022_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a022_values) <- c("age",1950:2080)
+
+    a022_values[,1] <- c(66:105)
+
+    a023_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a023_values) <- c("age",1950:2080)
+
+    a023_values[,1] <- c(66:105)
+
+    a024_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a024_values) <- c("age",1950:2080)
+
+    a024_values[,1] <- c(66:105)
+
+    a025_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a025_values) <- c("age",1950:2080)
+
+    a025_values[,1] <- c(66:105)
+
+    a026_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a026_values) <- c("age",1950:2080)
+
+    a026_values[,1] <- c(66:105)
+
+    a027_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a027_values) <- c("age",1950:2080)
+
+    a027_values[,1] <- c(66:105)
+
+    a02_global_values <- matrix(c(0),
+                                nrow=40,
+                                ncol=132,
+                                byrow=T);
+    colnames(a02_global_values) <- c("age",1950:2080)
+
+    a02_global_values[,1] <- c(66:105)
+
+    a120_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a120_values) <- c("age",1950:2080)
+
+    a120_values[,1] <- c(66:105)
+
+    a121_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a121_values) <- c("age",1950:2080)
+
+    a121_values[,1] <- c(66:105)
+
+    a122_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a122_values) <- c("age",1950:2080)
+
+    a122_values[,1] <- c(66:105)
+
+    a123_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a123_values) <- c("age",1950:2080)
+
+    a123_values[,1] <- c(66:105)
+
+    a124_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a124_values) <- c("age",1950:2080)
+
+    a124_values[,1] <- c(66:105)
+
+    a125_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a125_values) <- c("age",1950:2080)
+
+    a125_values[,1] <- c(66:105)
+
+    a126_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a126_values) <- c("age",1950:2080)
+
+    a126_values[,1] <- c(66:105)
+
+    a127_values <- matrix(c(0),
+                          nrow=40,
+                          ncol=132,
+                          byrow=T);
+    colnames(a127_values) <- c("age",1950:2080)
+
+    a127_values[,1] <- c(66:105)
+
+    a12_global_values <- matrix(c(0),
+                                nrow=40,
+                                ncol=132,
+                                byrow=T);
+    colnames(a12_global_values) <- c("age",1950:2080)
+
+    a12_global_values[,1] <- c(66:105)
+
+    RR_values <- matrix(c(0),
+                        nrow=40,
+                        ncol=2,
+                        byrow=T);
+    colnames(RR_values) <- c("age","rr_DvsND")
+
+    RR_values[,1] <- c(66:105)
 
     etat <- matrix(c(0), # initial state (non diseased)
                    nrow=nb_people,
@@ -1042,9 +1319,9 @@ estimHI_3FDR <- function(t,
 
     };
 
-    for (i in 1:nrow(etat)) { # for each people
+    for (j in 2:ncol(etat)) { # for each people
 
-      for (j in 2:ncol(etat)) { # for each age
+      for (i in 1:nrow(etat)) { # for each age
 
         alea <- runif(1, 0, 1);
 
@@ -1054,49 +1331,11 @@ estimHI_3FDR <- function(t,
 
           if (alea0 <= data_incid_0_values[which(data_incid_0_values[,1]%in%(j-1+65) & data_incid_0_values[,3]%in%(gender)),2]) {
 
-            a01 <- a012_values;
-            a02 <- a022_values;
-
-            if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-              etat[i,j] <- "22"; # dead (with exposed state 2)
-
-            } else {
-
-              if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                etat[i,j] <- "12"; # diseased and exposed 2
-
-              } else {
-
-                etat[i,j] <- "02"; # non diseased and exposed 2
-
-              }
-
-            };
+            etat[i,j] <- "02"; # non diseased and exposed 2
 
           } else {
 
-            a01 <- a010_values;
-            a02 <- a020_values;
-
-            if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-              etat[i,j] <- "20"; # dead (with non exposed state)
-
-            } else {
-
-              if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                etat[i,j] <- "10"; # diseased and non exposed
-
-              } else {
-
-                etat[i,j] <- "00"; # non diseased and non exposed
-
-              }
-
-            }
+            etat[i,j] <- "00"; # non diseased and non exposed
 
           }
 
@@ -1106,255 +1345,65 @@ estimHI_3FDR <- function(t,
 
             if (alea0 <= data_incid_1_values[which(data_incid_1_values[,1]%in%(j-1+65) & data_incid_1_values[,3]%in%(gender)),2]) {
 
-              a01 <- a014_values;
-              a02 <- a024_values;
-
-              if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                etat[i,j] <- "24"; # dead (with exposed state 4)
-
-              } else {
-
-                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                  etat[i,j] <- "14"; # diseased and exposed 4
-
-                } else {
-
-                  etat[i,j] <- "04"; # non diseased and exposed 4
-
-                }
-
-              };
+              etat[i,j] <- "04"; # non diseased and exposed 4
 
             } else {
 
-              a01 <- a011_values;
-              a02 <- a021_values;
-
-              if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                etat[i,j] <- "21"; # dead (with exposed state 1)
-
-              } else {
-
-                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                  etat[i,j] <- "11"; # diseased and exposed 1
-
-                } else {
-
-                  etat[i,j] <- "01"; # non diseased and exposed 1
-
-                }
-
-              }
+              etat[i,j] <- "01"; # non diseased and exposed 1
 
             }
 
           } else {
 
-            if (etat[i,j-1] == "02") {
+            if (etat[i,j-1] == "03") {
 
-              a01 <- a012_values;
-              a02 <- a022_values;
+              if (alea0 <= data_incid_3_values[which(data_incid_3_values[,1]%in%(j-1+65) & data_incid_3_values[,3]%in%(gender)),2]) {
 
-              if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                etat[i,j] <- "22"; # dead (with exposed state 2)
+                etat[i,j] <- "06"; # non diseased and exposed 6
 
               } else {
 
-                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+                etat[i,j] <- "03"; # non diseased and exposed 3
 
-                  etat[i,j] <- "12"; # diseased and exposed 2
-
-                } else {
-
-                  etat[i,j] <- "02"; # non diseased and exposed 2
-
-                }
-
-              };
+              }
 
             } else {
 
-              if (etat[i,j-1] == "03") {
+              if (etat[i,j-1] == "05") {
 
-                if (alea0 <= data_incid_3_values[which(data_incid_3_values[,1]%in%(j-1+65) & data_incid_3_values[,3]%in%(gender)),2]) {
+                if (alea0 <= data_incid_5_values[which(data_incid_5_values[,1]%in%(j-1+65) & data_incid_5_values[,3]%in%(gender)),2]) {
 
-                  a01 <- a016_values;
-                  a02 <- a026_values;
-
-                  if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                    etat[i,j] <- "26"; # dead (with exposed state 6)
-
-                  } else {
-
-                    if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                      etat[i,j] <- "16"; # diseased and exposed 6
-
-                    } else {
-
-                      etat[i,j] <- "06"; # non diseased and exposed 6
-
-                    }
-
-                  };
+                  etat[i,j] <- "07"; # non diseased and exposed 7
 
                 } else {
 
-                  a01 <- a013_values;
-                  a02 <- a023_values;
-
-                  if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                    etat[i,j] <- "23"; # dead (with exposed state 3)
-
-                  } else {
-
-                    if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                      etat[i,j] <- "13"; # diseased and exposed 3
-
-                    } else {
-
-                      etat[i,j] <- "03"; # non diseased and exposed 3
-
-                    }
-
-                  }
+                  etat[i,j] <- "05"; # non diseased and exposed 5
 
                 }
 
               } else {
 
-                if (etat[i,j-1] == "04") {
+                if (etat[i,j-1] == "02") {
 
-                  a01 <- a014_values;
-                  a02 <- a024_values;
-
-                  if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                    etat[i,j] <- "24"; # dead (with exposed state 4)
-
-                  } else {
-
-                    if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                      etat[i,j] <- "14"; # diseased and exposed 4
-
-                    } else {
-
-                      etat[i,j] <- "04"; # non diseased and exposed 4
-
-                    }
-
-                  };
+                  etat[i,j] <- "02"; # non diseased and exposed 2
 
                 } else {
 
-                  if (etat[i,j-1] == "05") {
+                  if (etat[i,j-1] == "04") {
 
-                    if (alea0 <= data_incid_5_values[which(data_incid_5_values[,1]%in%(j-1+65) & data_incid_5_values[,3]%in%(gender)),2]) {
-
-                      a01 <- a017_values;
-                      a02 <- a027_values;
-
-                      if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                        etat[i,j] <- "27"; # dead (with exposed state 7)
-
-                      } else {
-
-                        if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                          etat[i,j] <- "17"; # diseased and exposed 7
-
-                        } else {
-
-                          etat[i,j] <- "07"; # non diseased and exposed 7
-
-                        }
-
-                      };
-
-                    } else {
-
-                      a01 <- a015_values;
-                      a02 <- a025_values;
-
-                      if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                        etat[i,j] <- "25"; # dead (with exposed state 5)
-
-                      } else {
-
-                        if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                          etat[i,j] <- "15"; # diseased and exposed 5
-
-                        } else {
-
-                          etat[i,j] <- "05"; # non diseased and exposed 5
-
-                        }
-
-                      }
-
-                    }
+                    etat[i,j] <- "04"; # non diseased and exposed 4
 
                   } else {
 
                     if (etat[i,j-1] == "06") {
 
-                      a01 <- a016_values;
-                      a02 <- a026_values;
-
-                      if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                        etat[i,j] <- "26"; # dead (with exposed state 6)
-
-                      } else {
-
-                        if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                          etat[i,j] <- "16"; # diseased and exposed 6
-
-                        } else {
-
-                          etat[i,j] <- "06"; # non diseased and exposed 6
-
-                        }
-
-                      };
+                      etat[i,j] <- "06"; # non diseased and exposed 6
 
                     } else {
 
                       if (etat[i,j-1] == "07") {
 
-                        a01 <- a017_values;
-                        a02 <- a027_values;
-
-                        if (alea <= a02[j-1,j+(an0-1950)+1]) {
-
-                          etat[i,j] <- "27"; # dead (with exposed state 7)
-
-                        } else {
-
-                          if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
-
-                            etat[i,j] <- "17"; # diseased and exposed 7
-
-                          } else {
-
-                            etat[i,j] <- "07"; # non diseased and exposed 7
-
-                          }
-
-                        };
+                        etat[i,j] <- "07"; # non diseased and exposed 7
 
                       } else {
 
@@ -1362,31 +1411,11 @@ estimHI_3FDR <- function(t,
 
                           if (alea0 <= data_incid_0_values[which(data_incid_0_values[,1]%in%(j-1+65) & data_incid_0_values[,3]%in%(gender)),2]) {
 
-                            a12 <- a122_values;
-
-                            if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                              etat[i,j] <- "22";
-
-                            } else {
-
-                              etat[i,j] <- "12";
-
-                            }
+                            etat[i,j] <- "12"; # diseased and exposed 2
 
                           } else {
 
-                            a12 <- a120_values;
-
-                            if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                              etat[i,j] <- "20";
-
-                            } else {
-
-                              etat[i,j] <- "10";
-
-                            }
+                            etat[i,j] <- "10"; # diseased and non exposed
 
                           }
 
@@ -1396,225 +1425,69 @@ estimHI_3FDR <- function(t,
 
                             if (alea0 <= data_incid_1_values[which(data_incid_1_values[,1]%in%(j-1+65) & data_incid_1_values[,3]%in%(gender)),2]) {
 
-                              a12 <- a124_values;
-
-                              if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                etat[i,j] <- "24";
-
-                              } else {
-
-                                etat[i,j] <- "14";
-
-                              }
+                              etat[i,j] <- "14"; # diseased and exposed 4
 
                             } else {
 
-                              a12 <- a121_values;
-
-                              if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                etat[i,j] <- "21";
-
-                              } else {
-
-                                etat[i,j] <- "11";
-
-                              }
+                              etat[i,j] <- "11"; # diseased and exposed 1
 
                             }
 
                           } else {
 
-                            if (etat[i,j-1] == "12") {
+                            if (etat[i,j-1] == "13") {
 
-                              a12 <- a122_values;
+                              if (alea0 <= data_incid_3_values[which(data_incid_3_values[,1]%in%(j-1+65) & data_incid_3_values[,3]%in%(gender)),2]) {
 
-                              if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                etat[i,j] <- "22";
+                                etat[i,j] <- "16"; # diseased and exposed 6
 
                               } else {
 
-                                etat[i,j] <- "12";
+                                etat[i,j] <- "13"; # diseased and exposed 3
 
                               }
 
                             } else {
 
-                              if (etat[i,j-1] == "13") {
+                              if (etat[i,j-1] == "15") {
 
-                                if (alea0 <= data_incid_3_values[which(data_incid_3_values[,1]%in%(j-1+65) & data_incid_3_values[,3]%in%(gender)),2]) {
+                                if (alea0 <= data_incid_5_values[which(data_incid_5_values[,1]%in%(j-1+65) & data_incid_5_values[,3]%in%(gender)),2]) {
 
-                                  a12 <- a126_values;
-
-                                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                    etat[i,j] <- "26";
-
-                                  } else {
-
-                                    etat[i,j] <- "16";
-
-                                  }
+                                  etat[i,j] <- "17"; # diseased and exposed 7
 
                                 } else {
 
-                                  a12 <- a123_values;
-
-                                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                    etat[i,j] <- "23";
-
-                                  } else {
-
-                                    etat[i,j] <- "13";
-
-                                  }
+                                  etat[i,j] <- "15"; # diseased and exposed 5
 
                                 }
 
                               } else {
 
-                                if (etat[i,j-1] == "14") {
+                                if (etat[i,j-1] == "12") {
 
-                                  a12 <- a124_values;
-
-                                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                    etat[i,j] <- "24";
-
-                                  } else {
-
-                                    etat[i,j] <- "14";
-
-                                  }
+                                  etat[i,j] <- "12"; # diseased and exposed 2
 
                                 } else {
 
-                                  if (etat[i,j-1] == "15") {
+                                  if (etat[i,j-1] == "14") {
 
-                                    if (alea0 <= data_incid_5_values[which(data_incid_5_values[,1]%in%(j-1+65) & data_incid_5_values[,3]%in%(gender)),2]) {
-
-                                      a12 <- a127_values;
-
-                                      if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                        etat[i,j] <- "27";
-
-                                      } else {
-
-                                        etat[i,j] <- "17";
-
-                                      }
-
-                                    } else {
-
-                                      a12 <- a125_values;
-
-                                      if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                        etat[i,j] <- "25";
-
-                                      } else {
-
-                                        etat[i,j] <- "15";
-
-                                      }
-
-                                    }
+                                    etat[i,j] <- "14"; # diseased and exposed 4
 
                                   } else {
 
                                     if (etat[i,j-1] == "16") {
 
-                                      a12 <- a126_values;
-
-                                      if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                        etat[i,j] <- "26";
-
-                                      } else {
-
-                                        etat[i,j] <- "16";
-
-                                      }
+                                      etat[i,j] <- "16"; # diseased and exposed 6
 
                                     } else {
 
                                       if (etat[i,j-1] == "17") {
 
-                                        a12 <- a127_values;
-
-                                        if (alea <= a12[j-1,j+(an0-1950)+1]) {
-
-                                          etat[i,j] <- "27";
-
-                                        } else {
-
-                                          etat[i,j] <- "17";
-
-                                        }
+                                        etat[i,j] <- "17"; # diseased and exposed 7
 
                                       } else {
 
-                                        if (etat[i,j-1] == "20") {
-
-                                          etat[i,j] <- "20";
-
-                                        } else {
-
-                                          if (etat[i,j-1] == "21") {
-
-                                            etat[i,j] <- "21";
-
-                                          } else {
-
-                                            if (etat[i,j-1] == "22") {
-
-                                              etat[i,j] <- "22";
-
-                                            } else {
-
-                                              if (etat[i,j-1] == "23") {
-
-                                                etat[i,j] <- "23";
-
-                                              } else {
-
-                                                if (etat[i,j-1] == "24") {
-
-                                                  etat[i,j] <- "24";
-
-                                                } else {
-
-                                                  if (etat[i,j-1] == "25") {
-
-                                                    etat[i,j] <- "25";
-
-                                                  } else {
-
-                                                    if (etat[i,j-1] == "26") {
-
-                                                      etat[i,j] <- "26";
-
-                                                    } else {
-
-                                                      etat[i,j] <- "27";
-
-                                                    }
-
-                                                  }
-
-                                                }
-
-                                              }
-
-                                            }
-
-                                          }
-
-                                        }
+                                        etat[i,j] <- etat[i,j-1]
 
                                       }
 
@@ -1650,7 +1523,561 @@ estimHI_3FDR <- function(t,
 
       }
 
-    };
+      if (sum(etat[,j]%in%("00"))!=0) {
+
+        data_prev_0_values_ND[which(data_prev_0_values_ND[,1]%in%(j+64) & data_prev_0_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("00"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("10"))!=0) {
+
+        data_prev_0_values_D[which(data_prev_0_values_D[,1]%in%(j+64) & data_prev_0_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("10"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("01"))!=0) {
+
+        data_prev_1_values_ND[which(data_prev_1_values_ND[,1]%in%(j+64) & data_prev_1_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("01"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("11"))!=0) {
+
+        data_prev_1_values_D[which(data_prev_1_values_D[,1]%in%(j+64) & data_prev_1_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("11"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("02"))!=0) {
+
+        data_prev_2_values_ND[which(data_prev_2_values_ND[,1]%in%(j+64) & data_prev_2_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("02"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("12"))!=0) {
+
+        data_prev_2_values_D[which(data_prev_2_values_D[,1]%in%(j+64) & data_prev_2_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("12"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("03"))!=0) {
+
+        data_prev_3_values_ND[which(data_prev_3_values_ND[,1]%in%(j+64) & data_prev_3_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("03"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("13"))!=0) {
+
+        data_prev_3_values_D[which(data_prev_3_values_D[,1]%in%(j+64) & data_prev_3_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("13"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("04"))!=0) {
+
+        data_prev_4_values_ND[which(data_prev_4_values_ND[,1]%in%(j+64) & data_prev_4_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("04"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("14"))!=0) {
+
+        data_prev_4_values_D[which(data_prev_4_values_D[,1]%in%(j+64) & data_prev_4_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("14"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("05"))!=0) {
+
+        data_prev_5_values_ND[which(data_prev_5_values_ND[,1]%in%(j+64) & data_prev_5_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("05"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("15"))!=0) {
+
+        data_prev_5_values_D[which(data_prev_5_values_D[,1]%in%(j+64) & data_prev_5_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("15"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("06"))!=0) {
+
+        data_prev_6_values_ND[which(data_prev_6_values_ND[,1]%in%(j+64) & data_prev_6_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("06"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("16"))!=0) {
+
+        data_prev_6_values_D[which(data_prev_6_values_D[,1]%in%(j+64) & data_prev_6_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("16"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      if (sum(etat[,j]%in%("07"))!=0) {
+
+        data_prev_7_values_ND[which(data_prev_7_values_ND[,1]%in%(j+64) & data_prev_7_values_ND[,3]%in%(gender)),2] <- sum(etat[,j]%in%("07"))/sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")))
+
+      }
+
+      if (sum(etat[,j]%in%("17"))!=0) {
+
+        data_prev_7_values_D[which(data_prev_7_values_D[,1]%in%(j+64) & data_prev_7_values_D[,3]%in%(gender)),2] <- sum(etat[,j]%in%("17"))/sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")))
+
+      }
+
+      ### Incidence of disease on non exposed peoples
+
+      for (a in 2:ncol(a010_values)){
+
+        a010_values[,a] <- as.numeric(data_a01_values[which(data_a01_values[,1] != 65 & data_a01_values[,2]%in%(gender)),a+1]) / (data_prev_0_values_ND[which(data_prev_0_values_ND[,1] != 65 & data_prev_0_values_ND[,3]%in%(gender)),2] + data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_prev_1_values_ND[which(data_prev_1_values_ND[,1] != 65 & data_prev_1_values_ND[,3]%in%(gender)),2] + data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_prev_2_values_ND[which(data_prev_2_values_ND[,1] != 65 & data_prev_2_values_ND[,3]%in%(gender)),2] + data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2]*data_prev_3_values_ND[which(data_prev_3_values_ND[,1] != 65 & data_prev_3_values_ND[,3]%in%(gender)),2] + data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_prev_4_values_ND[which(data_prev_4_values_ND[,1] != 65 & data_prev_4_values_ND[,3]%in%(gender)),2] + data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2]*data_prev_5_values_ND[which(data_prev_5_values_ND[,1] != 65 & data_prev_5_values_ND[,3]%in%(gender)),2] + data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2]*data_prev_6_values_ND[which(data_prev_6_values_ND[,1] != 65 & data_prev_6_values_ND[,3]%in%(gender)),2] + data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2]*data_prev_7_values_ND[which(data_prev_7_values_ND[,1] != 65 & data_prev_7_values_ND[,3]%in%(gender)),2]);
+
+      }
+
+      ### Incidence of disease on exposed peoples
+
+      a011_values[,-1] <- a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2];
+
+      a012_values[,-1] <- a010_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2];
+
+      a013_values[,-1] <- a010_values[,-1]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
+
+      a014_values[,-1] <- a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2];
+
+      a015_values[,-1] <- a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
+
+      a016_values[,-1] <- a010_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
+
+      a017_values[,-1] <- a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
+
+      ### Global incidence of disease
+
+      a01_global_values[,-1] <- data_prev_0_values_ND[which(data_prev_0_values_ND[,1] != 65 & data_prev_0_values_ND[,3]%in%(gender)),2]*a010_values[,-1] + data_prev_1_values_ND[which(data_prev_1_values_ND[,1] != 65 & data_prev_1_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2] + data_prev_2_values_ND[which(data_prev_2_values_ND[,1] != 65 & data_prev_2_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2] + data_prev_3_values_ND[which(data_prev_3_values_ND[,1] != 65 & data_prev_3_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_4_values_ND[which(data_prev_4_values_ND[,1] != 65 & data_prev_4_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2] + data_prev_5_values_ND[which(data_prev_5_values_ND[,1] != 65 & data_prev_5_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_6_values_ND[which(data_prev_6_values_ND[,1] != 65 & data_prev_6_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2] + data_prev_7_values_ND[which(data_prev_7_values_ND[,1] != 65 & data_prev_7_values_ND[,3]%in%(gender)),2]*a010_values[,-1]*data_theta01_1_values[which(data_theta01_1_values[,1] != 65 & data_theta01_1_values[,3]%in%(gender)),2]*data_theta01_2_values[which(data_theta01_2_values[,1] != 65 & data_theta01_2_values[,3]%in%(gender)),2]*data_theta01_3_values[which(data_theta01_3_values[,1] != 65 & data_theta01_3_values[,3]%in%(gender)),2];
+
+      ### Mortality of healthy subjects on non exposed peoples
+
+      for (a in 2:ncol(a020_values)){
+
+        a020_values[,a] <- as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_prev_0_values_ND[which(data_prev_0_values_ND[,1] != 65 & data_prev_0_values_ND[,3]%in%(gender)),2] + data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_prev_1_values_ND[which(data_prev_1_values_ND[,1] != 65 & data_prev_1_values_ND[,3]%in%(gender)),2] + data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_prev_2_values_ND[which(data_prev_2_values_ND[,1] != 65 & data_prev_2_values_ND[,3]%in%(gender)),2] + data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2]*data_prev_3_values_ND[which(data_prev_3_values_ND[,1] != 65 & data_prev_3_values_ND[,3]%in%(gender)),2] + data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_prev_4_values_ND[which(data_prev_4_values_ND[,1] != 65 & data_prev_4_values_ND[,3]%in%(gender)),2] + data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2]*data_prev_5_values_ND[which(data_prev_5_values_ND[,1] != 65 & data_prev_5_values_ND[,3]%in%(gender)),2] + data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2]*data_prev_6_values_ND[which(data_prev_6_values_ND[,1] != 65 & data_prev_6_values_ND[,3]%in%(gender)),2] + data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2]*data_prev_7_values_ND[which(data_prev_7_values_ND[,1] != 65 & data_prev_7_values_ND[,3]%in%(gender)),2]);
+
+      }
+
+      ### Mortality of healthy subjects on exposed peoples
+
+      a021_values[,-1] <- a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2];
+
+      a022_values[,-1] <- a020_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2];
+
+      a023_values[,-1] <- a020_values[,-1]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
+
+      a024_values[,-1] <- a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2];
+
+      a025_values[,-1] <- a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
+
+      a026_values[,-1] <- a020_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
+
+      a027_values[,-1] <- a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
+
+      ### Global mortality of healthy subjects
+
+      a02_global_values[,-1] <- data_prev_0_values_ND[which(data_prev_0_values_ND[,1] != 65 & data_prev_0_values_ND[,3]%in%(gender)),2]*a020_values[,-1] + data_prev_1_values_ND[which(data_prev_1_values_ND[,1] != 65 & data_prev_1_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2] + data_prev_2_values_ND[which(data_prev_2_values_ND[,1] != 65 & data_prev_2_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2] + data_prev_3_values_ND[which(data_prev_3_values_ND[,1] != 65 & data_prev_3_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_4_values_ND[which(data_prev_4_values_ND[,1] != 65 & data_prev_4_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2] + data_prev_5_values_ND[which(data_prev_5_values_ND[,1] != 65 & data_prev_5_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_6_values_ND[which(data_prev_6_values_ND[,1] != 65 & data_prev_6_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2] + data_prev_7_values_ND[which(data_prev_7_values_ND[,1] != 65 & data_prev_7_values_ND[,3]%in%(gender)),2]*a020_values[,-1]*data_theta02_1_values[which(data_theta02_1_values[,1] != 65 & data_theta02_1_values[,3]%in%(gender)),2]*data_theta02_2_values[which(data_theta02_2_values[,1] != 65 & data_theta02_2_values[,3]%in%(gender)),2]*data_theta02_3_values[which(data_theta02_3_values[,1] != 65 & data_theta02_3_values[,3]%in%(gender)),2];
+
+      ### Relative risks associated with the disease for mortality
+
+      RR_values[,2] <- data_rr_DvsND_values[which(data_rr_DvsND_values[,1] != 65 & data_rr_DvsND_values[,3]%in%(gender)),2];
+
+      ### Mortality of diseased subjects on non exposed peoples
+
+      for (a in 2:ncol(a120_values)){
+
+        a120_values[,a] <- as.numeric(RR_values[,2])*as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_prev_0_values_D[which(data_prev_0_values_D[,1] != 65 & data_prev_0_values_D[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_prev_1_values_D[which(data_prev_1_values_D[,1] != 65 & data_prev_1_values_D[,3]%in%(gender)),2] + data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_prev_2_values_D[which(data_prev_2_values_D[,1] != 65 & data_prev_2_values_D[,3]%in%(gender)),2] + data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_3_values_D[which(data_prev_3_values_D[,1] != 65 & data_prev_3_values_D[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_prev_4_values_D[which(data_prev_4_values_D[,1] != 65 & data_prev_4_values_D[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_5_values_D[which(data_prev_5_values_D[,1] != 65 & data_prev_5_values_D[,3]%in%(gender)),2] + data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_6_values_D[which(data_prev_6_values_D[,1] != 65 & data_prev_6_values_D[,3]%in%(gender)),2] + data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2]*data_prev_7_values_D[which(data_prev_7_values_D[,1] != 65 & data_prev_7_values_D[,3]%in%(gender)),2]);
+
+      }
+
+      ### Mortality of diseased subjects on exposed peoples
+
+      a121_values[,-1] <- a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2];
+
+      a122_values[,-1] <- a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2];
+
+      a123_values[,-1] <- a120_values[,-1]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+
+      a124_values[,-1] <- a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2];
+
+      a125_values[,-1] <- a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+
+      a126_values[,-1] <- a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+
+      a127_values[,-1] <- a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+
+      ### Global mortality of diseased subjects
+
+      a12_global_values[,-1] <- data_prev_0_values_D[which(data_prev_0_values_D[,1] != 65 & data_prev_0_values_D[,3]%in%(gender)),2]*a120_values[,-1] + data_prev_1_values_D[which(data_prev_1_values_D[,1] != 65 & data_prev_1_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2] + data_prev_2_values_D[which(data_prev_2_values_D[,1] != 65 & data_prev_2_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_3_values_D[which(data_prev_3_values_D[,1] != 65 & data_prev_3_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_4_values_D[which(data_prev_4_values_D[,1] != 65 & data_prev_4_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_5_values_D[which(data_prev_5_values_D[,1] != 65 & data_prev_5_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_6_values_D[which(data_prev_6_values_D[,1] != 65 & data_prev_6_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_7_values_D[which(data_prev_7_values_D[,1] != 65 & data_prev_7_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+
+      for (i in 1:nrow(etat)) { # for each age
+
+        alea <- runif(1, 0, 1);
+
+        alea0 <- runif(1, 0, 1);
+
+        if (etat[i,j] == "00") {
+
+          a01 <- a010_values;
+          a02 <- a020_values;
+
+          if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+            etat[i,j] <- "20"; # dead (with non exposed state)
+
+          } else {
+
+            if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+              etat[i,j] <- "10"; # diseased and non exposed
+
+            } else {
+
+              etat[i,j] <- "00"; # non diseased and non exposed
+
+            }
+
+          }
+
+        } else {
+
+          if (etat[i,j] == "01") {
+
+            a01 <- a011_values;
+            a02 <- a021_values;
+
+            if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+              etat[i,j] <- "21"; # dead (with exposed state 1)
+
+            } else {
+
+              if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                etat[i,j] <- "11"; # diseased and exposed 1
+
+              } else {
+
+                etat[i,j] <- "01"; # non diseased and exposed 1
+
+              }
+
+            }
+
+          } else {
+
+            if (etat[i,j] == "02") {
+
+              a01 <- a012_values;
+              a02 <- a022_values;
+
+              if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                etat[i,j] <- "22"; # dead (with exposed state 2)
+
+              } else {
+
+                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                  etat[i,j] <- "12"; # diseased and exposed 2
+
+                } else {
+
+                  etat[i,j] <- "02"; # non diseased and exposed 2
+
+                }
+
+              }
+
+            } else {
+
+              if (etat[i,j] == "03") {
+
+                a01 <- a013_values;
+                a02 <- a023_values;
+
+                if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                  etat[i,j] <- "23"; # dead (with exposed state 3)
+
+                } else {
+
+                  if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                    etat[i,j] <- "13"; # diseased and exposed 3
+
+                  } else {
+
+                    etat[i,j] <- "03"; # non diseased and exposed 3
+
+                  }
+
+                }
+
+              } else {
+
+                if (etat[i,j] == "04") {
+
+                  a01 <- a014_values;
+                  a02 <- a024_values;
+
+                  if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                    etat[i,j] <- "24"; # dead (with exposed state 4)
+
+                  } else {
+
+                    if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                      etat[i,j] <- "14"; # diseased and exposed 4
+
+                    } else {
+
+                      etat[i,j] <- "04"; # non diseased and exposed 4
+
+                    }
+
+                  };
+
+                } else {
+
+                  if (etat[i,j] == "05") {
+
+                    a01 <- a015_values;
+                    a02 <- a025_values;
+
+                    if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                      etat[i,j] <- "25"; # dead (with exposed state 5)
+
+                    } else {
+
+                      if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                        etat[i,j] <- "15"; # diseased and exposed 5
+
+                      } else {
+
+                        etat[i,j] <- "05"; # non diseased and exposed 5
+
+                      }
+
+                    }
+
+                  } else {
+
+                    if (etat[i,j] == "06") {
+
+                      a01 <- a016_values;
+                      a02 <- a026_values;
+
+                      if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                        etat[i,j] <- "26"; # dead (with exposed state 6)
+
+                      } else {
+
+                        if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                          etat[i,j] <- "16"; # diseased and exposed 6
+
+                        } else {
+
+                          etat[i,j] <- "06"; # non diseased and exposed 6
+
+                        }
+
+                      };
+
+                    } else {
+
+                      if (etat[i,j] == "07") {
+
+                        a01 <- a017_values;
+                        a02 <- a027_values;
+
+                        if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                          etat[i,j] <- "27"; # dead (with exposed state 7)
+
+                        } else {
+
+                          if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                            etat[i,j] <- "17"; # diseased and exposed 7
+
+                          } else {
+
+                            etat[i,j] <- "07"; # non diseased and exposed 7
+
+                          }
+
+                        };
+
+                      } else {
+
+                        if (etat[i,j] == "10") {
+
+                          a12 <- a120_values;
+
+                          if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                            etat[i,j] <- "20";
+
+                          } else {
+
+                            etat[i,j] <- "10";
+
+                          }
+
+                        } else {
+
+                          if (etat[i,j] == "11") {
+
+                            a12 <- a121_values;
+
+                            if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                              etat[i,j] <- "21";
+
+                            } else {
+
+                              etat[i,j] <- "11";
+
+                            }
+
+                          } else {
+
+                            if (etat[i,j] == "12") {
+
+                              a12 <- a122_values;
+
+                              if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                etat[i,j] <- "22";
+
+                              } else {
+
+                                etat[i,j] <- "12";
+
+                              }
+
+                            } else {
+
+                              if (etat[i,j] == "13") {
+
+                                a12 <- a123_values;
+
+                                if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                  etat[i,j] <- "23";
+
+                                } else {
+
+                                  etat[i,j] <- "13";
+
+                                }
+
+                              } else {
+
+                                if (etat[i,j] == "14") {
+
+                                  a12 <- a124_values;
+
+                                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                    etat[i,j] <- "24";
+
+                                  } else {
+
+                                    etat[i,j] <- "14";
+
+                                  }
+
+                                } else {
+
+                                  if (etat[i,j] == "15") {
+
+                                    a12 <- a125_values;
+
+                                    if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                      etat[i,j] <- "25";
+
+                                    } else {
+
+                                      etat[i,j] <- "15";
+
+                                    }
+
+                                  } else {
+
+                                    if (etat[i,j] == "16") {
+
+                                      a12 <- a126_values;
+
+                                      if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                        etat[i,j] <- "26";
+
+                                      } else {
+
+                                        etat[i,j] <- "16";
+
+                                      }
+
+                                    } else {
+
+                                      if (etat[i,j] == "17") {
+
+                                        a12 <- a127_values;
+
+                                        if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                          etat[i,j] <- "27";
+
+                                        } else {
+
+                                          etat[i,j] <- "17";
+
+                                        }
+
+                                      } else {
+
+                                        etat[i,j] <- etat[i,j]
+
+                                      }
+
+                                    }
+
+                                  }
+
+                                }
+
+                              }
+
+                            }
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
 
     ### Computation of health indicators :
 
@@ -1660,13 +2087,13 @@ estimHI_3FDR <- function(t,
 
       n0 <- vector(length = ncol(etat));
 
-      s0 <- sum(etat[,age-64]%in%("00") | etat[,age-64]%in%("01") | etat[,age-64]%in%("10") | etat[,age-64]%in%("11"));
+      s0 <- sum(etat[,age-64]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
 
       if (s0 != 0) {
 
         for (j in (age-63):ncol(etat)) {
 
-          n0[j] <- sum(etat[,j]%in%("00") | etat[,j]%in%("01") | etat[,j]%in%("10") | etat[,j]%in%("11"))
+          n0[j] <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")))
 
         };
 
@@ -1738,13 +2165,13 @@ estimHI_3FDR <- function(t,
 
       n0 <- vector(length = ncol(etat));
 
-      s0 <- sum(etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),age-64]%in%("00") | etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),age-64]%in%("01"));
+      s0 <- sum(etat[which(etat[,age-64]%in%(c("00","01","02","03","04","05","06","07"))),age-64]%in%(c("00","01","02","03","04","05","06","07")))
 
       if (s0 != 0) {
 
         for (j in (age-63):ncol(etat)) {
 
-          n0[j] <- sum(etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),j]%in%("00") | etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),j]%in%("01"))
+          n0[j] <- sum(etat[which(etat[,age-64]%in%(c("00","01","02","03","04","05","06","07"))),j]%in%(c("00","01","02","03","04","05","06","07")))
 
         };
 
@@ -1894,13 +2321,13 @@ estimHI_3FDR <- function(t,
 
       n0 <- vector(length = ncol(etat));
 
-      s0 <- sum(etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),age-64]%in%("00") | etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),age-64]%in%("01"));
+      s0 <- sum(etat[which(etat[,age-64]%in%(c("00","01","02","03","04","05","06","07"))),age-64]%in%(c("00","01","02","03","04","05","06","07")));
 
       if (s0 != 0) {
 
         for (j in (age-63):ncol(etat)) {
 
-          n0[j] <- sum(etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),j]%in%("00") | etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),j]%in%("01") | etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),j]%in%("10") | etat[which(etat[,age-64]%in%("00") | etat[,age-64]%in%("01")),j]%in%("11"))
+          n0[j] <- sum(etat[which(etat[,age-64]%in%(c("00","01","02","03","04","05","06","07"))),j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")))
 
         };
 
@@ -1970,11 +2397,11 @@ estimHI_3FDR <- function(t,
 
     if (age > 65 & age < 100) {
 
-      d0 <- sum(etat[,age-64]%in%("00") | etat[,age-64]%in%("01") | etat[,age-64]%in%("10") | etat[,age-64]%in%("11")) + 0.5 * sum((etat[,age-64]%in%("20") | etat[,age-64]%in%("21")) & (etat[,age-65]%in%("00") | etat[,age-65]%in%("01"))) + 0.5 * sum((etat[,age-64]%in%("20") | etat[,age-64]%in%("21")) & (etat[,age-65]%in%("10") | etat[,age-65]%in%("11")));
+      d0 <- sum(etat[,age-64]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17"))) + 0.5 * sum((etat[,age-64]%in%(c("20","21","22","23","24","25","26","27"))) & (etat[,age-65]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17"))));
 
-      s0 <- sum(etat[,1]%in%("00") | etat[,1]%in%("01") | etat[,1]%in%("10") | etat[,1]%in%("11"));
+      s0 <- sum(etat[,1]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
 
-      s1 <- sum((etat[,age-64]%in%("10") | etat[,age-64]%in%("11")) & (etat[,age-65]%in%("10") | etat[,age-65]%in%("11"))) + 0.5 * sum((etat[,age-64]%in%("10") | etat[,age-64]%in%("11")) & (etat[,age-65]%in%("00") | etat[,age-65]%in%("01"))) + 0.5 * sum((etat[,age-64]%in%("20") | etat[,age-64]%in%("21")) & (etat[,age-65]%in%("10") | etat[,age-65]%in%("11")));
+      s1 <- sum((etat[,age-64]%in%(c("10","11","12","13","14","15","16","17"))) & (etat[,age-65]%in%(c("10","11","12","13","14","15","16","17")))) + 0.5 * sum((etat[,age-64]%in%(c("10","11","12","13","14","15","16","17"))) & (etat[,age-65]%in%(c("00","01","02","03","04","05","06","07")))) + 0.5 * sum((etat[,age-64]%in%(c("20","21","22","23","24","25","26","27"))) & (etat[,age-65]%in%(c("10","11","12","13","14","15","16","17"))));
 
       if (s0 != 0) {
 
@@ -2062,7 +2489,7 @@ estimHI_3FDR <- function(t,
 
       for (i in (age-63):nrow(prb_dem)) {
 
-        prb_dem[i,2] <- sum(etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("10") | etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("11"))
+        prb_dem[i,2] <- sum(etat[which(etat[,i-1]%in%(c("00","01","02","03","04","05","06","07"))),i]%in%(c("10","11","12","13","14","15","16","17")))
 
       }
 
@@ -2074,7 +2501,7 @@ estimHI_3FDR <- function(t,
 
       for (i in (age-63):nrow(age_dem)) {
 
-        age_dem[i,2] <- sum(etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("10") | etat[which(etat[,i-1]%in%("00") | etat[,i-1]%in%("01")),i]%in%("11"))
+        age_dem[i,2] <- sum(etat[which(etat[,i-1]%in%(c("00","01","02","03","04","05","06","07"))),i]%in%(c("10","11","12","13","14","15","16","17")))
 
       }
 
@@ -2129,6 +2556,90 @@ estimHI_3FDR <- function(t,
         quotient_mortalite[age-64,2] <- NA;
 
       };
+
+    };
+
+
+    ##############################
+    ########## ESSAIS ############
+    ##############################
+
+
+    ### Dementia incidence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(incid_demence)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")));
+
+        s1 <- sum((etat[,j+1]%in%(c("10","11","12","13","14","15","16","17"))) & (etat[,j]%in%(c("00","01","02","03","04","05","06","07"))));
+
+        if (s0 != 0) {
+
+          incid_demence[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    ### Mortality incidence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(incid_mort_NoD)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07")));
+
+        s1 <- sum((etat[,j+1]%in%(c("20","21","22","23","24","25","26","27"))) & (etat[,j]%in%(c("00","01","02","03","04","05","06","07"))));
+
+        if (s0 != 0) {
+
+          incid_mort_NoD[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(incid_mort_Dem)) {
+
+        s0 <- sum(etat[,j]%in%(c("10","11","12","13","14","15","16","17")));
+
+        s1 <- sum((etat[,j+1]%in%(c("20","21","22","23","24","25","26","27"))) & (etat[,j]%in%(c("10","11","12","13","14","15","16","17"))));
+
+        if (s0 != 0) {
+
+          incid_mort_Dem[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    ### Diabete prevalence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_dia)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("02","04","06","07","12","14","16","17")));
+
+        if (s0 != 0) {
+
+          prevalence_dia[j,age-63] <- s1/s0;
+
+        };
+
+      }
 
     };
 

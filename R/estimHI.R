@@ -188,7 +188,7 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020)){
 
-    a120[,a] <- as.numeric(RR[,2])*a020[,a] / (data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2]*data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] - data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] + 1);
+    a120[,a] <- as.numeric(RR[,2])*as.numeric(data_a02[which(data_a02[,1] != 65 & data_a02[,2]%in%(gender)),a+1]) / (data_theta12[which(data_theta12[,1] != 65 & data_theta12[,3]%in%(gender)),2]*data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] - data_prev[which(data_prev[,1] != 65 & data_prev[,3]%in%(gender)),2] + 1);
 
   }
 
@@ -315,7 +315,7 @@ estimHI <- function(t,
 
   for (a in 2:ncol(a020_values)){
 
-    a120_values[,a] <- as.numeric(RR_values[,2])*a02_global_values[,a] / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] - data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] + 1);
+    a120_values[,a] <- as.numeric(RR_values[,2])*as.numeric(data_a02_values[which(data_a02_values[,1] != 65 & data_a02_values[,2]%in%(gender)),a+1]) / (data_theta12_values[which(data_theta12_values[,1] != 65 & data_theta12_values[,3]%in%(gender)),2]*data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] - data_prev_values[which(data_prev_values[,1] != 65 & data_prev_values[,3]%in%(gender)),2] + 1);
 
   }
 

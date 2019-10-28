@@ -8,8 +8,8 @@
 #' @param nb_people number of people whose trajectory will be simulated for each generation. Default is \code{100}.
 #' @param nb_iter number of iterations for the algorithm. Default is \code{0}.
 #' @param gender gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.
-#' @param a01_cst \code{TRUE} without reduction for a01 during time. \code{TRUE} with a reduction for a01 during time. Default is \code{TRUE}.
-#' @param theta02_cst \code{TRUE} without increase for theta02. \code{TRUE} with an increase for theta02. Default is \code{FALSE}.
+#' @param a01_cst \code{TRUE} without reduction for a01 during time. \code{FALSE} with a reduction for a01 during time. Default is \code{TRUE}.
+#' @param theta02_cst \code{TRUE} without increase for theta02. \code{FALSE} with an increase for theta02. Default is \code{FALSE}.
 #' @param Ncpus The number of processors available. Default is \code{"1"}.
 #'
 #' @return a list containing the health indicators
