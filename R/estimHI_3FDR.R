@@ -983,6 +983,30 @@ estimHI_3FDR <- function(t,
                            byrow=T);
   incid_mort_NoD[,1] <- c(66:105);
 
+  ### Non exposed prevalence
+
+  prevalence_noe <- matrix(c(0),
+                           nrow=105-65+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  prevalence_noe[,1] <- c(65:105);
+
+  ### Physical inactivity prevalence
+
+  prevalence_ina <- matrix(c(0),
+                           nrow=105-65+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  prevalence_ina[,1] <- c(65:105);
+
+  ### Hypertension prevalence
+
+  prevalence_hta <- matrix(c(0),
+                           nrow=105-65+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  prevalence_hta[,1] <- c(65:105);
+
   ### Diabete prevalence
 
   prevalence_dia <- matrix(c(0),
@@ -990,6 +1014,56 @@ estimHI_3FDR <- function(t,
                            ncol=105-65+2,
                            byrow=T);
   prevalence_dia[,1] <- c(65:105);
+
+  ### Expositions prevalence
+
+  prevalence_exp0 <- matrix(c(0),
+                           nrow=105-65+1,
+                           ncol=105-65+2,
+                           byrow=T);
+  prevalence_exp0[,1] <- c(65:105);
+
+  prevalence_exp1 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp1[,1] <- c(65:105);
+
+  prevalence_exp2 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp2[,1] <- c(65:105);
+
+  prevalence_exp3 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp3[,1] <- c(65:105);
+
+  prevalence_exp4 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp4[,1] <- c(65:105);
+
+  prevalence_exp5 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp5[,1] <- c(65:105);
+
+  prevalence_exp6 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp6[,1] <- c(65:105);
+
+  prevalence_exp7 <- matrix(c(0),
+                            nrow=105-65+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prevalence_exp7[,1] <- c(65:105);
 
   #####################################################################################
   #####################################################################################
@@ -2623,6 +2697,66 @@ estimHI_3FDR <- function(t,
 
     };
 
+    ### Non exposed prevalence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_noe)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("00","10")));
+
+        if (s0 != 0) {
+
+          prevalence_noe[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    ### Hypertension prevalence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_hta)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("01","04","05","07","11","14","15","17")));
+
+        if (s0 != 0) {
+
+          prevalence_hta[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    ### Physical inactivity prevalence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_ina)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("03","05","06","07","13","15","16","17")));
+
+        if (s0 != 0) {
+
+          prevalence_ina[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
     ### Diabete prevalence
 
     if (age >= 65) {
@@ -2636,6 +2770,152 @@ estimHI_3FDR <- function(t,
         if (s0 != 0) {
 
           prevalence_dia[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    ### Expositions prevalence
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp0)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("00","10")));
+
+        if (s0 != 0) {
+
+          prevalence_exp0[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp1)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("01","11")));
+
+        if (s0 != 0) {
+
+          prevalence_exp1[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp2)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("02","12")));
+
+        if (s0 != 0) {
+
+          prevalence_exp2[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp3)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("03","13")));
+
+        if (s0 != 0) {
+
+          prevalence_exp3[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp4)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("04","14")));
+
+        if (s0 != 0) {
+
+          prevalence_exp4[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp5)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("05","15")));
+
+        if (s0 != 0) {
+
+          prevalence_exp5[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp6)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("06","16")));
+
+        if (s0 != 0) {
+
+          prevalence_exp6[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prevalence_exp7)) {
+
+        s0 <- sum(etat[,j]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j]%in%(c("07","17")));
+
+        if (s0 != 0) {
+
+          prevalence_exp7[j,age-63] <- s1/s0;
 
         };
 
