@@ -5,20 +5,20 @@
 \title{Computation of Health Indicators}
 \usage{
 estimHI_3FDR(t, intervention = 0, year_intervention = NULL,
-  nb_people = 100, nb_iter = 0, data_pop, gender = "W", data_a01_values,
-  data_a02_values, data_theta01_1_values, data_theta01_2_values,
-  data_theta01_3_values, data_theta02_1_values, data_theta02_2_values,
-  data_theta02_3_values, data_theta12_1_values, data_theta12_2_values,
-  data_theta12_3_values, data_prev_0_values, data_prev_1_values,
-  data_prev_2_values, data_prev_3_values, data_prev_4_values,
-  data_prev_5_values, data_prev_6_values, data_prev_7_values,
-  data_incid_0_values, data_incid_1_values, data_incid_3_values,
-  data_incid_5_values, data_rr_DvsND_values, data_a01, data_a02, data_theta01_1,
-  data_theta01_2, data_theta01_3, data_theta02_1, data_theta02_2,
-  data_theta02_3, data_theta12_1, data_theta12_2, data_theta12_3, data_prev_0,
-  data_prev_1, data_prev_2, data_prev_3, data_prev_4, data_prev_5, data_prev_6,
-  data_prev_7, data_incid_0, data_incid_1, data_incid_3, data_incid_5,
-  data_rr_DvsND, Ncpus = 1)
+  nb_people = 100, nb_iter = 0, data_pop, gender = "W",
+  data_a01_values, data_a02_values, data_theta01_1_values,
+  data_theta01_2_values, data_theta01_3_values, data_theta02_1_values,
+  data_theta02_2_values, data_theta02_3_values, data_theta12_1_values,
+  data_theta12_2_values, data_theta12_3_values, data_prev_0_values,
+  data_prev_1_values, data_prev_2_values, data_prev_3_values,
+  data_prev_4_values, data_prev_5_values, data_prev_6_values,
+  data_prev_7_values, data_incid_0_values, data_incid_1_values,
+  data_incid_3_values, data_incid_5_values, data_rr_DvsND_values, data_a01,
+  data_a02, data_theta01_1, data_theta01_2, data_theta01_3, data_theta02_1,
+  data_theta02_2, data_theta02_3, data_theta12_1, data_theta12_2,
+  data_theta12_3, data_prev_0, data_prev_1, data_prev_2, data_prev_3,
+  data_prev_4, data_prev_5, data_prev_6, data_prev_7, data_incid_0,
+  data_incid_1, data_incid_3, data_incid_5, data_rr_DvsND, Ncpus = 1)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}

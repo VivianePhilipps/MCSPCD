@@ -4,10 +4,11 @@
 \alias{estimHI}
 \title{Computation of Health Indicators}
 \usage{
-estimHI(t, intervention = 0, year_intervention = NULL, nb_people = 100,
-  nb_iter = 0, data_pop, gender = "W", data_a01_values, data_a02_values,
-  data_theta01_values, data_theta02_values, data_theta12_values,
-  data_prev_values, data_incid_values, data_rr_DvsND_values, data_a01, data_a02,
+estimHI(t, intervention = 0, year_intervention = NULL,
+  nb_people = 100, nb_iter = 0, data_pop, gender = "W",
+  data_a01_values, data_a02_values, data_theta01_values,
+  data_theta02_values, data_theta12_values, data_prev_values,
+  data_incid_values, data_rr_DvsND_values, data_a01, data_a02,
   data_theta01, data_theta02, data_theta12, data_prev, data_incid,
   data_rr_DvsND, Ncpus = 1)
 }

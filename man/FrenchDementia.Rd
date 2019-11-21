@@ -21,9 +21,9 @@ FrenchDementia(t, intervention = 0, year_intervention = NULL,
 
 \item{gender}{gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.}
 
-\item{a01_cst}{\code{TRUE} without reduction for a01 during time. \code{TRUE} with a reduction for a01 during time. Default is \code{TRUE}.}
+\item{a01_cst}{\code{TRUE} without reduction for a01 during time. \code{FALSE} with a reduction for a01 during time. Default is \code{TRUE}.}
 
-\item{theta02_cst}{\code{TRUE} without increase for theta02. \code{TRUE} with an increase for theta02. Default is \code{FALSE}.}
+\item{theta02_cst}{\code{TRUE} without increase for theta02. \code{FALSE} with an increase for theta02. Default is \code{FALSE}.}
 
 \item{Ncpus}{The number of processors available. Default is \code{"1"}.}
 }
