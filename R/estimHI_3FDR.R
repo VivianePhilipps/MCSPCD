@@ -1065,6 +1065,30 @@ estimHI_3FDR <- function(t,
                             byrow=T);
   prevalence_exp7[,1] <- c(65:105);
 
+  prop_dem_diabet <- matrix(c(0),
+                            nrow=105-66+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prop_dem_diabet[,1] <- c(66:105);
+
+  prop_dem_hypert <- matrix(c(0),
+                            nrow=105-66+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prop_dem_hypert[,1] <- c(66:105);
+
+  prop_dem_inacti <- matrix(c(0),
+                            nrow=105-66+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prop_dem_inacti[,1] <- c(66:105);
+
+  prop_dem_global <- matrix(c(0),
+                            nrow=105-66+1,
+                            ncol=105-65+2,
+                            byrow=T);
+  prop_dem_global[,1] <- c(66:105);
+
   #####################################################################################
   #####################################################################################
   #####################################################################################
@@ -2916,6 +2940,78 @@ estimHI_3FDR <- function(t,
         if (s0 != 0) {
 
           prevalence_exp7[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prop_dem_global)) {
+
+        s0 <- sum(etat[,j+1]%in%(c("00","01","02","03","04","05","06","07","10","11","12","13","14","15","16","17")));
+
+        s1 <- sum(etat[,j+1]%in%(c("10","11","12","13","14","15","16","17")));
+
+        if (s0 != 0) {
+
+          prop_dem_global[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prop_dem_diabet)) {
+
+        s0 <- sum(etat[,j+1]%in%(c("02","04","06","07","12","14","16","17")));
+
+        s1 <- sum(etat[,j+1]%in%(c("12","14","16","17")));
+
+        if (s0 != 0) {
+
+          prop_dem_diabet[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prop_dem_hypert)) {
+
+        s0 <- sum(etat[,j+1]%in%(c("01","04","05","07","11","14","15","17")));
+
+        s1 <- sum(etat[,j+1]%in%(c("11","14","15","17")));
+
+        if (s0 != 0) {
+
+          prop_dem_hypert[j,age-63] <- s1/s0;
+
+        };
+
+      }
+
+    };
+
+    if (age >= 65) {
+
+      for (j in 1:nrow(prop_dem_inacti)) {
+
+        s0 <- sum(etat[,j+1]%in%(c("03","05","06","07","13","15","16","17")));
+
+        s1 <- sum(etat[,j+1]%in%(c("13","15","16","17")));
+
+        if (s0 != 0) {
+
+          prop_dem_inacti[j,age-63] <- s1/s0;
 
         };
 
