@@ -2181,47 +2181,50 @@ estimHI_3FDR <- function(t,
 
     # RUN 2
 
-    if (intervention==1) {
-
-      intervention_prev_0_values <- data_prev_0_values
-      intervention_prev_0_values[,2] <- 1
-
-      intervention_prev_1_values <- data_prev_1_values
-      intervention_prev_1_values[,2] <- 0
-
-      intervention_prev_2_values <- data_prev_2_values
-      intervention_prev_2_values[,2] <- 0
-
-      intervention_prev_3_values <- data_prev_3_values
-      intervention_prev_3_values[,2] <- 0
-
-      intervention_prev_4_values <- data_prev_4_values
-      intervention_prev_4_values[,2] <- 0
-
-      intervention_prev_5_values <- data_prev_5_values
-      intervention_prev_5_values[,2] <- 0
-
-      intervention_prev_6_values <- data_prev_6_values
-      intervention_prev_6_values[,2] <- 0
-
-      intervention_prev_7_values <- data_prev_7_values
-      intervention_prev_7_values[,2] <- 0
-
-      intervention_incid_0_values <- data_incid_0_values
-      intervention_incid_0_values[,2] <- 0
-
-      intervention_incid_1_values <- data_incid_1_values
-      intervention_incid_1_values[,2] <- 0
-
-      intervention_incid_3_values <- data_incid_3_values
-      intervention_incid_3_values[,2] <- 0
-
-      intervention_incid_5_values <- data_incid_5_values
-      intervention_incid_5_values[,2] <- 0
-
-    }
-
     for (i in 1:nrow(etat)) {
+
+      if (intervention==1) {
+
+        if (annee < year_intervention) {
+
+          intervention_prev_0_values <- data_prev_0_values
+          intervention_prev_1_values <- data_prev_1_values
+          intervention_prev_2_values <- data_prev_2_values
+          intervention_prev_3_values <- data_prev_3_values
+          intervention_prev_4_values <- data_prev_4_values
+          intervention_prev_5_values <- data_prev_5_values
+          intervention_prev_6_values <- data_prev_6_values
+          intervention_prev_7_values <- data_prev_7_values
+
+        } else {
+
+          intervention_prev_0_values <- data_prev_0_values
+          intervention_prev_0_values[,2] <- 1
+
+          intervention_prev_1_values <- data_prev_1_values
+          intervention_prev_1_values[,2] <- 0
+
+          intervention_prev_2_values <- data_prev_2_values
+          intervention_prev_2_values[,2] <- 0
+
+          intervention_prev_3_values <- data_prev_3_values
+          intervention_prev_3_values[,2] <- 0
+
+          intervention_prev_4_values <- data_prev_4_values
+          intervention_prev_4_values[,2] <- 0
+
+          intervention_prev_5_values <- data_prev_5_values
+          intervention_prev_5_values[,2] <- 0
+
+          intervention_prev_6_values <- data_prev_6_values
+          intervention_prev_6_values[,2] <- 0
+
+          intervention_prev_7_values <- data_prev_7_values
+          intervention_prev_7_values[,2] <- 0
+
+        }
+
+      }
 
       alea0 <- runif(1, 0, 1);
 
@@ -2286,6 +2289,33 @@ estimHI_3FDR <- function(t,
     };
 
     for (j in 2:ncol(etat)) { # for each people
+
+      if (intervention==1) {
+
+        if (annee+j-1 < year_intervention) {
+
+          intervention_incid_0_values <- data_incid_0_values
+          intervention_incid_1_values <- data_incid_1_values
+          intervention_incid_3_values <- data_incid_3_values
+          intervention_incid_5_values <- data_incid_5_values
+
+        } else {
+
+          intervention_incid_0_values <- data_incid_0_values
+          intervention_incid_0_values[,2] <- 0
+
+          intervention_incid_1_values <- data_incid_1_values
+          intervention_incid_1_values[,2] <- 0
+
+          intervention_incid_3_values <- data_incid_3_values
+          intervention_incid_3_values[,2] <- 0
+
+          intervention_incid_5_values <- data_incid_5_values
+          intervention_incid_5_values[,2] <- 0
+
+        }
+
+      }
 
       for (i in 1:nrow(etat)) { # for each age
 
