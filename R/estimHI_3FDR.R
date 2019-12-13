@@ -3,7 +3,7 @@
 #' This function computes many health indicators under several scenarios of intervention in risk factor distribution for a given year.
 #'
 #' @param t year of the projections for health indicators.
-#' @param intervention 0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.
+#' @param intervention 0 = no change; 1 = risk factor prevalence and incidence considered as null. Default is \code{0}.
 #' @param year_intervention year of the intervention in risk factor distribution takes place. Default is \code{NULL}.
 #' @param nb_people number of people whose trajectory will be simulated for each generation. Default is \code{100}.
 #' @param nb_iter number of iterations for the algorithm. Default is \code{0}.
@@ -1353,6 +1353,8 @@ estimHI_3FDR <- function(t,
 
     colnames(etat) <- c(65:105);
 
+    # RUN 1
+
     for (i in 1:nrow(etat)) {
 
       alea0 <- runif(1, 0, 1);
@@ -1804,6 +1806,688 @@ estimHI_3FDR <- function(t,
       ### Global mortality of diseased subjects
 
       a12_global_values[,-1] <- data_prev_0_values_D[which(data_prev_0_values_D[,1] != 65 & data_prev_0_values_D[,3]%in%(gender)),2]*a120_values[,-1] + data_prev_1_values_D[which(data_prev_1_values_D[,1] != 65 & data_prev_1_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2] + data_prev_2_values_D[which(data_prev_2_values_D[,1] != 65 & data_prev_2_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_3_values_D[which(data_prev_3_values_D[,1] != 65 & data_prev_3_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_4_values_D[which(data_prev_4_values_D[,1] != 65 & data_prev_4_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2] + data_prev_5_values_D[which(data_prev_5_values_D[,1] != 65 & data_prev_5_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_6_values_D[which(data_prev_6_values_D[,1] != 65 & data_prev_6_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2] + data_prev_7_values_D[which(data_prev_7_values_D[,1] != 65 & data_prev_7_values_D[,3]%in%(gender)),2]*a120_values[,-1]*data_theta12_1_values[which(data_theta12_1_values[,1] != 65 & data_theta12_1_values[,3]%in%(gender)),2]*data_theta12_2_values[which(data_theta12_2_values[,1] != 65 & data_theta12_2_values[,3]%in%(gender)),2]*data_theta12_3_values[which(data_theta12_3_values[,1] != 65 & data_theta12_3_values[,3]%in%(gender)),2];
+
+      for (i in 1:nrow(etat)) { # for each age
+
+        alea <- runif(1, 0, 1);
+
+        alea0 <- runif(1, 0, 1);
+
+        if (etat[i,j] == "00") {
+
+          a01 <- a010_values;
+          a02 <- a020_values;
+
+          if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+            etat[i,j] <- "20"; # dead (with non exposed state)
+
+          } else {
+
+            if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+              etat[i,j] <- "10"; # diseased and non exposed
+
+            } else {
+
+              etat[i,j] <- "00"; # non diseased and non exposed
+
+            }
+
+          }
+
+        } else {
+
+          if (etat[i,j] == "01") {
+
+            a01 <- a011_values;
+            a02 <- a021_values;
+
+            if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+              etat[i,j] <- "21"; # dead (with exposed state 1)
+
+            } else {
+
+              if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                etat[i,j] <- "11"; # diseased and exposed 1
+
+              } else {
+
+                etat[i,j] <- "01"; # non diseased and exposed 1
+
+              }
+
+            }
+
+          } else {
+
+            if (etat[i,j] == "02") {
+
+              a01 <- a012_values;
+              a02 <- a022_values;
+
+              if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                etat[i,j] <- "22"; # dead (with exposed state 2)
+
+              } else {
+
+                if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                  etat[i,j] <- "12"; # diseased and exposed 2
+
+                } else {
+
+                  etat[i,j] <- "02"; # non diseased and exposed 2
+
+                }
+
+              }
+
+            } else {
+
+              if (etat[i,j] == "03") {
+
+                a01 <- a013_values;
+                a02 <- a023_values;
+
+                if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                  etat[i,j] <- "23"; # dead (with exposed state 3)
+
+                } else {
+
+                  if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                    etat[i,j] <- "13"; # diseased and exposed 3
+
+                  } else {
+
+                    etat[i,j] <- "03"; # non diseased and exposed 3
+
+                  }
+
+                }
+
+              } else {
+
+                if (etat[i,j] == "04") {
+
+                  a01 <- a014_values;
+                  a02 <- a024_values;
+
+                  if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                    etat[i,j] <- "24"; # dead (with exposed state 4)
+
+                  } else {
+
+                    if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                      etat[i,j] <- "14"; # diseased and exposed 4
+
+                    } else {
+
+                      etat[i,j] <- "04"; # non diseased and exposed 4
+
+                    }
+
+                  };
+
+                } else {
+
+                  if (etat[i,j] == "05") {
+
+                    a01 <- a015_values;
+                    a02 <- a025_values;
+
+                    if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                      etat[i,j] <- "25"; # dead (with exposed state 5)
+
+                    } else {
+
+                      if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                        etat[i,j] <- "15"; # diseased and exposed 5
+
+                      } else {
+
+                        etat[i,j] <- "05"; # non diseased and exposed 5
+
+                      }
+
+                    }
+
+                  } else {
+
+                    if (etat[i,j] == "06") {
+
+                      a01 <- a016_values;
+                      a02 <- a026_values;
+
+                      if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                        etat[i,j] <- "26"; # dead (with exposed state 6)
+
+                      } else {
+
+                        if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                          etat[i,j] <- "16"; # diseased and exposed 6
+
+                        } else {
+
+                          etat[i,j] <- "06"; # non diseased and exposed 6
+
+                        }
+
+                      };
+
+                    } else {
+
+                      if (etat[i,j] == "07") {
+
+                        a01 <- a017_values;
+                        a02 <- a027_values;
+
+                        if (alea <= a02[j-1,j+(an0-1950)+1]) {
+
+                          etat[i,j] <- "27"; # dead (with exposed state 7)
+
+                        } else {
+
+                          if (alea <= a01[j-1,j+(an0-1950)+1] + a02[j-1,j+(an0-1950)+1]) {
+
+                            etat[i,j] <- "17"; # diseased and exposed 7
+
+                          } else {
+
+                            etat[i,j] <- "07"; # non diseased and exposed 7
+
+                          }
+
+                        };
+
+                      } else {
+
+                        if (etat[i,j] == "10") {
+
+                          a12 <- a120_values;
+
+                          if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                            etat[i,j] <- "20";
+
+                          } else {
+
+                            etat[i,j] <- "10";
+
+                          }
+
+                        } else {
+
+                          if (etat[i,j] == "11") {
+
+                            a12 <- a121_values;
+
+                            if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                              etat[i,j] <- "21";
+
+                            } else {
+
+                              etat[i,j] <- "11";
+
+                            }
+
+                          } else {
+
+                            if (etat[i,j] == "12") {
+
+                              a12 <- a122_values;
+
+                              if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                etat[i,j] <- "22";
+
+                              } else {
+
+                                etat[i,j] <- "12";
+
+                              }
+
+                            } else {
+
+                              if (etat[i,j] == "13") {
+
+                                a12 <- a123_values;
+
+                                if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                  etat[i,j] <- "23";
+
+                                } else {
+
+                                  etat[i,j] <- "13";
+
+                                }
+
+                              } else {
+
+                                if (etat[i,j] == "14") {
+
+                                  a12 <- a124_values;
+
+                                  if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                    etat[i,j] <- "24";
+
+                                  } else {
+
+                                    etat[i,j] <- "14";
+
+                                  }
+
+                                } else {
+
+                                  if (etat[i,j] == "15") {
+
+                                    a12 <- a125_values;
+
+                                    if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                      etat[i,j] <- "25";
+
+                                    } else {
+
+                                      etat[i,j] <- "15";
+
+                                    }
+
+                                  } else {
+
+                                    if (etat[i,j] == "16") {
+
+                                      a12 <- a126_values;
+
+                                      if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                        etat[i,j] <- "26";
+
+                                      } else {
+
+                                        etat[i,j] <- "16";
+
+                                      }
+
+                                    } else {
+
+                                      if (etat[i,j] == "17") {
+
+                                        a12 <- a127_values;
+
+                                        if (alea <= a12[j-1,j+(an0-1950)+1]) {
+
+                                          etat[i,j] <- "27";
+
+                                        } else {
+
+                                          etat[i,j] <- "17";
+
+                                        }
+
+                                      } else {
+
+                                        etat[i,j] <- etat[i,j]
+
+                                      }
+
+                                    }
+
+                                  }
+
+                                }
+
+                              }
+
+                            }
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+    # RUN 2
+
+    if (intervention==1) {
+
+      intervention_prev_0_values <- data_prev_0_values
+      intervention_prev_0_values[,2] <- 1
+
+      intervention_prev_1_values <- data_prev_1_values
+      intervention_prev_1_values[,2] <- 0
+
+      intervention_prev_2_values <- data_prev_2_values
+      intervention_prev_2_values[,2] <- 0
+
+      intervention_prev_3_values <- data_prev_3_values
+      intervention_prev_3_values[,2] <- 0
+
+      intervention_prev_4_values <- data_prev_4_values
+      intervention_prev_4_values[,2] <- 0
+
+      intervention_prev_5_values <- data_prev_5_values
+      intervention_prev_5_values[,2] <- 0
+
+      intervention_prev_6_values <- data_prev_6_values
+      intervention_prev_6_values[,2] <- 0
+
+      intervention_prev_7_values <- data_prev_7_values
+      intervention_prev_7_values[,2] <- 0
+
+      intervention_incid_0_values <- data_incid_0_values
+      intervention_incid_0_values[,2] <- 0
+
+      intervention_incid_1_values <- data_incid_1_values
+      intervention_incid_1_values[,2] <- 0
+
+      intervention_incid_3_values <- data_incid_3_values
+      intervention_incid_3_values[,2] <- 0
+
+      intervention_incid_5_values <- data_incid_5_values
+      intervention_incid_5_values[,2] <- 0
+
+    }
+
+    for (i in 1:nrow(etat)) {
+
+      alea0 <- runif(1, 0, 1);
+
+      if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]) {
+
+        etat[i,1] <- "00" # non diseased and non exposed
+
+      } else {
+
+        if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]+intervention_prev_1_values[which(intervention_prev_1_values[,1]%in%(65) & intervention_prev_1_values[,3]%in%(gender)),2]) {
+
+          etat[i,1] <- "01" # non diseased and exposed 1
+
+        } else {
+
+          if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]+intervention_prev_1_values[which(intervention_prev_1_values[,1]%in%(65) & intervention_prev_1_values[,3]%in%(gender)),2]+intervention_prev_2_values[which(intervention_prev_2_values[,1]%in%(65) & intervention_prev_2_values[,3]%in%(gender)),2]) {
+
+            etat[i,1] <- "02" # non diseased and exposed 2
+
+          } else {
+
+            if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]+intervention_prev_1_values[which(intervention_prev_1_values[,1]%in%(65) & intervention_prev_1_values[,3]%in%(gender)),2]+intervention_prev_2_values[which(intervention_prev_2_values[,1]%in%(65) & intervention_prev_2_values[,3]%in%(gender)),2]+intervention_prev_3_values[which(intervention_prev_3_values[,1]%in%(65) & intervention_prev_3_values[,3]%in%(gender)),2]) {
+
+              etat[i,1] <- "03" # non diseased and exposed 3
+
+            } else {
+
+              if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]+intervention_prev_1_values[which(intervention_prev_1_values[,1]%in%(65) & intervention_prev_1_values[,3]%in%(gender)),2]+intervention_prev_2_values[which(intervention_prev_2_values[,1]%in%(65) & intervention_prev_2_values[,3]%in%(gender)),2]+intervention_prev_3_values[which(intervention_prev_3_values[,1]%in%(65) & intervention_prev_3_values[,3]%in%(gender)),2]+intervention_prev_4_values[which(intervention_prev_4_values[,1]%in%(65) & intervention_prev_4_values[,3]%in%(gender)),2]) {
+
+                etat[i,1] <- "04" # non diseased and exposed 4
+
+              } else {
+
+                if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]+intervention_prev_1_values[which(intervention_prev_1_values[,1]%in%(65) & intervention_prev_1_values[,3]%in%(gender)),2]+intervention_prev_2_values[which(intervention_prev_2_values[,1]%in%(65) & intervention_prev_2_values[,3]%in%(gender)),2]+intervention_prev_3_values[which(intervention_prev_3_values[,1]%in%(65) & intervention_prev_3_values[,3]%in%(gender)),2]+intervention_prev_4_values[which(intervention_prev_4_values[,1]%in%(65) & intervention_prev_4_values[,3]%in%(gender)),2]+intervention_prev_5_values[which(intervention_prev_5_values[,1]%in%(65) & intervention_prev_5_values[,3]%in%(gender)),2]) {
+
+                  etat[i,1] <- "05" # non diseased and exposed 5
+
+                } else {
+
+                  if (alea0 <= intervention_prev_0_values[which(intervention_prev_0_values[,1]%in%(65) & intervention_prev_0_values[,3]%in%(gender)),2]+intervention_prev_1_values[which(intervention_prev_1_values[,1]%in%(65) & intervention_prev_1_values[,3]%in%(gender)),2]+intervention_prev_2_values[which(intervention_prev_2_values[,1]%in%(65) & intervention_prev_2_values[,3]%in%(gender)),2]+intervention_prev_3_values[which(intervention_prev_3_values[,1]%in%(65) & intervention_prev_3_values[,3]%in%(gender)),2]+intervention_prev_4_values[which(intervention_prev_4_values[,1]%in%(65) & intervention_prev_4_values[,3]%in%(gender)),2]+intervention_prev_5_values[which(intervention_prev_5_values[,1]%in%(65) & intervention_prev_5_values[,3]%in%(gender)),2]+intervention_prev_6_values[which(intervention_prev_6_values[,1]%in%(65) & intervention_prev_6_values[,3]%in%(gender)),2]) {
+
+                    etat[i,1] <- "06" # non diseased and exposed 6
+
+                  } else {
+
+                    etat[i,1] <- "07" # non diseased and exposed 7
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
+
+    };
+
+    for (j in 2:ncol(etat)) { # for each people
+
+      for (i in 1:nrow(etat)) { # for each age
+
+        alea <- runif(1, 0, 1);
+
+        alea0 <- runif(1, 0, 1);
+
+        if (etat[i,j-1] == "00") {
+
+          if (alea0 <= intervention_incid_0_values[which(intervention_incid_0_values[,1]%in%(j-1+65) & intervention_incid_0_values[,3]%in%(gender)),2]) {
+
+            etat[i,j] <- "02"; # non diseased and exposed 2
+
+          } else {
+
+            etat[i,j] <- "00"; # non diseased and non exposed
+
+          }
+
+        } else {
+
+          if (etat[i,j-1] == "01") {
+
+            if (alea0 <= intervention_incid_1_values[which(intervention_incid_1_values[,1]%in%(j-1+65) & intervention_incid_1_values[,3]%in%(gender)),2]) {
+
+              etat[i,j] <- "04"; # non diseased and exposed 4
+
+            } else {
+
+              etat[i,j] <- "01"; # non diseased and exposed 1
+
+            }
+
+          } else {
+
+            if (etat[i,j-1] == "03") {
+
+              if (alea0 <= intervention_incid_3_values[which(intervention_incid_3_values[,1]%in%(j-1+65) & intervention_incid_3_values[,3]%in%(gender)),2]) {
+
+                etat[i,j] <- "06"; # non diseased and exposed 6
+
+              } else {
+
+                etat[i,j] <- "03"; # non diseased and exposed 3
+
+              }
+
+            } else {
+
+              if (etat[i,j-1] == "05") {
+
+                if (alea0 <= intervention_incid_5_values[which(intervention_incid_5_values[,1]%in%(j-1+65) & intervention_incid_5_values[,3]%in%(gender)),2]) {
+
+                  etat[i,j] <- "07"; # non diseased and exposed 7
+
+                } else {
+
+                  etat[i,j] <- "05"; # non diseased and exposed 5
+
+                }
+
+              } else {
+
+                if (etat[i,j-1] == "02") {
+
+                  etat[i,j] <- "02"; # non diseased and exposed 2
+
+                } else {
+
+                  if (etat[i,j-1] == "04") {
+
+                    etat[i,j] <- "04"; # non diseased and exposed 4
+
+                  } else {
+
+                    if (etat[i,j-1] == "06") {
+
+                      etat[i,j] <- "06"; # non diseased and exposed 6
+
+                    } else {
+
+                      if (etat[i,j-1] == "07") {
+
+                        etat[i,j] <- "07"; # non diseased and exposed 7
+
+                      } else {
+
+                        if (etat[i,j-1] == "10") {
+
+                          if (alea0 <= intervention_incid_0_values[which(intervention_incid_0_values[,1]%in%(j-1+65) & intervention_incid_0_values[,3]%in%(gender)),2]) {
+
+                            etat[i,j] <- "12"; # diseased and exposed 2
+
+                          } else {
+
+                            etat[i,j] <- "10"; # diseased and non exposed
+
+                          }
+
+                        } else {
+
+                          if (etat[i,j-1] == "11") {
+
+                            if (alea0 <= intervention_incid_1_values[which(intervention_incid_1_values[,1]%in%(j-1+65) & intervention_incid_1_values[,3]%in%(gender)),2]) {
+
+                              etat[i,j] <- "14"; # diseased and exposed 4
+
+                            } else {
+
+                              etat[i,j] <- "11"; # diseased and exposed 1
+
+                            }
+
+                          } else {
+
+                            if (etat[i,j-1] == "13") {
+
+                              if (alea0 <= intervention_incid_3_values[which(intervention_incid_3_values[,1]%in%(j-1+65) & intervention_incid_3_values[,3]%in%(gender)),2]) {
+
+                                etat[i,j] <- "16"; # diseased and exposed 6
+
+                              } else {
+
+                                etat[i,j] <- "13"; # diseased and exposed 3
+
+                              }
+
+                            } else {
+
+                              if (etat[i,j-1] == "15") {
+
+                                if (alea0 <= intervention_incid_5_values[which(intervention_incid_5_values[,1]%in%(j-1+65) & intervention_incid_5_values[,3]%in%(gender)),2]) {
+
+                                  etat[i,j] <- "17"; # diseased and exposed 7
+
+                                } else {
+
+                                  etat[i,j] <- "15"; # diseased and exposed 5
+
+                                }
+
+                              } else {
+
+                                if (etat[i,j-1] == "12") {
+
+                                  etat[i,j] <- "12"; # diseased and exposed 2
+
+                                } else {
+
+                                  if (etat[i,j-1] == "14") {
+
+                                    etat[i,j] <- "14"; # diseased and exposed 4
+
+                                  } else {
+
+                                    if (etat[i,j-1] == "16") {
+
+                                      etat[i,j] <- "16"; # diseased and exposed 6
+
+                                    } else {
+
+                                      if (etat[i,j-1] == "17") {
+
+                                        etat[i,j] <- "17"; # diseased and exposed 7
+
+                                      } else {
+
+                                        etat[i,j] <- etat[i,j-1]
+
+                                      }
+
+                                    }
+
+                                  }
+
+                                }
+
+                              }
+
+                            }
+
+                          }
+
+                        }
+
+                      }
+
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+
+        }
+
+      }
 
       for (i in 1:nrow(etat)) { # for each age
 
