@@ -4,9 +4,17 @@
 \alias{FrenchDementia}
 \title{Computation of Health Indicators for dementia in France}
 \usage{
-FrenchDementia(t, intervention = 0, year_intervention = NULL,
-  nb_people = 100, nb_iter = 0, gender = "W", a01_cst = TRUE,
-  theta02_cst = FALSE, Ncpus = 1)
+FrenchDementia(
+  t,
+  intervention = 0,
+  year_intervention = NULL,
+  nb_people = 100,
+  nb_iter = 0,
+  gender = "W",
+  a01_cst = TRUE,
+  theta02_cst = FALSE,
+  Ncpus = 1
+)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}

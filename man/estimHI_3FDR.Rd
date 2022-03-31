@@ -4,32 +4,50 @@
 \alias{estimHI_3FDR}
 \title{Computation of Health Indicators}
 \usage{
-estimHI_3FDR(t, intervention = 0, year_intervention = NULL,
-  nb_people = 100, nb_iter = 0, data_pop, gender = "W",
-  data_a01_values, data_a02_values, data_theta01_1_values,
-  data_theta01_2_values, data_theta01_3_values, data_theta02_1_values,
-  data_theta02_2_values, data_theta02_3_values, data_theta12_1_values,
-  data_theta12_2_values, data_theta12_3_values, data_prev_0_values,
-  data_prev_1_values, data_prev_2_values, data_prev_3_values,
-  data_prev_4_values, data_prev_5_values, data_prev_6_values,
-  data_prev_7_values, data_incid_0_values, data_incid_1_values,
-  data_incid_3_values, data_incid_5_values, data_rr_DvsND_values, data_a01,
-  data_a02, data_theta01_1, data_theta01_2, data_theta01_3, data_theta02_1,
-  data_theta02_2, data_theta02_3, data_theta12_1, data_theta12_2,
-  data_theta12_3, data_prev_0, data_prev_1, data_prev_2, data_prev_3,
-  data_prev_4, data_prev_5, data_prev_6, data_prev_7, data_incid_0,
-  data_incid_1, data_incid_3, data_incid_5, data_rr_DvsND, Ncpus = 1)
+estimHI_3FDR(
+  t,
+  intervention = 0,
+  year_intervention = NULL,
+  nb_people = 100,
+  data_pop,
+  gender = "W",
+  data_a01_values,
+  data_a02_values,
+  data_theta01_1_values,
+  data_theta01_2_values,
+  data_theta01_3_values,
+  data_theta02_1_values,
+  data_theta02_2_values,
+  data_theta02_3_values,
+  data_theta12_1_values,
+  data_theta12_2_values,
+  data_theta12_3_values,
+  data_prev_0_values,
+  data_prev_1_values,
+  data_prev_2_values,
+  data_prev_3_values,
+  data_prev_4_values,
+  data_prev_5_values,
+  data_prev_6_values,
+  data_prev_7_values,
+  data_incid_0_values,
+  data_incid_1_values,
+  data_incid_3_values,
+  data_incid_5_values,
+  incid_global,
+  theta1,
+  theta3,
+  data_rr_DvsND_values
+)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
 
-\item{intervention}{0 = no change; 1 = reduction by two of risk factor distribution; 2 = risk factor distribution considered as null. Default is \code{0}.}
+\item{intervention}{0 = no change; 1 = risk factor prevalence and incidence considered as null. Default is \code{0}.}
 
 \item{year_intervention}{year of the intervention in risk factor distribution takes place. Default is \code{NULL}.}
 
 \item{nb_people}{number of people whose trajectory will be simulated for each generation. Default is \code{100}.}
-
-\item{nb_iter}{number of iterations for the algorithm. Default is \code{0}.}
 
 \item{data_pop}{data source for demographics data.}
 
@@ -81,119 +99,17 @@ estimHI_3FDR(t, intervention = 0, year_intervention = NULL,
 
 \item{data_incid_5_values}{data source for the incidence of the exposition 5.}
 
+\item{incid_global}{data source for the global diabete incidence.}
+
+\item{theta1}{HR for HTA in the diabete risk}
+
+\item{theta3}{HR for inact in the diabete risk}
+
 \item{data_rr_DvsND_values}{data source for the relative risks associated with the disease for mortality.}
-
-\item{data_a01}{variability of data source for the incidence of disease.}
-
-\item{data_a02}{variability of data source for the mortality of healthy subjects.}
-
-\item{data_theta01_1}{variability of data source for the relative risks associated with the exposure 1 for disease.}
-
-\item{data_theta01_2}{variability of data source for the relative risks associated with the exposure 2 for disease.}
-
-\item{data_theta01_3}{variability of data source for the relative risks associated with the exposure 3 for disease.}
-
-\item{data_theta02_1}{variability of data source for the relative risks associated with the exposure 1 for mortality among healthy subjects.}
-
-\item{data_theta02_2}{variability of data source for the relative risks associated with the exposure 2 for mortality among healthy subjects.}
-
-\item{data_theta02_3}{variability of data source for the relative risks associated with the exposure 3 for mortality among healthy subjects.}
-
-\item{data_theta12_1}{variability of data source for the relative risks associated with the exposure 1 for mortality among diseased subjects.}
-
-\item{data_theta12_2}{variability of data source for the relative risks associated with the exposure 2 for mortality among diseased subjects.}
-
-\item{data_theta12_3}{variability of data source for the relative risks associated with the exposure 3 for mortality among diseased subjects.}
-
-\item{data_prev_0}{variability of data source for the prevalence of the exposition 0.}
-
-\item{data_prev_1}{variability of data source for the prevalence of the exposition 1.}
-
-\item{data_prev_2}{variability of data source for the prevalence of the exposition 2.}
-
-\item{data_prev_3}{variability of data source for the prevalence of the exposition 3.}
-
-\item{data_prev_4}{variability of data source for the prevalence of the exposition 4.}
-
-\item{data_prev_5}{variability of data source for the prevalence of the exposition 5.}
-
-\item{data_prev_6}{variability of data source for the prevalence of the exposition 6.}
-
-\item{data_prev_7}{variability of data source for the prevalence of the exposition 7.}
-
-\item{data_incid_0}{variability of data source for the incidence of the exposition 0.}
-
-\item{data_incid_1}{variability of data source for the incidence of the exposition 1.}
-
-\item{data_incid_3}{variability of data source for the incidence of the exposition 3.}
-
-\item{data_incid_5}{variability of data source for the incidence of the exposition 5.}
-
-\item{data_rr_DvsND}{variability of data source for the relative risks associated with the disease for mortality.}
-
-\item{Ncpus}{The number of processors available. Default is \code{"1"}.}
 }
 \value{
 a list containing the health indicators
 }
 \description{
 This function computes many health indicators under several scenarios of intervention in risk factor distribution for a given year.
-}
-\examples{
-estimHI_3FDR(t = 2040,
-intervention = 1,
-year_intervention = 2020,
-nb_people = 10000,
-nb_iter = 100,
-data_pop = pop,
-gender = "W",
-data_a01_values = a01_constant_values,
-data_a02_values = a02_constant_values,
-data_theta01_1_values = theta01_cas_1_6_values,
-data_theta01_2_values = theta01_cas_1_6_values,
-data_theta01_3_values = theta01_cas_1_6_values,
-data_theta02_1_values = theta02_increase_values,
-data_theta02_2_values = theta02_increase_values,
-data_theta02_3_values = theta02_increase_values,
-data_theta12_1_values = theta02_increase_values,
-data_theta12_2_values = theta02_increase_values,
-data_theta12_3_values = theta02_increase_values,
-data_prev_0_values <- prevconso_values,
-data_prev_1_values <- prevconso_values,
-data_prev_2_values <- prevconso_values,
-data_prev_3_values <- prevconso_values,
-data_prev_4_values <- prevconso_values,
-data_prev_5_values <- prevconso_values,
-data_prev_6_values <- prevconso_values,
-data_prev_7_values <- prevconso_values,
-data_incid_0_values <- incidconso_values,
-data_incid_1_values <- incidconso_values,
-data_incid_3_values <- incidconso_values,
-data_incid_5_values <- incidconso_values,
-data_rr_DvsND_values = rr_DvsND_values,
-data_a01 = a01_constant,
-data_a02 = a02_constant,
-data_theta01_1 = theta01_cas_1_6,
-data_theta01_2 = theta01_cas_1_6,
-data_theta01_3 = theta01_cas_1_6,
-data_theta02_1 = theta02_increase,
-data_theta02_2 = theta02_increase,
-data_theta02_3 = theta02_increase,
-data_theta12_1 = theta02_increase,
-data_theta12_2 = theta02_increase,
-data_theta12_3 = theta02_increase,
-data_prev_0 = prevconso,
-data_prev_1 = prevconso,
-data_prev_2 = prevconso,
-data_prev_3 = prevconso,
-data_prev_4 = prevconso,
-data_prev_5 = prevconso,
-data_prev_6 = prevconso,
-data_prev_7 = prevconso,
-data_incid_0 = incidconso,
-data_incid_1 = incidconso,
-data_incid_3 = incidconso,
-data_incid_5 = incidconso,
-data_rr_DvsND = rr_DvsND,
-Ncpus = 1)
 }

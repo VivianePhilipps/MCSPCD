@@ -6,7 +6,6 @@
 #' @param intervention 0 = no change; 1 = risk factor prevalence and incidence considered as null. Default is \code{0}.
 #' @param year_intervention year of the intervention in risk factor distribution takes place. Default is \code{NULL}.
 #' @param nb_people number of people whose trajectory will be simulated for each generation. Default is \code{100}.
-#' @param nb_iter number of iterations for the algorithm. Default is \code{0}.
 #' @param data_pop data source for demographics data.
 #' @param gender gender for computation. \code{"W"} for women and \code{"M"} for men. Default is \code{"W"}.
 #' @param data_a01_values data source for the incidence of disease.

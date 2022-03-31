@@ -4,15 +4,32 @@
 \alias{multiResultClass}
 \title{Combination of multiple results}
 \usage{
-multiResultClass(LE_overall = NULL, LE_overall_exp = NULL,
-  LE_overall_nonexp = NULL, LE_without_dis = NULL,
-  LE_without_dis_exp = NULL, LE_without_dis_nonexp = NULL,
-  LE_dis = NULL, LE_dis_exp = NULL, LE_dis_nonexp = NULL,
-  LE_non_dis = NULL, LE_non_dis_exp = NULL, LE_non_dis_nonexp = NULL,
-  np_age = NULL, tp_dis = NULL, nsurvival = NULL, rsurvival = NULL,
-  nb_dis = NULL, nb_dis_exp = NULL, nb_dis_nonexp = NULL,
-  p_dis = NULL, a_dis = NULL, m_exp = NULL, p_exp = NULL,
-  mortality_r = NULL)
+multiResultClass(
+  LE_overall = NULL,
+  LE_overall_exp = NULL,
+  LE_overall_nonexp = NULL,
+  LE_without_dis = NULL,
+  LE_without_dis_exp = NULL,
+  LE_without_dis_nonexp = NULL,
+  LE_dis = NULL,
+  LE_dis_exp = NULL,
+  LE_dis_nonexp = NULL,
+  LE_non_dis = NULL,
+  LE_non_dis_exp = NULL,
+  LE_non_dis_nonexp = NULL,
+  np_age = NULL,
+  tp_dis = NULL,
+  nsurvival = NULL,
+  rsurvival = NULL,
+  nb_dis = NULL,
+  nb_dis_exp = NULL,
+  nb_dis_nonexp = NULL,
+  p_dis = NULL,
+  a_dis = NULL,
+  m_exp = NULL,
+  p_exp = NULL,
+  mortality_r = NULL
+)
 }
 \arguments{
 \item{LE_overall}{Default is \code{NULL}.}

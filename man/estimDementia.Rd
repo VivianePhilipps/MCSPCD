@@ -4,8 +4,7 @@
 \alias{estimDementia}
 \title{Computation of Health Indicators for dementia in France}
 \usage{
-estimDementia(t, nb_people = 100, nb_iter = 0, gender = "W",
-  Ncpus = 1)
+estimDementia(t, nb_people = 100, nb_iter = 0, gender = "W", Ncpus = 1)
 }
 \arguments{
 \item{t}{year of the projections for health indicators.}
